@@ -1,0 +1,70 @@
+\ProvidesPackage{textbook}
+
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T2A]{fontenc}
+\RequirePackage[english,russian]{babel}
+\RequirePackage{hyperref}
+\RequirePackage{xcolor}
+\RequirePackage[left=3cm, right=1cm, bottom=2cm, top=28mm, headheight=8mm]{geometry}
+\RequirePackage{indentfirst}
+\RequirePackage{listings}
+\RequirePackage[pagestyles]{titlesec}
+\RequirePackage[normalem]{ulem}
+\RequirePackage{fancyhdr}
+\RequirePackage{amsthm}
+
+\definecolor{linkc}{rgb}{0.33, 0.51, 0.78}
+
+\newcommand{\sectionfont}{\fontfamily{kurier}}
+\newcommand{\proofstart}{{\bfseries\MakeUppercase{Доказательство.}}}
+\newcommand{\noproof}{{\bfseries\MakeUppercase{Без доказательства.}}}
+\newcommand{\proofexercise}{{\bfseries\MakeUppercase{Доказательство: упражнение.}}}
+\renewcommand{\subsectionmark}[1]{\markright{\thesubsection.\ #1}}
+
+\linespread{1.2}
+
+\fancypagestyle{sectionstart} {
+	\fancyhf{}
+	\renewcommand{\headrulewidth}{0pt}
+	\newgeometry{top=20mm, headheight=0mm}
+}
+
+\fancypagestyle{regularpage} {
+	\fancyhead{}
+	\lhead{\rightmark}
+	\rhead{\thepage}
+}
+
+\hypersetup {
+	colorlinks=true,
+	urlcolor=linkc,
+	linkcolor=black,
+	pdfborderstyle={/S/U/W 1},
+	linkbordercolor=red,
+}
+
+\titleformat{\section}
+	{\thispagestyle{sectionstart}\sectionfont\Large\bfseries}{Глава \thesection.}{1em}{}
+
+\titleformat{\subsection}
+	{\sectionfont\bfseries}{\thesubsection.}{1em}{}
+
+\pagestyle{regularpage}
+
+\newtheoremstyle{pointstyle}
+	{2}	%space above
+	{2}	%space below
+	{}	%body font
+	{}	%space to indent
+	{\large\bfseries}	%head font
+	{.\newline\null}	%punctuation between head and body
+	{\parindent}	%space after head
+	{}	%manually specify head
+
+\theoremstyle{pointstyle}
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{corollary}[theorem]{Следствие}
+\newtheorem{remarkthm}[theorem]{Замечание}
+\newtheorem{define}[theorem]{Определение}
+\newtheorem*{example}{Пример}
