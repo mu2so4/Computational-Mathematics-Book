@@ -1,7 +1,19 @@
-\documentclass[17pt, a4paper]{extarticle}
+\documentclass[main.tex]{subfile}
 \usepackage{cmap}
 \usepackage{textbook}
 
 \begin{document}
+
+\section{Численное решение алгебраических уравнений}
+
+\begin{define}
+	\textbf{Метрическим пространством} называется пространство $M$, в котором определена
+	операция метрики $\rho: M^2 \rightarrow \mathbb R $ такая, что $\forall x, y, z \in M$ верно
+	\begin{enumerate}
+		\item $\rho(x,y)\ge 0$, причём $\rho(x,y) = 0 \Leftrightarrow x=y$;
+		\item $\rho(x,y)=\rho(y,x)$;
+		\item $\rho(x,y)\le \rho(x,z) + \rho(z,y)$.
+	\end{enumerate}
+\end{define}
 
 \end{document}
