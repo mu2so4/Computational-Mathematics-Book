@@ -1,5 +1,5 @@
 CC=pdflatex
-FLAGS=--interaction=batchmode
+FLAGS=
 
 TARGET=main
 
