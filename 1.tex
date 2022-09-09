@@ -7,13 +7,20 @@
 \section{Численное решение алгебраических уравнений}
 
 \begin{define}
-	\textbf{Метрическим пространством} называется пространство $M$, в котором определена
-	операция метрики $\rho: M^2 \rightarrow \mathbb R $ такая, что $\forall x, y, z \in M$ верно
+	\textbf{Метрическим пространством} называется пространство $M$, в
+	котором определена операция метрики $\rho: M^2 \rightarrow \mathbb R $
+	такая, что $\forall x, y, z \in M$ верно
 	\begin{enumerate}
 		\item $\rho(x,y)\ge 0$, причём $\rho(x,y) = 0 \Leftrightarrow x=y$;
 		\item $\rho(x,y)=\rho(y,x)$;
 		\item $\rho(x,y)\le \rho(x,z) + \rho(z,y)$.
 	\end{enumerate}
+\end{define}
+
+\begin{define}
+	\textbf{Сжимающим оператором} на метрическом пространстве $M$ с метрикой
+	$\rho$ называется оператор $f: M \rightarrow M$ такой, что\\
+	$\exists q \in(0;1):\forall x,y \in M\;\; \rho(f(x),f(y)) \le q \rho(x,y)$.
 \end{define}
 
 \end{document}
