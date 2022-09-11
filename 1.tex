@@ -306,8 +306,6 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\addplot[color=blue, line width=.08cm]{e^x - 2};
 			\addplot[color=red, line width=.08cm]{x};
 
-			%\addplot[mark=*,only marks, fill=white] (-2,-1.8647)
-			%	node[above, pos=1]{};
 			\addplot[mark=*,only marks, fill=white] (-1.841,-1.841)
 				node[above, pos=1]{};
 			\addplot[mark=*,only marks, fill=white] (-1.5,-1.7769)
@@ -332,7 +330,58 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\node[scale=0.6] at (-1.7769,0.04) {$x_1$};
 		\end{axis}
 	\end{tikzpicture}
+	\newpage
+
+	Теперь попробуем найти $x_2$, который где-то на отрезке $[1,2]$. Как и
+	в предыдущем случае, за $x_0$ возьмём середину отрезка, то есть 1.5:
+	\begin{itemize}
+		\item $x_1=u(1.5000)\approx 2.4817$, $|u(x_0)-x_0|\approx 0.9817$;
+		\item $x_2=u(2.4817)\approx 9.9616$, $|u(x_1)-x_1|\approx 7.4799$;
+		\item $x_3=u(9.9616)\approx 21194.68329$ и т. д.
+	\end{itemize}
+
+	Вот тут нам не повезло: итерационная последовательность разошлась.
+	На это тоже можно посмотреть на графике:
 	\newline
+
+	\begin{tikzpicture}
+		\begin{axis} [
+			%unit vector ratio*=1 1,
+			%width=11cm,
+			height=11cm,
+			xlabel = {$x$},
+			ylabel = {$y$},
+			axis x line = middle,
+			axis y line = middle,
+			ymin = -0.8,
+			domain = 0:2.54,
+			ticks = none
+		]
+			\addplot[color=blue, line width=.08cm]{e^x - 2};
+			\addplot[color=red, line width=.08cm]{x};
+
+			\addplot[mark=*,only marks, fill=white] (1.1462,1.1462)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (1.5,2.4817)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (2.4817,9.9616)
+				node[above, pos=1]{};
+
+			\draw[dashed,black] (1,0) -- (1,1);
+			\draw[dashed,black] (2,0) -- (2,5.3891);
+			\draw[dashed,black] (1.1462,0) -- (1.1462,1.1462);
+			\draw[dashed,black] (1.5,0) -- (1.5,2.4817);
+			\draw[dashed,black] (2.4817,0) -- (2.4817,9.9616);
+
+			\draw[-latex, black, very thick] (1.5, 2.4817) -- (2.4817, 2.4817);
+
+			\node[scale=1.1] at (1,-0.4) {$1$};
+			\node[scale=1.1] at (2,-0.4) {$2$};
+			\node[scale=1.1] at (1.14620,-0.44) {$\widetilde{x_2}$};
+			\node[scale=1.1] at (1.5,-0.4) {$x_0$};
+			\node[scale=1.1] at (2.4817,-0.4) {$x_1$};
+		\end{axis}
+	\end{tikzpicture}
 \end{example}
 
 \end{document}
