@@ -141,7 +141,7 @@ $y(x)=0$. Если это просто абстрактное уравнение
 	последовательность с базой $x_0$ и функцией итерации $g(x)$. Если
 	параметр $\tau$ подобран правильно, итерационная последовательность
 	сойдётся к неподвижной точке. При заданной погрешности $\varepsilon$
-	завершаем итерацию при $|f(x_n)|<\varepsilon$.
+	завершаем итерацию при $|g(x_n)-x_n|<\varepsilon$.
 \end{algorithm}
 
 Как нужно подобрать $\tau$, чтобы последовательность сошлась? Однозначного ответа
@@ -261,7 +261,7 @@ $y(x)=0$. Если это просто абстрактное уравнение
 
 	Видно, что у уравнения имеются 2 решения. Обозначим их как $\widetilde{x_1}$
 	и $\widetilde{x_2}$. Запишем уравнение так, будто мы ищем нули функции:
-	$f(x) = e^x-x-2=0$. Теперь локализуем корни:
+	$f(x) = e^x-x-2$. Теперь локализуем корни:
 	\newline
 
 	\begin{tabular}{ |c|c|c|c|c|c| }
@@ -274,6 +274,65 @@ $y(x)=0$. Если это просто абстрактное уравнение
 	\newline
 
 	$\widetilde{x_1}\in[-2,-1],\;\widetilde{x_2}\in[1,2]$.
+
+	\newpage
+	Теперь запишем уравнение через поиск неподвижной точки, то есть как
+	$u(x)=e^x-2$.
+
+	Найдём сначала $\widetilde{x_1}$. За начальную точку возьмём $x_1=-1.5$ --
+	середину отрезка. Поехали:
+	\begin{itemize}
+		\item $x_1=u(-1.5000)\approx -1.7769$, $|u(x_0)-x_0|\approx 0.2769$;
+		\item $x_2=u(-1.7769)\approx -1.8308$, $|u(x_1)-x_1|\approx 0.0539$;
+		\item $x_3=u(-1.8308)\approx -1.8397$, $|u(x_2)-x_2|\approx 0.0089$ и т. д.
+	\end{itemize}
+
+	Итерационная последовательность очень быстро сходится к $\widetilde{x_1}$. Не менее
+	интересно будет посмотреть на это на графике:
+
+	\begin{tikzpicture}
+		\begin{axis} [
+			unit vector ratio*=1 1,
+			%width=11cm,
+			height=16cm,
+			xlabel = {$x$},
+			ylabel = {$y$},
+			axis x line = middle,
+			hide y axis,
+			ymax = 0.3,
+			domain = -2.2:-0.8,
+			ticks = none
+		]
+			\addplot[color=blue, line width=.08cm]{e^x - 2};
+			\addplot[color=red, line width=.08cm]{x};
+
+			%\addplot[mark=*,only marks, fill=white] (-2,-1.8647)
+			%	node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (-1.841,-1.841)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (-1.5,-1.7769)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (-1.7769,-1.8308)
+				node[above, pos=1]{};
+
+			\draw[dashed,black] (-2,0) -- (-2,-2);
+			\draw[dashed,black] (-1,0) -- (-1,-1.6321);
+			\draw[dashed,black] (-1.841,0) -- (-1.841,-1.841);
+			\draw[dashed,black] (-1.5,0) -- (-1.5,-1.7769);
+			\draw[dashed,black] (-1.7769,0) -- (-1.7769,-1.8308);
+			\draw[dashed,black] (-1.8308,0) -- (-1.8308,-1.8308);
+
+			\draw[-latex, black, very thick] (-1.5, -1.7769) -- (-1.7769, -1.7769);
+			\draw[-latex, black, very thick] (-1.7769, -1.8308) -- (-1.8308, -1.8308);
+
+			\node[scale=0.6] at (-2,0.04) {$-2$};
+			\node[scale=0.6] at (-1,0.04) {$-1$};
+			\node[scale=0.6] at (-1.841,0.042) {$\widetilde{x_1}$};
+			\node[scale=0.6] at (-1.5,0.04) {$x_0$};
+			\node[scale=0.6] at (-1.7769,0.04) {$x_1$};
+		\end{axis}
+	\end{tikzpicture}
+	\newline
 \end{example}
 
 \end{document}
