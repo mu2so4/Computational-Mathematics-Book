@@ -18,7 +18,7 @@ $y(x)=0$. Если это просто абстрактное уравнение
 база.
 
 \begin{algorithm}[метод бисекции]
-	Пусть для функции $f(x)$ нам известно, что
+	Необходимо найти ноль функции $f(x)$ на отрезке $[a,b]$ таком, что:
 	\begin{enumerate}
 		\item $f(x)\in C([a,b])$;
 		\item $f(a)f(b)<0$, то есть на концах отрезка функция
@@ -44,6 +44,71 @@ $y(x)=0$. Если это просто абстрактное уравнение
 
 Корректность данного алгоритма напрямую следует из теоремы Больцано-Коши, которая
 и доказывается методом бисекции в сочетании с теоремой о двух милиционерах.
+
+\begin{example}
+	Пусть нужно решить уравнение
+	\[f(x)=x^3-6x^2+8x+2=0.\]
+
+	Функция непрерывна на всей вещественной оси. Значит, с локализацией
+	корней проблем быть не должно.
+
+	\begin{tabular}{ |c|c|c|c|c| }
+		\hline
+		$x$		& 0	& 1	& 2	& 3 \\
+		\hline
+		Знак $f(x)$ 	& $+$	& $+$	& $+$	& $-$ \\
+		\hline
+	\end{tabular}
+	\newline
+
+	%TODO найти команду, которую находит значения функции в точке (параметры: функция и точка)
+	Тогда $\exists c\in[2,3]: f(c)=0$. Найдём его методом бисекции:
+	\begin{itemize}
+		\item $f(2.5)=0.125>0$, ищем на $[2.5,3]$;
+		\item $f(2.75)\approx -0.5781<0$, ищем на $[2.5,2.75]$;
+		\item $f(2.625)\approx -0.2259<0$, ищем на $[2.5,2.625]$ и т. д.
+	\end{itemize}
+
+	На графике это выглядит вот так:
+	\newline
+
+	\begin{tikzpicture} [
+		declare function={
+			f(\x)= \x^3 - 6*\x^2+ 8*\x + 2;
+		},
+	]
+		\begin{axis} [
+			height=10cm,
+			width=15cm,
+			xlabel = {$x$},
+			ylabel = {$f(x)$},
+			axis x line = middle,
+			%axis y line = middle,
+			hide y axis,
+			domain = 1.5:3.5,
+			ticks = none
+		]
+			\addplot[color=blue, line width=.08cm]{f(x)};
+
+			\addplot[mark=*,only marks, fill=white] (2,2)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (3,-1)
+				node[above, pos=1]{};
+
+			\draw[dashed,black] (2,0) -- (2,2);
+			\draw[dashed,black] (3,0) -- (3,-1);
+			\draw[dashed,black] (2.5,0) -- (2.5,0.125);
+			\draw[dashed,black] (2.75,0) -- (2.75,-0.5781);
+			\draw[dashed,black] (2.625,0) -- (2.625,-0.2259);
+
+			\node[scale=1.1] at (2,-.3) {$2$};
+			\node[scale=1.1] at (3,.3) {$3$};
+			\node[scale=1.1] at (2.5,-.3) {$x_1$};
+			\node[scale=1.1] at (2.75,.3) {$x_2$};
+			\node[scale=1.1] at (2.625,.3) {$x_3$};
+		\end{axis}
+	\end{tikzpicture}
+\end{example}
 
 
 \subsection{Итерационные методы решения алгебраических уравнений}
