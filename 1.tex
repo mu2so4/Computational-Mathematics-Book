@@ -51,6 +51,7 @@ $y(x)=0$. Если это просто абстрактное уравнение
 
 	Функция непрерывна на всей вещественной оси. Значит, с локализацией
 	корней проблем быть не должно.
+	\newline
 
 	\begin{tabular}{ |c|c|c|c|c| }
 		\hline
@@ -219,5 +220,60 @@ $y(x)=0$. Если это просто абстрактное уравнение
 	что и даёт нам замкнутость $g(x)$ на этом отрезке. Условие 1 и замкнутость
 	даёт нам право считать $g(x)$ сжимающим отображением, поэтому тут применима
 	теорема Банаха о неподвижной точке -- итерационный процесс сходится.\qed
+
+
+\begin{example}[графическая интерпретация метода простой итерации]
+	Нужно решить уравнение \(e^x=x+2.\) Как и в предыдущем примере, с
+	непрерывностью у данной функции проблем нет.
+
+	Отобразим функции $g(x)=e^x$ и $h(x)=x+2$ на графике:
+	\newline
+
+	\begin{tikzpicture}
+		\begin{axis} [
+			unit vector ratio*=1 1,
+			%width=11cm,
+			height=11cm,
+			xlabel = {$x$},
+			ylabel = {$y$},
+			axis x line = middle,
+			axis y line = middle,
+			domain = -2.5:2.2,
+			ymin = -1,
+			ticks = none
+		]
+			\addplot[color=blue, line width=.08cm]{e^x};
+			\addplot[color=red, line width=.08cm]{x+2};
+
+			\addplot[mark=*,only marks, fill=white] (1.146,3.146)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (-1.841,0.159)
+				node[above, pos=1]{};
+
+			\draw[dashed,black] (1.146,0) -- (1.146,3.146);
+			\draw[dashed,black] (-1.841,0) -- (-1.841,0.159);
+
+			\node[scale=1.1] at (1.146,-.4) {$\widetilde{x_2}$};
+			\node[scale=1.1] at (-1.841,-.4) {$\widetilde{x_1}$};
+		\end{axis}
+	\end{tikzpicture}
+	\newline
+
+	Видно, что у уравнения имеются 2 решения. Обозначим их как $\widetilde{x_1}$
+	и $\widetilde{x_2}$. Запишем уравнение так, будто мы ищем нули функции:
+	$f(x) = e^x-x-2=0$. Теперь локализуем корни:
+	\newline
+
+	\begin{tabular}{ |c|c|c|c|c|c| }
+		\hline
+		$x$		& -2	& -1	& 0	& 1	& 2 \\
+		\hline
+		Знак $f(x)$ 	& $+$	& $-$	& $-$	& $-$ 	& $+$\\
+		\hline
+	\end{tabular}
+	\newline
+
+	$\widetilde{x_1}\in[-2,-1],\;\widetilde{x_2}\in[1,2]$.
+\end{example}
 
 \end{document}
