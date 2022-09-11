@@ -333,10 +333,10 @@ $y(x)=0$. Если это просто абстрактное уравнение
 
 	Теперь попробуем найти $x_2$, который где-то на отрезке $[1,2]$. Как и
 	в предыдущем случае, за $x_0$ возьмём середину отрезка, то есть 1.5:
-	\begin{itemize}
+	\begin{itemize}[noitemsep, nolistsep]
 		\item $x_1=u(1.5000)\approx 2.4817$, $|u(x_0)-x_0|\approx 0.9817$;
 		\item $x_2=u(2.4817)\approx 9.9616$, $|u(x_1)-x_1|\approx 7.4799$;
-		\item $x_3=u(9.9616)\approx 21194.68329$ и т. д.
+	\item $x_3=u(9.9616)\approx 21194.68329$ и т. д.
 	\end{itemize}
 
 	Вот тут нам не повезло: итерационная последовательность разошлась.
@@ -379,6 +379,96 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\node[scale=1.1] at (2.4817,-0.4) {$x_1$};
 		\end{axis}
 	\end{tikzpicture}
+
+	Во втором случае расхождение последовательности произошло из-за того, что
+	производная $\forall x\ge 1: |u'(x)|>1$.
+\end{example}
+
+Однако невыполнение условий теоремы
+ещё не означает, что итерационная последовательность не сойдётся к
+неподвижной точке.
+
+\begin{example}
+	Необходимо найти неподвижные точки функции \[f(x)=-e^{2x}+4.5e^x-3.\]
+
+	Предположим, мы уже локализовали одну неподвижную точку на отрезке $[-1,0]$.
+	Взяв $x_0$ равным -0.5, начнём строить итерационную последовательность:
+
+	\begin{enumerate}[noitemsep, nolistsep]
+		\item $x_1\approx -0.6385, |f(x_0)-x_0|\approx 0.1385$,
+		\item $x_2\approx -0.9025, |f(x_1)-x_1|\approx 0.2640$,
+		\item $x_3\approx -1.3395, |f(x_2)-x_2|\approx 0.4370$,
+		\item $x_4\approx -1.8897, |f(x_3)-x_3|\approx 0.5502$,
+		\item $x_5\approx -2.3428, |f(x_4)-x_4|\approx 0.4531$,
+		\item $x_6\approx -2.5770, |f(x_5)-x_5|\approx 0.2342$,
+		\item $x_7\approx -2.6638, |f(x_6)-x_6|\approx 0.0868$,
+		\item $x_8\approx -2.6913, |f(x_7)-x_7|\approx 0.0275$,
+		\item $x_9\approx -2.6995, |f(x_8)-x_8|\approx 0.0082$, и т. д.
+	\end{enumerate}\leavevmode
+
+	\begin{tikzpicture}
+		\begin{axis} [
+			height=10cm,
+			xlabel = {$x$},
+			ylabel = {$y$},
+			axis x line = middle,
+			hide y axis,
+			domain = -3:0.2,
+			ticks = none]
+			\addplot[color=blue, line width=.08cm]{-e^(2*x) + 4.5*e^x - 3};
+			\addplot[color=red, line width=.04cm]{x};
+
+
+			\addplot[mark=*,only marks, fill=white] (-0.371, -0.371)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (-2.703, -2.703)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (-0.5000,-0.6385)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (-0.6385,-0.9025)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (-0.9025,-1.3395)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (-1.3395,-1.8897)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (-1.8897,-2.3428)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (-2.3428,-2.5770)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (-2.5770,-2.6638)
+				node[above, pos=1]{};
+
+			\draw[very thick, black] (-1,0) -- (-1,-1.48);
+			\draw[very thick, black] (0,0) -- (0,0.5);
+			\draw[dashed,black] (-0.371,0) -- (-0.371,-0.371);
+			\draw[dashed,black] (-2.703,0) -- (-2.703,-2.703);
+			\draw[dashed,black] (-0.5000,0) -- (-0.5000,-0.6385);
+			\draw[dashed,black] (-0.6385,0) -- (-0.6385,-0.9025);
+			\draw[dashed,black] (-0.9025,0) -- (-0.9025,-1.3395);
+			\draw[dashed,black] (-1.3395,0) -- (-1.3395,-1.8897);
+			\draw[dashed,black] (-1.8897,0) -- (-1.8897,-2.3428);
+			\draw[dashed,black] (-2.3428,0) -- (-2.3428,-2.5770);
+			\draw[dashed,black] (-2.5770,0) -- (-2.5770,-2.6638);
+
+			\draw[-latex, black, very thick] (-0.5000, -0.6385) -- (-0.6385, -0.6385);
+			\draw[-latex, black, very thick] (-0.6385, -0.9025) -- (-0.9025, -0.9025);
+			\draw[-latex, black, very thick] (-0.9025, -1.3395) -- (-1.3395, -1.3395);
+			\draw[-latex, black, very thick] (-1.3395, -1.8897) -- (-1.8897, -1.8897);
+			\draw[-latex, black, very thick] (-1.8897, -2.3428) -- (-2.3428, -2.3428);
+			\draw[-latex, black, very thick] (-2.3428, -2.5770) -- (-2.5770, -2.5770);
+
+			\node[scale=1.1] at (-1,0.3) {$-1$};
+			\node[scale=1.1] at (0,-0.3) {$0$};
+			\node[scale=1.1] at (-0.55,0.3) {$x_0$};
+			\node[scale=1.1] at (-1.3395,0.3) {$x_3$};
+			\node[scale=1.1] at (-1.8897,0.3) {$x_4$};
+			\node[scale=1.1] at (-2.3428,0.3) {$x_5$};
+			\node[scale=1.1] at (-0.321,0.3) {$\widetilde{x_1}$};
+			\node[scale=1.1] at (-2.703,0.3) {$\widetilde{x_2}$};
+		\end{axis}
+	\end{tikzpicture}
+
+	С другой стороны, итерационная последовательность сошлась к числу не из нашего отрезка.
 \end{example}
 
 \end{document}
