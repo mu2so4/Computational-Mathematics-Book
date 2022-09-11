@@ -13,15 +13,15 @@
 \RequirePackage{fancyhdr}
 \RequirePackage{amsthm}
 
+\linespread{1.2}
+
 \definecolor{linkc}{rgb}{0.33, 0.51, 0.78}
 
 \newcommand{\sectionfont}{\fontfamily{kurier}}
-\newcommand{\proofstart}{{\bfseries\MakeUppercase{Доказательство.}}}
+\newcommand{\beginproof}{{\bfseries\MakeUppercase{Доказательство. }}}
 \newcommand{\noproof}{{\bfseries\MakeUppercase{Без доказательства.}}}
 \newcommand{\proofexercise}{{\bfseries\MakeUppercase{Доказательство: упражнение.}}}
-\renewcommand{\subsectionmark}[1]{\markright{\thesubsection.\ #1}}
-
-\linespread{1.2}
+\renewcommand{\subsectionmark}[1]{\markright{\small\thesubsection.\ #1}}
 
 \fancypagestyle{sectionstart} {
 	\fancyhf{}
@@ -47,7 +47,7 @@
 	{\thispagestyle{sectionstart}\sectionfont\Large\bfseries}{Глава \thesection.}{1em}{}
 
 \titleformat{\subsection}
-	{\sectionfont\bfseries}{\thesubsection.}{1em}{}
+	{\sectionfont\large\bfseries}{\thesubsection.}{1em}{}
 
 \pagestyle{regularpage}
 
@@ -67,4 +67,5 @@
 \newtheorem{corollary}[theorem]{Следствие}
 \newtheorem{remarkthm}[theorem]{Замечание}
 \newtheorem{define}[theorem]{Определение}
+\newtheorem{algorithm}[theorem]{Алгоритм}
 \newtheorem*{example}{Пример}
