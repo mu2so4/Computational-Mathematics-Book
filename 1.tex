@@ -84,11 +84,10 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			xlabel = {$x$},
 			ylabel = {$f(x)$},
 			axis x line = middle,
-			%axis y line = middle,
 			hide y axis,
 			domain = 1.5:3.5,
-			ticks = none
-		]
+			ticks = none ]
+
 			\addplot[color=blue, line width=.08cm]{f(x)};
 
 			\addplot[mark=*,only marks, fill=white] (2,2)
@@ -107,6 +106,8 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\node[scale=1.1] at (2.5,-.3) {$x_1$};
 			\node[scale=1.1] at (2.75,.3) {$x_2$};
 			\node[scale=1.1] at (2.625,.3) {$x_3$};
+
+			\addlegendentry{$f(x)=x^3-6x^2+8x+2$}
 		\end{axis}
 	\end{tikzpicture}
 \end{example}
@@ -240,8 +241,9 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			axis y line = middle,
 			domain = -2.5:2.2,
 			ymin = -1,
-			ticks = none
-		]
+			ticks = none,
+			legend pos = outer north east]
+
 			\addplot[color=blue, line width=.08cm]{e^x};
 			\addplot[color=red, line width=.04cm]{x+2};
 
@@ -255,6 +257,9 @@ $y(x)=0$. Если это просто абстрактное уравнение
 
 			\node[scale=1.1] at (1.146,-.4) {$\widetilde{x_2}$};
 			\node[scale=1.1] at (-1.841,-.4) {$\widetilde{x_1}$};
+
+			\addlegendentry{$y=e^x$};
+			\addlegendentry{$y=x+2$};
 		\end{axis}
 	\end{tikzpicture}
 	\newline
@@ -300,8 +305,9 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			hide y axis,
 			ymax = 0.3,
 			domain = -2.2:-0.8,
-			ticks = none
-		]
+			ticks = none,
+			legend pos = south east ]
+
 			\addplot[color=blue, line width=.08cm]{e^x - 2};
 			\addplot[color=red, line width=.04cm]{x};
 
@@ -327,6 +333,9 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\node[scale=1.1] at (-1.841,0.12) {$\widetilde{x_1}$};
 			\node[scale=1.1] at (-1.5,0.1) {$x_0$};
 			\node[scale=1.1] at (-1.7769,0.1) {$x_1$};
+
+			\addlegendentry{$y=e^x-2$};
+			\addlegendentry{$y=x$};
 		\end{axis}
 	\end{tikzpicture}
 	\newpage
@@ -352,7 +361,8 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			axis y line = middle,
 			ymin = -0.8,
 			domain = 0:2.54,
-			ticks = none
+			ticks = none,
+			legend pos = outer north east
 		]
 			\addplot[color=blue, line width=.08cm]{e^x - 2};
 			\addplot[color=red, line width=.04cm]{x};
@@ -377,6 +387,9 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\node[scale=1.1] at (1.14620,-0.44) {$\widetilde{x_2}$};
 			\node[scale=1.1] at (1.5,-0.4) {$x_0$};
 			\node[scale=1.1] at (2.4817,-0.4) {$x_1$};
+
+			\addlegendentry{$y=e^x-2$};
+			\addlegendentry{$y=x$};
 		\end{axis}
 	\end{tikzpicture}
 
@@ -384,9 +397,8 @@ $y(x)=0$. Если это просто абстрактное уравнение
 	производная $\forall x\ge 1: |u'(x)|>1$.
 \end{example}
 
-Однако невыполнение условий теоремы
-ещё не означает, что итерационная последовательность не сойдётся к
-неподвижной точке.
+Однако невыполнение условий теоремы ещё не означает, что итерационная
+последовательность не сойдётся к неподвижной точке.
 
 \begin{example}
 	Необходимо найти неподвижные точки функции \[f(x)=-e^{2x}+4.5e^x-3.\]
@@ -414,7 +426,9 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			axis x line = middle,
 			hide y axis,
 			domain = -3:0.2,
-			ticks = none]
+			ticks = none,
+			legend pos = south east]
+
 			\addplot[color=blue, line width=.08cm]{-e^(2*x) + 4.5*e^x - 3};
 			\addplot[color=red, line width=.04cm]{x};
 
@@ -465,6 +479,9 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\node[scale=1.1] at (-2.3428,0.3) {$x_5$};
 			\node[scale=1.1] at (-0.321,0.3) {$\widetilde{x_1}$};
 			\node[scale=1.1] at (-2.703,0.3) {$\widetilde{x_2}$};
+
+			\addlegendentry{$y=-e^{2x}+4.5e^x-3$};
+			\addlegendentry{$y=x$};
 		\end{axis}
 	\end{tikzpicture}
 
