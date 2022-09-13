@@ -115,11 +115,8 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\addplot[mark=*,only marks, fill=white] (\varB, \fb)
 				node[above, pos=1]{};
 
-			\draw[very thick,black]	(Ap)	--	(A);
-			\draw[very thick,black]	(Bp)	--	(B);
-			\draw[dashed,black] 	(X1p)	--	(X1);
-			\draw[dashed,black]	(X2p)	--	(X2);
-			\draw[dashed,black]	(X3p)	--	(X3);
+			\draw[very thick] (Ap) -- (A)	(Bp) -- (B);
+			\draw[dashed] (X1p) -- (X1)	(X2p) -- (X2)	(X3p) -- (X3);
 
 			\addlegendentry{$f(x)=x^3-6x^2+8x+2$};
 		\end{axis}
@@ -280,8 +277,7 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\addplot[mark=*,only marks, fill=white] (\Xsecond,\fXsecond)
 				node[above, pos=1]{};
 
-			\draw[dashed,black] (X1p) -- (X1);
-			\draw[dashed,black] (X2p) -- (X2);
+			\draw[dashed] (X1p) -- (X1)	(X2p) -- (X2);
 
 			\addlegendentry{$y=e^x$};
 			\addlegendentry{$y=x+2$};
@@ -372,15 +368,12 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\addplot[mark=*,only marks, fill=white] (\Xfirst,\Xsecond)
 				node[above, pos=1]{};
 
-			\draw[very thick,black] (Ap) -- (A);
-			\draw[very thick,black] (Bp) -- (B);
-			\draw[dashed,black] (Xp) -- (X);
-			\draw[dashed,black] (X0p) -- (X0);
-			\draw[dashed,black] (X1p) -- (X1);
-			\draw[dashed,black] (X2p) -- (X2);
+			\draw[very thick] (Ap) -- (A)	(Bp) -- (B);
+			\draw[dashed] (Xp) -- (X)	(X0p) -- (X0)
+				(X1p) -- (X1)	(X2p) -- (X2);
 
-			\draw[-latex, very thick] (X0) -- (X0med);
-			\draw[-latex, very thick] (X1) -- (X1med);
+			\draw[-latex, very thick] (X0) edge (X0med)
+				(X1) -- (X1med);
 
 			\addlegendentry{$y=e^x-2$};
 			\addlegendentry{$y=x$};
@@ -448,11 +441,9 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\addplot[mark=*,only marks, fill=white] (\Xfirst,\Xsecond)
 				node[above, pos=1]{};
 
-			\draw[very thick,black] (Ap) -- (A);
-			\draw[very thick,black] (Bp) -- (B);
-			\draw[dashed,black]	(Xp) -- (X);
-			\draw[dashed,black]	(X0p) -- (X0);
-			\draw[dashed,black]	(X1p) -- (X1);
+			\draw[very thick] (Ap) -- (A)	(Bp) -- (B);
+			\draw[dashed]	(Xp) -- (X)	(X0p) -- (X0)
+				(X1p) -- (X1);
 
 			\draw[-latex, very thick] (X0) -- (X0med);
 
