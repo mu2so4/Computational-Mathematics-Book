@@ -66,10 +66,9 @@ $y(x)=0$. Если это просто абстрактное уравнение
 		\item $f(2.5)=0.125>0$, ищем на $[2.5,3]$;
 		\item $f(2.75)\approx -0.5781<0$, ищем на $[2.5,2.75]$;
 		\item $f(2.625)\approx -0.2259<0$, ищем на $[2.5,2.625]$ и т. д.
-	\end{itemize}
+	\end{itemize}\leavevmode\newline
 
-	На графике это выглядит вот так:
-	\newline
+	На графике это выглядит вот так:\\
 
 	\begin{tikzpicture} [
 		declare function={
@@ -77,7 +76,7 @@ $y(x)=0$. Если это просто абстрактное уравнение
 		},
 	]
 		\begin{axis} [
-			height=10cm,
+			height=9cm,
 			width=15cm,
 			xlabel = {$x$},
 			ylabel = {$f(x)$},
@@ -87,9 +86,10 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			ticks = none ]
 
 			\newcommand*{\varA}{2}
-			\pgfmathsetmacro{\fa}{f(\varA)}
 			\newcommand*{\varB}{3}
+			\newcommand*{\X}{2.539}
 			\pgfmathsetmacro{\fb}{f(\varB)}
+			\pgfmathsetmacro{\fa}{f(\varA)}
 			\pgfmathsetmacro{\Xfirst}{(\varA+\varB)/2}
 			\pgfmathsetmacro{\fXfirst}{f(\Xfirst)}
 			\pgfmathsetmacro{\Xsecond}{(\Xfirst+\varB)/2}
@@ -103,6 +103,7 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\node[below](Ap) at 	(\varA,		0) {$a$};
 			\coordinate(B) at 	(\varB,		\fb);
 			\node[above](Bp) at 	(\varB,		0) {$b$};
+			\node[above](X) at 	(\X,		0) {$\widetilde{x}$};
 			\coordinate(X1) at 	(\Xfirst,	\fXfirst);
 			\node[below](X1p) at 	(\Xfirst,	0) {$x_1$};
 			\coordinate(X2) at 	(\Xsecond,	\fXsecond);
@@ -110,9 +111,7 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\coordinate(X3) at 	(\Xthird,	\fXthird);
 			\node[above](X3p) at 	(\Xthird,	0) {$x_3$};
 
-			\addplot[mark=*,only marks, fill=white] (\varA, \fa)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (\varB, \fb)
+			\addplot[mark=*,only marks, fill=white] (\X, 0)
 				node[above, pos=1]{};
 
 			\draw[very thick] (Ap) -- (A)	(Bp) -- (B);
