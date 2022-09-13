@@ -267,13 +267,13 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\pgfmathsetmacro{\fXfirst}{h(\Xfirst)}
 			\pgfmathsetmacro{\fXsecond}{h(\Xsecond)}
 
+			\addplot[color=blue, line width=.08cm]{g(x)};
+			\addplot[color=red, line width=.04cm]{h(x)};
+
 			\coordinate(X1) at 	(\Xfirst,	\fXfirst);
 			\node[below](X1p) at 	(\Xfirst,	0) {$\widetilde{x_1}$};
 			\coordinate(X2) at 	(\Xsecond,	\fXsecond);
 			\node[below](X2p) at 	(\Xsecond,	0) {$\widetilde{x_2}$};
-
-			\addplot[color=blue, line width=.08cm]{g(x)};
-			\addplot[color=red, line width=.04cm]{h(x)};
 
 			\addplot[mark=*,only marks, fill=white] (\Xfirst,\fXfirst)
 				node[above, pos=1]{};
@@ -321,7 +321,11 @@ $y(x)=0$. Если это просто абстрактное уравнение
 	интересно будет посмотреть на это на графике:
 	\newline
 
-	\begin{tikzpicture}
+	\begin{tikzpicture} [
+		declare function= {
+			u(\x) = e^\x-2;
+			i(\x) = \x;
+		},]
 		\begin{axis} [
 			height=14cm,
 			xlabel = {$x$},
@@ -333,31 +337,50 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			ticks = none,
 			legend pos = south east ]
 
-			\addplot[color=blue, line width=.08cm]{e^x - 2};
-			\addplot[color=red, line width=.04cm]{x};
+			\newcommand*{\varA}{-2}
+			\newcommand*{\varB}{-1}
+			\newcommand*{\trueX}{-1.841}
+			\pgfmathsetmacro{\fa}{min(u(\varA), i(\varA))}
+			\pgfmathsetmacro{\fb}{min(u(\varB), i(\varB))}
+			\pgfmathsetmacro{\Xzeroth}{(\varA+\varB)/2}
+			\pgfmathsetmacro{\Xfirst}{(u(\Xzeroth)}
+			\pgfmathsetmacro{\Xsecond}{(u(\Xfirst)}
+			\pgfmathsetmacro{\Xthird}{(u(\Xsecond)}
 
-			\addplot[mark=*,only marks, fill=white] (-1.841,-1.841)
+			\addplot[color=blue, line width=.08cm]{u(x)};
+			\addplot[color=red, line width=.04cm]{i(x)};
+
+			\coordinate(A) at 	(\varA,		\fa);
+			\node[above](Ap) at	(\varA,		0) {$\varA$};
+			\coordinate(B) at 	(\varB,		\fb);
+			\node[above](Bp) at	(\varB,		0) {$\varB$};
+			\coordinate(X) at 	(\trueX,	\trueX);
+			\node[above](Xp) at	(\trueX,	0) {$\widetilde{x}$};
+			\coordinate(X0) at 	(\Xzeroth,	\Xfirst);
+			\node[above](X0p) at	(\Xzeroth,	0) {$x_0$};
+			\coordinate(X0med) at 	(\Xfirst,	\Xfirst);
+			\coordinate(X1) at 	(\Xfirst,	\Xsecond);
+			\node[above](X1p) at	(\Xfirst,	0) {$x_1$};
+			\coordinate(X1med) at 	(\Xsecond,	\Xsecond);
+			\coordinate(X2) at 	(\Xsecond,	\Xthird);
+			\coordinate(X2p) at	(\Xsecond,	0);
+
+			\addplot[mark=*,only marks, fill=white] (\trueX,\trueX)
 				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (-1.5,-1.7769)
+			\addplot[mark=*,only marks, fill=white] (\Xzeroth,\Xfirst)
 				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (-1.7769,-1.8308)
+			\addplot[mark=*,only marks, fill=white] (\Xfirst,\Xsecond)
 				node[above, pos=1]{};
 
-			\draw[very thick,black] (-2,0) -- (-2,-2);
-			\draw[very thick,black] (-1,0) -- (-1,-1.6321);
-			\draw[dashed,black] (-1.841,0) -- (-1.841,-1.841);
-			\draw[dashed,black] (-1.5,0) -- (-1.5,-1.7769);
-			\draw[dashed,black] (-1.7769,0) -- (-1.7769,-1.8308);
-			\draw[dashed,black] (-1.8308,0) -- (-1.8308,-1.8308);
+			\draw[very thick,black] (Ap) -- (A);
+			\draw[very thick,black] (Bp) -- (B);
+			\draw[dashed,black] (Xp) -- (X);
+			\draw[dashed,black] (X0p) -- (X0);
+			\draw[dashed,black] (X1p) -- (X1);
+			\draw[dashed,black] (X2p) -- (X2);
 
-			\draw[-latex, black, very thick] (-1.5, -1.7769) -- (-1.7769, -1.7769);
-			\draw[-latex, black, very thick] (-1.7769, -1.8308) -- (-1.8308, -1.8308);
-
-			\node[scale=1.1] at (-2,0.1) {$-2$};
-			\node[scale=1.1] at (-1,0.1) {$-1$};
-			\node[scale=1.1] at (-1.841,0.12) {$\widetilde{x_1}$};
-			\node[scale=1.1] at (-1.5,0.1) {$x_0$};
-			\node[scale=1.1] at (-1.7769,0.1) {$x_1$};
+			\draw[-latex, very thick] (X0) -- (X0med);
+			\draw[-latex, very thick] (X1) -- (X1med);
 
 			\addlegendentry{$y=e^x-2$};
 			\addlegendentry{$y=x$};
