@@ -244,10 +244,14 @@ $y(x)=0$. Если это просто абстрактное уравнение
 	Отобразим функции $g(x)=e^x$ и $h(x)=x+2$ на графике:
 	\newline
 
-	\begin{tikzpicture}
+	\begin{tikzpicture} [
+		declare function = {
+			g(\x)=e^\x;
+			h(\x)=\x+2;
+		},]
+
 		\begin{axis} [
 			unit vector ratio*=1 1,
-			%width=11cm,
 			height=11cm,
 			xlabel = {$x$},
 			ylabel = {$y$},
@@ -258,19 +262,26 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			ticks = none,
 			legend pos = outer north east]
 
-			\addplot[color=blue, line width=.08cm]{e^x};
-			\addplot[color=red, line width=.04cm]{x+2};
+			\newcommand*{\Xfirst}{-1.841}
+			\newcommand*{\Xsecond}{1.146}
+			\pgfmathsetmacro{\fXfirst}{h(\Xfirst)}
+			\pgfmathsetmacro{\fXsecond}{h(\Xsecond)}
 
-			\addplot[mark=*,only marks, fill=white] (1.146,3.146)
+			\coordinate(X1) at 	(\Xfirst,	\fXfirst);
+			\node[below](X1p) at 	(\Xfirst,	0) {$\widetilde{x_1}$};
+			\coordinate(X2) at 	(\Xsecond,	\fXsecond);
+			\node[below](X2p) at 	(\Xsecond,	0) {$\widetilde{x_2}$};
+
+			\addplot[color=blue, line width=.08cm]{g(x)};
+			\addplot[color=red, line width=.04cm]{h(x)};
+
+			\addplot[mark=*,only marks, fill=white] (\Xfirst,\fXfirst)
 				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (-1.841,0.159)
+			\addplot[mark=*,only marks, fill=white] (\Xsecond,\fXsecond)
 				node[above, pos=1]{};
 
-			\draw[dashed,black] (1.146,0) -- (1.146,3.146);
-			\draw[dashed,black] (-1.841,0) -- (-1.841,0.159);
-
-			\node[scale=1.1] at (1.146,-.4) {$\widetilde{x_2}$};
-			\node[scale=1.1] at (-1.841,-.4) {$\widetilde{x_1}$};
+			\draw[dashed,black] (X1p) -- (X1);
+			\draw[dashed,black] (X2p) -- (X2);
 
 			\addlegendentry{$y=e^x$};
 			\addlegendentry{$y=x+2$};
