@@ -86,26 +86,42 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			domain = 1.5:3.5,
 			ticks = none ]
 
+			\newcommand*{\varA}{2}
+			\pgfmathsetmacro{\fa}{f(\varA)}
+			\newcommand*{\varB}{3}
+			\pgfmathsetmacro{\fb}{f(\varB)}
+			\pgfmathsetmacro{\Xfirst}{(\varA+\varB)/2}
+			\pgfmathsetmacro{\fXfirst}{f(\Xfirst)}
+			\pgfmathsetmacro{\Xsecond}{(\Xfirst+\varB)/2}
+			\pgfmathsetmacro{\fXsecond}{f(\Xsecond)}
+			\pgfmathsetmacro{\Xthird}{(\Xfirst+\Xsecond)/2}
+			\pgfmathsetmacro{\fXthird}{f(\Xthird)}
+
 			\addplot[color=blue, line width=.08cm]{f(x)};
 
-			\addplot[mark=*,only marks, fill=white] (2,2)
+			\coordinate(A) at 	(\varA,		\fa);
+			\node[below](Ap) at 	(\varA,		0) {$a$};
+			\coordinate(B) at 	(\varB,		\fb);
+			\node[above](Bp) at 	(\varB,		0) {$b$};
+			\coordinate(X1) at 	(\Xfirst,	\fXfirst);
+			\node[below](X1p) at 	(\Xfirst,	0) {$x_1$};
+			\coordinate(X2) at 	(\Xsecond,	\fXsecond);
+			\node[above](X2p) at 	(\Xsecond,	0) {$x_2$};
+			\coordinate(X3) at 	(\Xthird,	\fXthird);
+			\node[above](X3p) at 	(\Xthird,	0) {$x_3$};
+
+			\addplot[mark=*,only marks, fill=white] (\varA, \fa)
 				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (3,-1)
+			\addplot[mark=*,only marks, fill=white] (\varB, \fb)
 				node[above, pos=1]{};
 
-			\draw[very thick,black] (2,0) -- (2,2);
-			\draw[very thick,black] (3,0) -- (3,-1);
-			\draw[dashed,black] (2.5,0) -- (2.5,0.125);
-			\draw[dashed,black] (2.75,0) -- (2.75,-0.5781);
-			\draw[dashed,black] (2.625,0) -- (2.625,-0.2259);
+			\draw[very thick,black]	(Ap)	--	(A);
+			\draw[very thick,black]	(Bp)	--	(B);
+			\draw[dashed,black] 	(X1p)	--	(X1);
+			\draw[dashed,black]	(X2p)	--	(X2);
+			\draw[dashed,black]	(X3p)	--	(X3);
 
-			\node[scale=1.1] at (2,-.3) {$2$};
-			\node[scale=1.1] at (3,.3) {$3$};
-			\node[scale=1.1] at (2.5,-.3) {$x_1$};
-			\node[scale=1.1] at (2.75,.3) {$x_2$};
-			\node[scale=1.1] at (2.625,.3) {$x_3$};
-
-			\addlegendentry{$f(x)=x^3-6x^2+8x+2$}
+			\addlegendentry{$f(x)=x^3-6x^2+8x+2$};
 		\end{axis}
 	\end{tikzpicture}
 \end{example}
