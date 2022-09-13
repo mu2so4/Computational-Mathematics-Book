@@ -393,14 +393,18 @@ $y(x)=0$. Если это просто абстрактное уравнение
 	\begin{itemize}[noitemsep, nolistsep]
 		\item $x_1=u(1.5000)\approx 2.4817$, $|u(x_0)-x_0|\approx 0.9817$;
 		\item $x_2=u(2.4817)\approx 9.9616$, $|u(x_1)-x_1|\approx 7.4799$;
-	\item $x_3=u(9.9616)\approx 21194.68329$ и т. д.
+	\item $x_3=u(9.9616)\approx 21195$ и т. д.
 	\end{itemize}
 
 	Вот тут нам не повезло: итерационная последовательность разошлась.
 	На это тоже можно посмотреть на графике:
 	\newline
 
-	\begin{tikzpicture}
+	\begin{tikzpicture} [
+		declare function= {
+			u(\x) = e^\x-2;
+			i(\x) = \x;
+		},]
 		\begin{axis} [
 			height=11cm,
 			xlabel = {$x$},
@@ -412,29 +416,45 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			ticks = none,
 			legend pos = outer north east
 		]
-			\addplot[color=blue, line width=.08cm]{e^x - 2};
-			\addplot[color=red, line width=.04cm]{x};
 
-			\addplot[mark=*,only marks, fill=white] (1.1462,1.1462)
+			\newcommand*{\varA}{1}
+			\newcommand*{\varB}{2}
+			\newcommand*{\trueX}{1.1462}
+			\pgfmathsetmacro{\fa}{max(u(\varA), i(\varA))}
+			\pgfmathsetmacro{\fb}{max(u(\varB), i(\varB))}
+			\pgfmathsetmacro{\Xzeroth}{(\varA+\varB)/2}
+			\pgfmathsetmacro{\Xfirst}{(u(\Xzeroth)}
+			\pgfmathsetmacro{\Xsecond}{(u(\Xfirst)}
+
+			\addplot[color=blue, line width=.08cm]{u(x)};
+			\addplot[color=red, line width=.04cm]{i(x)};
+
+			\coordinate(A) at 	(\varA,		\fa);
+			\node[below](Ap) at	(\varA,		0) {$\varA$};
+			\coordinate(B) at 	(\varB,		\fb);
+			\node[below](Bp) at	(\varB,		0) {$\varB$};
+			\coordinate(X) at 	(\trueX,	\trueX);
+			\node[below](Xp) at	(\trueX,	0) {$\widetilde{x}$};
+			\coordinate(X0) at 	(\Xzeroth,	\Xfirst);
+			\node[below](X0p) at	(\Xzeroth,	0) {$x_0$};
+			\coordinate(X0med) at 	(\Xfirst,	\Xfirst);
+			\coordinate(X1) at 	(\Xfirst,	\Xsecond);
+			\node[below](X1p) at	(\Xfirst,	0) {$x_1$};
+
+			\addplot[mark=*,only marks, fill=white] (\trueX,\trueX)
 				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (1.5,2.4817)
+			\addplot[mark=*,only marks, fill=white] (\Xzeroth,\Xfirst)
 				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (2.4817,9.9616)
+			\addplot[mark=*,only marks, fill=white] (\Xfirst,\Xsecond)
 				node[above, pos=1]{};
 
-			\draw[very thick,black] (1,0) -- (1,1);
-			\draw[very thick,black] (2,0) -- (2,5.3891);
-			\draw[dashed,black] (1.1462,0) -- (1.1462,1.1462);
-			\draw[dashed,black] (1.5,0) -- (1.5,2.4817);
-			\draw[dashed,black] (2.4817,0) -- (2.4817,9.9616);
+			\draw[very thick,black] (Ap) -- (A);
+			\draw[very thick,black] (Bp) -- (B);
+			\draw[dashed,black]	(Xp) -- (X);
+			\draw[dashed,black]	(X0p) -- (X0);
+			\draw[dashed,black]	(X1p) -- (X1);
 
-			\draw[-latex, black, very thick] (1.5, 2.4817) -- (2.4817, 2.4817);
-
-			\node[scale=1.1] at (1,-0.4) {$1$};
-			\node[scale=1.1] at (2,-0.4) {$2$};
-			\node[scale=1.1] at (1.14620,-0.44) {$\widetilde{x_2}$};
-			\node[scale=1.1] at (1.5,-0.4) {$x_0$};
-			\node[scale=1.1] at (2.4817,-0.4) {$x_1$};
+			\draw[-latex, very thick] (X0) -- (X0med);
 
 			\addlegendentry{$y=e^x-2$};
 			\addlegendentry{$y=x$};
