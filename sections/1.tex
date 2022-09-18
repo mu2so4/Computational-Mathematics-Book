@@ -123,7 +123,7 @@ $y(x)=0$. Если это просто абстрактное уравнение
 \end{example}
 
 
-\subsection{Итерационные методы решения алгебраических уравнений}
+\subsection{Метод простой итерации}
 
 Метод бисекции гарантированно даёт нам результат. Но нам бы хотелось иметь
 более быструю сходимость. В этом нам могут помочь итерационные методы.
@@ -142,7 +142,7 @@ $y(x)=0$. Если это просто абстрактное уравнение
 	называется \textbf{итерационной} с базой $x_0$ и функцией итерации $f(x)$.
 \end{define}
 
-\begin{algorithm}[метод простой итерации]
+\begin{algorithm}[метод простой итерации]\label{eq:fp_iteration}
 	Пусть нужно решить уравнение $y(x)=0$. Сделаем подстановку
 	$g(x)=x+\tau y(x)$, где $\tau$ -- некоторая положительная константа.
 	Таким образом, теперь нужно решить уравнение $g(x)=x$, то есть вместо
@@ -209,7 +209,7 @@ $y(x)=0$. Если это просто абстрактное уравнение
 	$x_{k+1}=g(x_k)$ сошёлся, достаточно, чтобы:
 	\begin{enumerate}[noitemsep, nolistsep]
 		\item $\forall x,y\in G\;|g(x)-g(y)|\le q|x-y|$, где $q\in(0,1)$ --
-			некоторая константа, то есть верно условие Липшица;
+			некоторая константа, то есть функция непрерывна по Липшицу;
 		\item $|g(a)-a|\le(1-q)r$.
 	\end{enumerate}
 \end{theorem}
@@ -230,8 +230,22 @@ $y(x)=0$. Если это просто абстрактное уравнение
 	Следовательно, $\forall x\in G: |g(x)-a|\le r\Rightarrow\forall x\in G\;\;g(x)\in G$,
 	что и даёт нам замкнутость $g(x)$ на этом отрезке. Условие 1 и замкнутость
 	даёт нам право считать $g(x)$ сжимающим отображением, поэтому тут применима
-	теорема Банаха о неподвижной точке -- итерационный процесс сходится.\qed
+	теорема Банаха о неподвижной точке -- итерационный процесс сходится.\qed\newline
 
+\begin{corollary}
+	Пусть функция $f(x)\in C[a,b]=G$, причём $\forall c\in G$ $|f'(c)|<1$,
+	а также она замкнута на $G$. Тогда $\exists x\in G: f(x)=x$.
+\end{corollary}
+
+\beginproof
+
+	Так как модуль производной ограничен сверху, будем считать, что $|f'(x)|\le q<1$.
+
+	По теореме Лагранжа о среднем значении, $\forall x,y\in G$ \\
+	\[\exists z\in[x,y]: f(y)-f(x)=f'(z)(y-x).\]
+
+	Добавим модули: $|f(y)-f(x)|=|f'(z)||y-x|\le q|y-x|$, то есть имеем
+	непрерывность по Липшицу, и тогда неподвижная точка на $G$ существует.\qed
 
 \begin{example}[графическая интерпретация метода простой итерации]
 	Нужно решить уравнение \(e^x=x+2.\) Как и в предыдущем примере, с
@@ -248,7 +262,7 @@ $y(x)=0$. Если это просто абстрактное уравнение
 
 		\begin{axis} [
 			unit vector ratio*=1 1,
-			height=11cm,
+			height=10cm,
 			xlabel = {$x$},
 			ylabel = {$y$},
 			axis x line = middle,
@@ -282,7 +296,6 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\addlegendentry{$y=x+2$};
 		\end{axis}
 	\end{tikzpicture}
-	\newline
 
 	Видно, что у уравнения имеются 2 решения. Обозначим их как $\widetilde{x_1}$
 	и $\widetilde{x_2}$. Запишем уравнение так, будто мы ищем нули функции:
@@ -300,7 +313,6 @@ $y(x)=0$. Если это просто абстрактное уравнение
 
 	$\widetilde{x_1}\in[-2,-1],\;\widetilde{x_2}\in[1,2]$.
 
-	\newpage
 	Теперь запишем уравнение через поиск неподвижной точки, то есть как
 	$u(x)=e^x-2$.
 
@@ -322,7 +334,8 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			i(\x) = \x;
 		},]
 		\begin{axis} [
-			height=14cm,
+			height=11cm,
+			width=16cm,
 			xlabel = {$x$},
 			ylabel = {$y$},
 			axis x line = middle,
@@ -458,7 +471,7 @@ $y(x)=0$. Если это просто абстрактное уравнение
 Однако невыполнение условий теоремы ещё не означает, что итерационная
 последовательность не сойдётся к неподвижной точке.
 
-\begin{example}
+\begin{example}\label{eq:ex_ex}
 	Необходимо найти неподвижные точки функции \[f(x)=-e^{2x}+4.5e^x-3.\]
 
 	Предположим, мы уже локализовали одну неподвижную точку на отрезке $[-1,0]$.
@@ -575,7 +588,333 @@ $y(x)=0$. Если это просто абстрактное уравнение
 		\end{axis}
 	\end{tikzpicture}
 
-	С другой стороны, итерационная последовательность сошлась к числу не из нашего отрезка.
+	С другой стороны, итерационная последовательность сошлась к числу не из
+	нашего отрезка.
+\end{example}\newpage
+
+\subsection{Метод Ньютона}
+
+Одним из самых эффективных численных методов решения нелинейных уравнений на
+отрезке $[a,b]$ вида $f(x)=0$ является метод Ньютона, он же метод касательных.
+Здесь будет испозьзована линеаризация уравнения, которая сводит решение
+нелинейной задачи к решению последовательности линейных задач.
+
+\begin{algorithm}[метод Ньютона]\label{eq:newton}
+	Пусть для уравнения $f(x)=0$ построено приближение $x_k$ к корню
+	$\widetilde{x}$. Представим функцию $f(x)$ в окрестности точки $x_k$ в
+	виде ряда Тейлора:
+	\[f(x)=f(x_k)+f'(x_k)(x-x_k)+\frac{f''(x_k)}{2!}(x-x_k)^2+...\;.\]
+
+	Возьмём от уравнения только линейную часть и положим \\
+	$f(x)=0$. Тогда мы имеем:
+	\[f(x_k)+f'(x_k)(x-x_k)=0.\]
+
+	Положив решение уравнения относительно $x$ новым приближением к
+	$\widetilde{x}$ и обозначением $x_{k+1}$, мы получили следующую формулу:
+	\[\boxed{x_{k+1}=x_k-\frac{f(x_k)}{f'(x_k)}}\]
+
+	Условие завершения алгоритма: $|f(x_n)|<\varepsilon$.
+\end{algorithm}
+
+Теперь не помешало бы определить область задач, где метод Ньютона применим.
+
+\begin{theorem}[условие сходимости метода Ньютона]\label{eq:newton_cond}
+	Пусть $f(x)$ на отрезке $[a,b]=G$ обладает следующими свойствами:
+	\begin{enumerate}[noitemsep, nolistsep]
+		\item $f(x)\in C^2(G)$;
+		\item $f(a)f(b)<0$;
+		\item $f'(x)$ и $f''(x)$ отличны от нуля и знакопостоянны на $G$;
+		\item Для начального приближения $x_0\in G$ верно $f(x_0)f''(x_0)>0$.
+	\end{enumerate}
+
+	Тогда у функции существует единственный ноль $\widetilde{x}$ на $G$, а
+	итерационная последовательность $\{x_n\}$, построенная по методу Ньютона,
+	\underline{монотонно} сходится к нему.
+\end{theorem}
+
+\beginproof
+
+	Из условий 2 и 3 по теореме Больцано-Коши мы сразу получаем существование
+	и единственность нуля функции $\widetilde{x}\in G$.
+
+	Далее, для определённости будем считать, что
+	\[f(a)<0, f(b)>0,\;\forall x\in G f'(x)>0, f''(x)>0.\]
+
+	Доказательство для второго случая аналогичное.
+
+	В рассматриваемом случае, из условия 4 $f(x_0)>0$, можем взять конкретно
+	$x_0=b$. Теперь методом математической индукции докажем, что
+	$\forall n\in \mathbb N\;\;x_n>\widetilde{x}$.
+
+	Для $x_0=b$ это тривиально, так как функция возрастающая.
+
+	Теперь положим, что верно $x_k>\widetilde{x}$. Покажем, что для $k+1$
+	это тоже верно.
+
+	Положив, что $z_k\in[\widetilde{x},x_k]$, разложим в ряд Тейлора:
+	\[0=f(\widetilde{x})=f(x_k)+f'(x_k)(\widetilde{x}-x_k)+
+		\underset{>0}{\underbrace{\frac{f''(z_k)}
+		{2}(\widetilde{x}-x_k)^2}}.\]
+
+	Откинув последнее слагаемое, получаем:
+	\[f(x_k)+f'(x_k)(\widetilde{x}-x_k)<0\Rightarrow
+		\widetilde{x}<\underset{x_{k+1}}{
+			\underbrace{x_k-\frac{f(x_k)}{f'(x_k)}}}.\]
+
+	Из этого же неравенства вытекает $x_{k+1}<x_k$. Тогда последовательность
+	$\{x_n\}$ имеет предел $\overline{x}$, поскольку она монотонно убывает и
+	ограничена снизу. Перейдём к пределу в формуле метода Ньютона \eqref{eq:newton}:
+	\[\overline{x}=\overline{x}-\frac{f(\overline{x})}{f'(\overline{x})}
+		\Rightarrow f(\overline{x})=0\Rightarrow \overline{x}=
+		\widetilde{x}.\]\qed
+
+На словах нельзя утверждать, что метод Ньютона очень эффективен. Чтобы проверить
+его на деле, нужно узнать, как быстро уменьшается отклонение от искомого нуля
+функции.
+
+Сначала дадим общую оценку.
+
+\begin{lemma}[общая оценка погрешности]\label{eq:general_error}
+	Пусть $\widetilde{x}$ и $\overline{x}$ -- точный и приближённый корни
+	уравнения $f(x)=0$ на отрезке $[a,b]$ соответственно, сама функция $f(x)$
+	такая, что \\ $\forall x\in[a,b]\;\;|f'(x)|\ge m_1>0$. Тогда верно неравенство
+	\[\boxed{|\overline{x}-\widetilde{x}|\le\frac{|f(\overline{x})|}
+	{m_1}}\]
+\end{lemma}
+
+\beginproof
+
+	Из существования производной следует непрерывность функции, тогда применима
+	теорема Лагранжа о среднем:
+	\[f(\overline{x})-f(\widetilde{x})=f'(z)(\overline{x}-\widetilde{x}),\]
+	где $z\in[\overline{x},\widetilde{x}]\subseteq[a,b]$. Добавим модулей:
+	\[|f(\overline{x})-\underset{=0}{\underbrace{f(\widetilde{x})}}|=|f'(z)|
+		|\overline{x}-\widetilde{x}|\ge m_1|\overline{x}-\widetilde{x}|\Rightarrow
+		|\overline{x}-\widetilde{x}|\le\frac{|f(\overline{x})|}{m_1}.\]\qed
+
+Так мы можем проверить погрешность для каждого члена последовательности. Тем не
+менее, мы можем усилить оценку в случае именно метода Ньютона.
+
+\begin{theorem}[об оценке погрешности метода Ньютона]
+	Если для функции $f(x)$ на отрезке $[a,b]=G$, с нулём функции $\widetilde{x}
+	\in G$ и стартовом значении $x_0\in G$ применим метод Ньютона, то для
+	любого члена итерационной последовательности $\{x_n\}$ верно неравенство
+	\[\boxed{|\widetilde{x}-x_{n+1}|\le \frac{M_2}{2m_1}
+	(\widetilde{x}-x_n)^2},\]
+	где $m_1=\underset{x\in G}{min}|f'(x)|$, а $M_2=\underset{x\in G}{max}
+	|f''(x)|$.
+\end{theorem}
+
+\beginproof
+
+	Представим функцию $f(x)$ в окрестности $x_{n-1}$ в виде ряда Тейлора:
+	\[f(x_n)=f(x_{n-1})+f'(x_{n-1})(x_n-x_{n-1})+\frac{f''(z_{n-1})}{2}
+	(x_n-x_{n-1})^2,\]
+	где $z_{n-1}\in[x_{n-1},x_n]$. В силу определения $x_n$ \eqref{eq:newton},
+	\[f(x_{n-1})+f'(x_{n-1})(x_n-x_{n-1})=0.\]
+
+	Тогда после добавления модулей имеем:
+	\[|f(x_n)|=\frac{|f''(z_{n-1})|}{2}(x_n-x_{n-1})^2\le \frac{M_2}{2}
+	(x_n-x_{n-1})^2,\]
+
+	И с учётом общей оценки погрешности \eqref{eq:general_error} получаем
+	необходимое неравенство.\qed
+
+\begin{example}
+	Попробуем снова найти нули функции
+	\[f(x)=-e^{2x}+4.5e^x-x-3\]
+	из примера \eqref{eq:ex_ex}, в этот раз методом Ньютона. Чтобы не
+	растягивать пример, найдём корень лишь из того же отрезка $[-1,0]$.
+
+	Первая и вторая производные положительны на отрезке $[-1,0]$. Тогда
+	мы положим $x_0=0$, чтобы выполнялось достаточное условие сходимости
+	\eqref{eq:newton_cond}.
+
+	\begin{tikzpicture} [
+		declare function= {
+			u(\x) = -e^(2*\x) + 4.5 * e^\x -\x - 3;
+			uDer(\x) = -2*e^(2*\x) + 4.5 * e^\x - 1;
+			xn(\x) = \x - u(\x) / uDer(\x);
+			tangent(\x,\p) = uDer(\p) * (\x - \p) + u(\p);
+		},]
+		\begin{axis} [
+			height=11cm,
+			width=16cm,
+			xlabel = {$x$},
+			ylabel = {$y$},
+			axis x line = middle,
+			axis y line = middle,
+			domain = -0.5:0.05,
+			ticks = none,
+			legend pos = north west ]
+
+			%\newcommand*{\varA}{-2}
+			\newcommand*{\Az}{-0.45}
+			\newcommand*{\varB}{0}
+			\newcommand*{\trueX}{-0.371}
+			%\pgfmathsetmacro{\fa}{u(\varA)}
+			\pgfmathsetmacro{\fb}{u(\varB)}
+			\pgfmathsetmacro{\Xzeroth}{\varB}
+			\pgfmathsetmacro{\Xfirst}{(xn(\Xzeroth)}
+			\pgfmathsetmacro{\Xsecond}{(xn(\Xfirst)}
+			\pgfmathsetmacro{\fXzeroth}{u(\Xzeroth)}
+			\pgfmathsetmacro{\fXfirst}{u(\Xfirst)}
+			\pgfmathsetmacro{\fXsecond}{u(\Xsecond)}
+
+			\addplot[color=blue, line width=.08cm]{u(x)};
+			\addplot[color=red, line width=.04cm, dashed]{tangent(x, \Xzeroth)};
+			\addplot[color=violet, line width=.04cm, dashed]{tangent(x, \Xfirst)};
+
+			%\coordinate(A) at 	(\varA,		\fa);
+			%\node[below](Ap) at	(\varA,		0) {$\varA$};
+			\node[below](A0) at	(\Az,		0) {$\Az$};
+			\coordinate(B) at 	(\varB,		\fb);
+			\coordinate(Bp) at	(\varB,		0);
+			\node[above](X) at	(\trueX,	0) {$\widetilde{x}$};
+			\coordinate(X0) at 	(\Xzeroth,	\fXzeroth);
+			\coordinate(X0p) at	(\Xzeroth,	0);
+			\coordinate(X1) at 	(\Xfirst,	\fXfirst);
+			\node[below](X1p) at	(\Xfirst,	0) {$x_1$};
+			\coordinate(X2) at 	(\Xsecond,	\fXsecond);
+			\coordinate(X2p) at	(\Xsecond,	0);
+
+			\addplot[mark=*,only marks, fill=white] (\trueX,0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\Xfirst,\fXfirst)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\Xzeroth,\fXzeroth)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\Az,0)
+				node[above, pos=1]{};
+
+			%\draw[very thick] (Ap) -- (A);
+			%\draw[-latex, dashed, red, thick] (X0) -- (X1p);
+			\draw[dashed] (X1p) -- (X1);
+
+			\addlegendentry{$-e^{2x}+4.5e^x-x-3$};
+		\end{axis}
+	\end{tikzpicture}
+
+	Точка $x_2$ на графике практически неотличима от $\widetilde{x}$.\newpage
+
+\end{example}
+
+\subsection{Модификации метода Ньютона}
+
+Всё это работает, пока у нас корень только одинарной кратности. При большей
+кратности метод Ньютона \eqref{eq:newton} перестаёт работать, потому что
+производная при приближении к нулю функции тоже стремится к нулю, а в формуле она
+в знаменателе. Надо как-то изменить формулу.
+
+\begin{algorithm}[метод одной касательной]
+	Пусть для уравнения $f(x)=0$ построено начальное приближение $x_0$, для
+	которой существует и конечна производная $f'(x_0)$. Тогда следующие члены
+	итерационной последовательности $\{x_n\}$ вычисляются по формуле
+	\[\boxed{x_{k+1}=x_k-\frac{f(x_k)}{f'(x_0)}}.\]
+
+	Условие завершение алгоритма: $|f(x_n)|<\varepsilon$.
+
+	Метод используется тогда, когда требуется сократить число вычислений
+	производной функции. Он является частным случаем метода простой
+	итерации \eqref{eq:fp_iteration}.
+\end{algorithm}
+
+\begin{algorithm}[метод хорд]
+	Пусть для уравнения $f(x)=0$ мы знаем, $f(a)f(b)<0$, а сама функция
+	непрерывна. Возьмём $x_0=a,\;x_1=b$. Проведём через них прямую и отметим
+	её точку пересечения с осью абсцисс $x_2$. Возьмём среди предыдущих точек
+	ту, чья функция другого знака относительно $f(x_2)$. Повтореям так до тех
+	пор, пока не получим $|f(x_n)|<\varepsilon$.
+
+	Построим прямую $y=kx+b$, которая соединяет точки $x_{n-1}$ и $x_n$.
+	\[k=\frac{\Delta y}{\Delta x}=\frac{f(x_n)-f(x_{n-1})}{x_n-x_{n-1}}.\]
+
+	Зная, что точка $(x_n,f(x_n))$ лежит на этой прямой, имеем:
+	\[f(x_n)=kx_n+b\Rightarrow b=f(x_n)-kx_n\].
+	Окончательно решим уравнение:
+	\[kx_{n+1}+b=0\Rightarrow x_{n+1}=-\frac{b}{k}=-\frac{f(x_n)-kx_n}{k},\]
+	\[\boxed{x_{n+1}=x_n-\frac{x_n-x_{n-1}}{f(x_n)-f(x_{n-1})}f(x_n)}\]
+\end{algorithm}
+
+\begin{example}
+	Найдём нули функции $f(x)=2\sin x-x$. Да, мы знаем, что $x=0$ подходит,
+	но это не единственный корень. Другой ноль функции мы локализовали на
+	отрезке $[1,2]$.
+
+	\begin{tikzpicture} [
+		declare function= {
+			u(\x) = 2*sin(\x / pi * 180) -\x;
+			dydx(\a,\b) = (u(\b)-u(\a)) / (\b-\a);
+			chorde(\x,\a,\b) = dydx(\a,\b) * (\x-\b) + u(\b);
+			xn(\a,\b) = \b - u(\b)/dydx(\a,\b);
+		},]
+		\begin{axis} [
+			height=11cm,
+			width=16cm,
+			xlabel = {$x$},
+			ylabel = {$y$},
+			axis x line = middle,
+			hide y axis,
+			domain = 0.9:2.1,
+			ticks = none,
+			legend pos = south west ]
+
+			\newcommand*{\varA}{1}
+			\newcommand*{\varB}{2}
+			\newcommand*{\trueX}{1.895}
+			\pgfmathsetmacro{\fa}{u(\varA)}
+			\pgfmathsetmacro{\fb}{u(\varB)}
+			\pgfmathsetmacro{\Xzeroth}{\varA}
+			\pgfmathsetmacro{\Xfirst}{\varB}
+			\pgfmathsetmacro{\Xsecond}{(xn(\Xzeroth,\Xfirst)}
+			\pgfmathsetmacro{\Xthird}{(xn(\Xfirst,\Xsecond)}
+			\pgfmathsetmacro{\fXzeroth}{u(\Xzeroth)}
+			\pgfmathsetmacro{\fXfirst}{u(\Xfirst)}
+			\pgfmathsetmacro{\fXsecond}{u(\Xsecond)}
+			\pgfmathsetmacro{\fXthird}{u(\Xthird)}
+
+			\addplot[color=blue, line width=.08cm]{u(x)};
+			\addplot[color=violet, line width=.04cm, dashed]{chorde(x,\Xzeroth,\Xfirst)};
+			\addplot[color=violet, line width=.04cm, dashed]{chorde(x,\Xfirst,\Xsecond)};
+
+			\coordinate(A) at 	(\varA,		\fa);
+			\node[below](Ap) at	(\varA,		0) {$\varA$};
+			\coordinate(B) at 	(\varB,		\fb);
+			\node[above](Bp) at	(\varB,		0) {$\varB$};
+			\node[above](X) at	(\trueX,	0) {$\widetilde{x}$};
+			\coordinate(X0) at 	(\Xzeroth,	\fXzeroth);
+			\coordinate(X0p) at	(\Xzeroth,	0);
+			\coordinate(X1) at 	(\Xfirst,	\fXfirst);
+			\coordinate(X1p) at	(\Xfirst,	0);
+			\coordinate(X2) at 	(\Xsecond,	\fXsecond);
+			\node[below](X2p) at	(\Xsecond,	0) {$x_2$};
+			\coordinate(X3) at 	(\Xthird,	\fXthird);
+			\node[below](X3p) at	(\Xthird,	0) {$x_3$};
+
+			\addplot[mark=*,only marks, fill=white] (\trueX,0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\Xzeroth,\fXzeroth)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\Xfirst,\fXfirst)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\Xsecond,\fXsecond)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\varA,0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\varB,0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\Xsecond,0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\Xthird,0)
+				node[above, pos=1]{};
+
+			\draw[very thick] (Ap) -- (A)	(Bp) -- (B);
+			%\draw[-latex, dashed, red, thick] (X0) -- (X1p);
+			\draw[dashed] (X2p) -- (X2);
+
+			\addlegendentry{$2\sin x-x$};
+		\end{axis}
+	\end{tikzpicture}
 \end{example}
 
 \end{document}
