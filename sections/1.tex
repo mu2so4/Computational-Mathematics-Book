@@ -471,7 +471,7 @@ $y(x)=0$. Если это просто абстрактное уравнение
 Однако невыполнение условий теоремы ещё не означает, что итерационная
 последовательность не сойдётся к неподвижной точке.
 
-\begin{example}
+\begin{example}\label{eq:ex_ex}
 	Необходимо найти неподвижные точки функции \[f(x)=-e^{2x}+4.5e^x-3.\]
 
 	Предположим, мы уже локализовали одну неподвижную точку на отрезке $[-1,0]$.
@@ -618,7 +618,7 @@ $y(x)=0$. Если это просто абстрактное уравнение
 
 Теперь не помешало бы определить область задач, где метод Ньютона применим.
 
-\begin{theorem}[условие сходимости метода Ньютона]
+\begin{theorem}[условие сходимости метода Ньютона]\label{eq:newton_cond}
 	Пусть $f(x)$ на отрезке $[a,b]=G$ обладает следующими свойствами:
 	\begin{enumerate}[noitemsep, nolistsep]
 		\item $f(x)\in C^2(G)$;
@@ -713,12 +713,91 @@ $y(x)=0$. Если это просто абстрактное уравнение
 	где $z_{n-1}\in[x_{n-1},x_n]$. В силу определения $x_n$ \eqref{eq:newton},
 	\[f(x_{n-1})+f'(x_{n-1})(x_n-x_{n-1})=0.\]
 
-	Тогда после добавления модулев имеем:
+	Тогда после добавления модулей имеем:
 	\[|f(x_n)|=\frac{|f''(z_{n-1})|}{2}(x_n-x_{n-1})^2\le \frac{M_2}{2}
 	(x_n-x_{n-1})^2,\]
 
 	И с учётом общей оценки погрешности \eqref{eq:general_error} получаем
 	необходимое неравенство.\qed
+
+\begin{example}
+	Попробуем снова найти нули функции
+	\[f(x)=-e^{2x}+4.5e^x-x-3\]
+	из примера \eqref{eq:ex_ex}, в этот раз методом Ньютона. Чтобы не
+	растягивать пример, найдём корень лишь из того же отрезка $[-1,0]$.
+
+	Первая и вторая производные положительны на отрезке $[-1,0]$. Тогда
+	мы положим $x_0=0$, чтобы выполнялось достаточное условие сходимости
+	\eqref{eq:newton_cond}.
+
+	\begin{tikzpicture} [
+		declare function= {
+			u(\x) = -e^(2*\x) + 4.5 * e^\x -\x - 3;
+			uDer(\x) = -2*e^(2*\x) + 4.5 * e^\x - 1;
+			xn(\x) = \x - u(\x) / uDer(\x);
+			tangent(\x,\p) = uDer(\p) * (\x - \p) + u(\p);
+		},]
+		\begin{axis} [
+			height=11cm,
+			width=16cm,
+			xlabel = {$x$},
+			ylabel = {$y$},
+			axis x line = middle,
+			axis y line = middle,
+			domain = -0.5:0.05,
+			ticks = none,
+			legend pos = north west ]
+
+			%\newcommand*{\varA}{-2}
+			\newcommand*{\Az}{-0.45}
+			\newcommand*{\varB}{0}
+			\newcommand*{\trueX}{-0.371}
+			%\pgfmathsetmacro{\fa}{u(\varA)}
+			\pgfmathsetmacro{\fb}{u(\varB)}
+			\pgfmathsetmacro{\Xzeroth}{\varB}
+			\pgfmathsetmacro{\Xfirst}{(xn(\Xzeroth)}
+			\pgfmathsetmacro{\Xsecond}{(xn(\Xfirst)}
+			\pgfmathsetmacro{\fXzeroth}{u(\Xzeroth)}
+			\pgfmathsetmacro{\fXfirst}{u(\Xfirst)}
+			\pgfmathsetmacro{\fXsecond}{u(\Xsecond)}
+
+			\addplot[color=blue, line width=.08cm]{u(x)};
+			\addplot[color=red, line width=.04cm, dashed]{tangent(x, \Xzeroth)};
+			\addplot[color=violet, line width=.04cm, dashed]{tangent(x, \Xfirst)};
+
+			%\coordinate(A) at 	(\varA,		\fa);
+			%\node[below](Ap) at	(\varA,		0) {$\varA$};
+			\node[below](A0) at	(\Az,		0) {$\Az$};
+			\coordinate(B) at 	(\varB,		\fb);
+			\coordinate(Bp) at	(\varB,		0);
+			\node[above](X) at	(\trueX,	0) {$\widetilde{x}$};
+			\coordinate(X0) at 	(\Xzeroth,	\fXzeroth);
+			\coordinate(X0p) at	(\Xzeroth,	0);
+			\coordinate(X1) at 	(\Xfirst,	\fXfirst);
+			\node[below](X1p) at	(\Xfirst,	0) {$x_1$};
+			\coordinate(X2) at 	(\Xsecond,	\fXsecond);
+			\coordinate(X2p) at	(\Xsecond,	0);
+
+			\addplot[mark=*,only marks, fill=white] (\trueX,0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\Xfirst,\fXfirst)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\Xzeroth,\fXzeroth)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\Az,0)
+				node[above, pos=1]{};
+
+			%\draw[very thick] (Ap) -- (A);
+			%\draw[-latex, dashed, red, thick] (X0) -- (X1p);
+			\draw[dashed] (X1p) -- (X1);
+
+			\addlegendentry{$-e^{2x}+4.5e^x-x-3$};
+		\end{axis}
+	\end{tikzpicture}
+
+	Точка $x_2$ на графике практически неотличима от $\widetilde{x}$.
+
+\end{example}
 
 \subsection{Методы Ньютона с параметром}
 
