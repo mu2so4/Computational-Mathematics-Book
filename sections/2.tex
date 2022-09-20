@@ -127,12 +127,17 @@ $n+1$ условие. Единственность решения математ
 		\hline
 	\end{tabular}
 
-	И изобразим всё это на графике:
+	И изобразим всё это на графике:\newline
 
 	\begin{tikzpicture} [
 		declare function= {
 			u(\x) = cos(\x / pi * 180) + \x/2;
-			lag(\x) = 0.147*\x^2-0.502*\x+1;
+			subpolynonominal(\x,\A,\b,\c) = (\x-\b)*(\x-\c) /
+				((\A-\b)*(\A-\c)) * u(\A);
+			lag(\x,\a,\b,\c) =
+				subpolynonominal(\x,\a,\b,\c) +
+				subpolynonominal(\x,\b,\c,\a) +
+				subpolynonominal(\x,\c,\a,\b);
 		},]
 		\begin{axis} [
 			height=11cm,
@@ -154,13 +159,16 @@ $n+1$ условие. Единственность решения математ
 			\pgfmathsetmacro{\fa}{u(\varA)}
 			\pgfmathsetmacro{\fb}{u(\varB)}
 			\pgfmathsetmacro{\fc}{u(\varC)}
-			\pgfmathsetmacro{\Rfirst}{lag(\queryA)}
-			\pgfmathsetmacro{\Rsecond}{lag(\queryB)}
+			\pgfmathsetmacro{\Rfirst}{lag(\queryA,\varA,\varB,
+				\varC)}
+			\pgfmathsetmacro{\Rsecond}{lag(\queryB,\varA,\varB,
+				\varC)}
 			\pgfmathsetmacro{\RfirstTrue}{u(\queryA)}
 			\pgfmathsetmacro{\RsecondTrue}{u(\queryB)}
 
 			\addplot[color=blue, line width=.08cm]{u(x)};
-			\addplot[color=red, line width=.04cm]{lag(x)};
+			\addplot[color=red, line width=.04cm]{lag(x,\varA,
+				\varB,\varC)};
 
 			\coordinate(A) at 	(\varA,		\fa);
 			\coordinate(Ap) at	(\varA,		0);
