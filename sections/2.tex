@@ -110,8 +110,8 @@ $n+1$ условие. Единственность решения математ
 
 	\[\omega(x)=x(x-2)(x-4).\]
 
-	\[P_2(x)=\omega(x)\big (\frac{1}{8x}-\frac{0.584}{4(x-2)}
-	+\frac{1.346}{8(x-4)} \big )=\]
+	\[P_2(x)=\omega(x)\Big (\frac{1}{8x}-\frac{0.584}{4(x-2)}
+	+\frac{1.346}{8(x-4)} \Big )=\]
 	\[=0.125(x^2-6x+8)-0.146(x^2-4x)+0.168(x^2-2x)=\]
 	\[=0.149x^2-0.502x+1.\]
 
@@ -254,5 +254,43 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 	\[\boxed{f[x_0,x_1]=\frac{f(x_1)-f(x_0)}{x_1-x_0}}.\]
 \end{define}
 
+\begin{lemma}
+	Для разделённой разности $n$-го порядка справедлива формула
+	\[f[x_0,...,x_n]=\sum_{i=0}^{n}\frac{f(x_i)}
+	{\prod_{\substack{j=0\\ j\neq i}}^{n}(x_i-x_j)}.\]
+\end{lemma}
+
+\beginproof
+
+	Доказывать мы будем методом математической индукции. Для $n=1$ верность
+	леммы очевидна для разделённой разности первого порядка.
+
+	Теперь положим, что лемма верна при $n=m$. Докажем лемму для $m+1$.
+	\[f[x_0,...,x_{m+1}]=\frac{f[x_1,...,x_{m+1}]-f[x_0,...,x_m]}
+	{x_{m+1}-x_m}=\]
+	\[{\overset{\substack{\text{инд.}\\\text{предп.}}}{=\joinrel=}}
+	\frac{1}{x_{m+1}-x_0}\Big( \sum_{i=1}^{m+1}\frac{f(x_i)}
+	{\prod_{\substack{j=1\\ j\neq i}}^{m+1}(x_i-x_j)} - \sum_{k=0}^{m}
+	\frac{f(x_k)}{\prod_{\substack{l=0\\ k\neq l}}^{m}(x_k-x_l)}\Big)=\]
+	\[=\frac{f(x_0)}{\prod_{i=1}^{m+1}(x_0-x_i)} + \frac{1}{x_{m+1}-x_0}
+	\sum_{i=1}^{m} \Big(\frac{f(x_i)}{\prod_{\substack{j=1\\ j\neq i}}^
+	{m+1}(x_i-x_j)}-\]
+	\[-\frac{f(x_i)}{\prod_{\substack{j=0\\ j\neq i}}^{m}(x_i-x_j)}
+	\Big) + \frac{f(x_{m+1})}{\prod_{i=0}^{m}(x_{m+1}-x_i)}. \tag{*}\]
+
+	Преобразуем выражение, которое стоит внутри оператора суммы:
+	\[\frac{f(x_i)}{\prod_{\substack{j=1\\ j\neq i}}^{m+1}(x_i-x_j)}-
+	\frac{f(x_i)}{\prod_{\substack{j=0\\ j\neq i}}^{m}(x_i-x_j)}=\]
+	\[=\frac{f(x_i)\big((\cancel{x_i}-x_0)-(\cancel{x_i}-x_{m+1})\big)}
+	{\prod_{\substack{j=0\\ j\neq i}}^{m+1}(x_i-x_j)}=
+	\frac{f(x_i)(x_{m+1}-x_0)}{\prod_{\substack{j=0\\ j\neq i}}^{m+1}
+	(x_i-x_j)},\]
+
+	И окончательно из (*) получим:
+	\[f[x_0,...,x_n]=\frac{f(x_0)}{\prod_{i=1}^{m+1}(x_0-x_i)}+\sum_{j=1}^{m}
+	\frac{f(x_j)}{\prod_{\substack{i=0\\ i\neq j}}^{m+1}(x_j-x_i)}+\]
+	\[+\frac{f(x_{m+1})}{\prod_{i=0}^{m}(x_{m+1}-x_i)}=
+	\sum_{i=0}^{m+1}\frac{f(x_i)}{\prod_{\substack{j=0\\ j\neq i}}^{m+1}
+	(x_i-x_j)}.\qed\]
 
 \end{document}
