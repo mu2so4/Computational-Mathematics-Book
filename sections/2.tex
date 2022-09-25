@@ -240,7 +240,7 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 	\[\boxed{f[x_0,x_1]=\frac{f(x_1)-f(x_0)}{x_1-x_0}}.\]
 \end{define}
 
-\begin{lemma}
+\begin{lemma}\label{eq:div_diff_formula}
 	Для разделённой разности $n$-го порядка справедлива формула
 	\[f[x_0,...,x_n]=\sum_{i=0}^{n}\frac{f(x_i)}
 	{\prod_{\substack{j=0\\ j\neq i}}^{n}(x_i-x_j)}.\]
@@ -279,12 +279,12 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 	\sum_{i=0}^{m+1}\frac{f(x_i)}{\prod_{\substack{j=0\\ j\neq i}}^{m+1}
 	(x_i-x_j)}.\qed\]
 
-\begin{lemma}
+\begin{lemma}\label{eq:next_int_pol}
 	Пусть $P_k(x)$ и $P_{k+1}(x)$ -- интерполяционные многочлены функции $f(x)$,
 	тогда для них верно равенство:
 	\[P_{k+1}(x)-P_k(x)=A_{k+1}\prod_{i=0}^{k}(x-x_k),\]
 	где
-	\[A_{k+1}=\frac{f(x_{k+1})-P_{k+1}(x_{k+1})}{\prod_{i=0}^{k}(x_{k+1}-x_i)}.\]
+	\[A_{k+1}=\frac{f(x_{k+1})-P_k(x_{k+1})}{\prod_{i=0}^{k}(x_{k+1}-x_i)}.\]
 \end{lemma}
 
 \beginproof
@@ -297,6 +297,39 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 	где $A_{k+1}$ -- некоторая константа, которую можно найти из представления
 	\[\underset{=f(x_{k+1})}{\underbrace{P_{k+1}(x_{k+1})}}-P_{k}(x_{k+1})=
 	A_{k+1}\prod_{i=0}^{k}(x_{k+1}-x_i)\Rightarrow\]
-	\[\Rightarrow A_{k+1}=\frac{f(x_{k+1})-P_{k+1}(x_{k+1})}{\prod_{i=0}^{k}
-	(x_{k+1}-x_i)}.\qed\]
+	\[\Rightarrow \boxed{A_{k+1}=\frac{f(x_{k+1})-P_k(x_{k+1})}
+	{\prod_{i=0}^{k}(x_{k+1}-x_i)}}.\qed\]
+
+\begin{lemma}
+	Коэффициенты $A_k$ из леммы \eqref{eq:next_int_pol} равны разделённым
+	разностям $k$-го порядка, то есть $A_k=f[x_0,...,x_k].$
+
+\end{lemma}
+
+\beginproof
+
+	По формуле
+	\[A_k=\frac{f(x_k)-P_{k-1}(x_k)}{\prod_{i=0}^{k-1}(x_k-x_i)}=
+	\frac{f(x_k)}{\prod_{i=0}^{k-1}(x_k-x_i)} - \frac{P_{k-1}(x_k)}
+	{\prod_{i=0}^{k-1}(x_k-x_i)}.\tag{*}\]
+
+	Во втором слагаемом запишем полином $P_{k-1}(x_k)$ в форме\\Лагранжа
+	\eqref{eq:lagrange_polynomial}:
+	\[P_{k-1}(x)=\sum_{i=0}^{k-1}\frac{\omega(x)}{(x-x_i)\omega'(x_i)}
+	f(x_i),\;\;
+	\omega(x)=\prod_{j=0}^{k-1}(x-x_j).\]
+
+	Заметим, что знаменатели в $(*)$ равны $\omega(x_k)$:
+	\[A_k=\frac{f(x_k)}{\omega(x_k)} - \frac{1}{\cancel{\omega(x_k)}}
+	\sum_{i=0}^{k-1}\frac{\cancel{\omega(x_k)}}{(x_k-x_i)\omega'(x_k)}
+	f(x_i).\]
+	И с учётом
+	$\omega'(x_i)=\mathlarger\prod_{j=0,\;j\ne i}^{k-1}(x_i-x_j)$
+	окончательно получаем:
+	\[A_k=\frac{f(x_k)}{\prod_{j=0}^{k-1}(x_k-x_j)} +
+	\sum_{i=0}^{k-1}\frac{f(x_i)}{\prod_{\substack{j=0\\j\ne i}}^{k-1}
+	(x_i-x_j)}=\sum_{i=0}^{k}\frac{f(x_i)}{\prod_{\substack{j=0\\j\ne i}}^
+	{k}(x_i-x_j)},\]
+	что по лемме \eqref{eq:div_diff_formula} и является разделённой
+	разностью $k$-го порядка на попарно разных узлах $x_0,...,x_k$.\qed
 \end{document}
