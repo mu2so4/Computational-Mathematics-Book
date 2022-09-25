@@ -368,7 +368,7 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 То, что в узлах интерполяции погрешности нет -- это понятно. Нам бы хотелось
 найти погрешность и в других точках.
 
-\begin{lemma}
+\begin{lemma}\label{eq:interpolation_error_form}
 	Если $y\in[a,b]\backslash\{x_0,...,x_n\}$, то
 	\[R_n(y)=f[x_0,...,x_n,y]\omega(y),\quad
 	\omega(y)=\prod_{k=0}^{n}(y-x_n).\]
@@ -386,7 +386,7 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 	\omega(y)\Rightarrow\]
 	\[\Rightarrow \boxed{R_n(y)=f[x_0,...,x_n,y]\omega(y)}.\qed\]
 
-\begin{lemma}
+\begin{lemma}\label{eq:xi_in_ab}
 	Если $f(x)\in C^n([a,b])$, то
 	\[\exists\xi\in[a,b]:f[x_0,...,x_n] = \frac{f^{(n)}(\xi)}{n!}.\]
 \end{lemma}
@@ -415,5 +415,24 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 	$R''_n(x)$ не менее $n-1$ попарно различных корней. Сделав так $n$ раз,
 	получим, что у функции $R_n^{(n)}(x)$ есть минимум один ноль на $[a,b]$.
 	\qed
+
+\begin{theorem}\label{eq:interpolation_der_error_form}
+	Если $f(x)\in C^{n+1}([a,b])$, то погрешность интерполирования функции
+	$f(x)$ по её значениям $f(x_i)$ в попарно различных точках $x_0,...,x_n$
+	отрезка $[a,b]$ интерполяционным полиномом $P_n(x)$ может быть
+	представлена в следующем виде:
+	\[\boxed{R_n(y)=\frac{f^{(n+1)}(\xi)}{(n+1)!}\omega(y)},\quad\xi\in
+	[a,b],\;\omega(y)=\prod_{k=0}^{n}(y-x_k).\]
+\end{theorem}
+
+\beginproof
+
+	Если $y$ совпадает с одним из узлов интерполяции, то теорема работает
+	$\forall\xi\in[a,b]$, так как $\omega(y)=0$.
+
+	В противном случае, по леммам \eqref{eq:interpolation_error_form} и
+	\eqref{eq:xi_in_ab}
+	\[R_n(y)=f[x_0,...,x_n,y]\omega(y)=\frac{f^{(n+1)}(\xi)}{(n+1)!}
+	\omega(y).\qed\]
 
 \end{document}
