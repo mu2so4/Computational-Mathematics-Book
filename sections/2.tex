@@ -335,7 +335,7 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 	что по лемме \eqref{eq:div_diff_formula} и является разделённой
 	разностью $k$-го порядка на попарно разных узлах $x_0,...,x_k$.\qed
 
-\begin{theorem}[о представлении в форме Ньютона]
+\begin{theorem}[о представлении в форме Ньютона]\label{eq:newton_polynomial}
 	При $n=m$ решение ЗАИ \eqref{eq:interpolation_problem} представимо в
 	\textbf{форме Ньютона}:
 	\[\boxed{P_n(x)=\sum_{k=0}^{n}\big(f[x_0,...,x_k]\prod_{i=0}^{k-1}
@@ -364,4 +364,26 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 	интервала $[a,b]$ интерполяционным многочленом $P_n(x)$ -- это их
 	разность $\boxed{R_n(x)=f(x)-P_n(x)}$.
 \end{define}
+
+То, что в узлах интерполяции погрешности нет -- это понятно. Нам бы хотелось
+найти погрешность и в других точках.
+
+\begin{lemma}
+	Если $y\in[a,b]\backslash\{x_0,...,x_n\}$, то
+	\[R_n(y)=f[x_0,...,x_n,y]\omega(y),\quad
+	\omega(y)=\prod_{k=0}^{n}(y-x_n).\]
+\end{lemma}
+
+\beginproof
+
+	Построим новый интерполяционный полином $P_{n+1}(x)$ для $f(x)$ на
+	$n+2$ попарно различных узлах $\{x_0,...,x_n,y\}$. Представим его в форме
+	Ньютона \eqref{eq:newton_polynomial}:
+	\[P_{n+1}(x)=P_n(x)+f[x_0,...,x_n,y]\omega(x)\Rightarrow\]
+	\[\Rightarrow P_n(x)=P_{n+1}(x)-f[x_0,...,x_n,y]\omega(x).\]
+	И тогда
+	\[R_n(y)=f(y)-P_n(y)=\cancel{f(y)}-\cancel{P_{n+1}(y)}+f[x_0,...,x_n,y]
+	\omega(y)\Rightarrow\]
+	\[\Rightarrow \boxed{R_n(y)=f[x_0,...,x_n,y]\omega(y)}.\qed\]
+
 \end{document}
