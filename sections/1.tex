@@ -60,7 +60,6 @@ $y(x)=0$. Если это просто абстрактное уравнение
 	\end{tabular}
 	\newline
 
-	%TODO найти команду, которую находит значения функции в точке (параметры: функция и точка)
 	Тогда $\exists c\in[2,3]: f(c)=0$. Найдём его методом бисекции:
 	\begin{itemize}[noitemsep, nolistsep]
 		\item $f(2.5)=0.125>0$, ищем на $[2.5,3]$;
@@ -196,8 +195,8 @@ $y(x)=0$. Если это просто абстрактное уравнение
 	\end{enumerate}
 \end{theorem}
 
-Данная теорема была доказана в курсе "Дополнительные главы математического анализа"{}.
-В литературе эта теорема также известна как "Теорема Банаха о неподвижной точке"{}.
+Данная теорема была доказана в курсе ''Дополнительные главы математического анализа''.
+В литературе эта теорема также известна как ''Теорема Банаха о неподвижной точке''.
 
 Всё это нужно было для того, чтобы доказать красивую, но практически бесполезную
 теорему.
@@ -351,9 +350,9 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\pgfmathsetmacro{\fa}{min(u(\varA), i(\varA))}
 			\pgfmathsetmacro{\fb}{min(u(\varB), i(\varB))}
 			\pgfmathsetmacro{\Xzeroth}{(\varA+\varB)/2}
-			\pgfmathsetmacro{\Xfirst}{(u(\Xzeroth)}
-			\pgfmathsetmacro{\Xsecond}{(u(\Xfirst)}
-			\pgfmathsetmacro{\Xthird}{(u(\Xsecond)}
+			\pgfmathsetmacro{\Xfirst}{u(\Xzeroth)}
+			\pgfmathsetmacro{\Xsecond}{u(\Xfirst)}
+			\pgfmathsetmacro{\Xthird}{u(\Xsecond)}
 
 			\addplot[color=blue, line width=.08cm]{u(x)};
 			\addplot[color=red, line width=.04cm]{i(x)};
@@ -419,8 +418,7 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			ymin = -0.8,
 			domain = 0:2.54,
 			ticks = none,
-			legend pos = outer north east
-		]
+			legend pos = outer north east ]
 
 			\newcommand*{\varA}{1}
 			\newcommand*{\varB}{2}
@@ -428,8 +426,8 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\pgfmathsetmacro{\fa}{max(u(\varA), i(\varA))}
 			\pgfmathsetmacro{\fb}{max(u(\varB), i(\varB))}
 			\pgfmathsetmacro{\Xzeroth}{(\varA+\varB)/2}
-			\pgfmathsetmacro{\Xfirst}{(u(\Xzeroth)}
-			\pgfmathsetmacro{\Xsecond}{(u(\Xfirst)}
+			\pgfmathsetmacro{\Xfirst}{u(\Xzeroth)}
+			\pgfmathsetmacro{\Xsecond}{u(\Xfirst)}
 
 			\addplot[color=blue, line width=.08cm]{u(x)};
 			\addplot[color=red, line width=.04cm]{i(x)};
@@ -512,15 +510,15 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\pgfmathsetmacro{\fa}{min(u(\varA), i(\varA))}
 			\pgfmathsetmacro{\fb}{max(u(\varB), i(\varB))}
 			\pgfmathsetmacro{\Xzeroth}{(\varA+\varB)/2}
-			\pgfmathsetmacro{\Xfirst}{(u(\Xzeroth)}
-			\pgfmathsetmacro{\Xsecond}{(u(\Xfirst)}
-			\pgfmathsetmacro{\Xthird}{(u(\Xsecond)}
-			\pgfmathsetmacro{\Xfourth}{(u(\Xthird)}
-			\pgfmathsetmacro{\Xfifth}{(u(\Xfourth)}
-			\pgfmathsetmacro{\Xsixth}{(u(\Xfifth)}
-			\pgfmathsetmacro{\Xseventh}{(u(\Xsixth)}
-			\pgfmathsetmacro{\Xeighth}{(u(\Xseventh)}
-			\pgfmathsetmacro{\Xnineth}{(u(\Xeighth)}
+			\pgfmathsetmacro{\Xfirst}{u(\Xzeroth)}
+			\pgfmathsetmacro{\Xsecond}{u(\Xfirst)}
+			\pgfmathsetmacro{\Xthird}{u(\Xsecond)}
+			\pgfmathsetmacro{\Xfourth}{u(\Xthird)}
+			\pgfmathsetmacro{\Xfifth}{u(\Xfourth)}
+			\pgfmathsetmacro{\Xsixth}{u(\Xfifth)}
+			\pgfmathsetmacro{\Xseventh}{u(\Xsixth)}
+			\pgfmathsetmacro{\Xeighth}{u(\Xseventh)}
+			\pgfmathsetmacro{\Xnineth}{u(\Xeighth)}
 
 			\addplot[color=blue, line width=.08cm]{u(x)};
 			\addplot[color=red, line width=.04cm]{i(x)};
@@ -755,8 +753,8 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			%\pgfmathsetmacro{\fa}{u(\varA)}
 			\pgfmathsetmacro{\fb}{u(\varB)}
 			\pgfmathsetmacro{\Xzeroth}{\varB}
-			\pgfmathsetmacro{\Xfirst}{(xn(\Xzeroth)}
-			\pgfmathsetmacro{\Xsecond}{(xn(\Xfirst)}
+			\pgfmathsetmacro{\Xfirst}{xn(\Xzeroth)}
+			\pgfmathsetmacro{\Xsecond}{xn(\Xfirst)}
 			\pgfmathsetmacro{\fXzeroth}{u(\Xzeroth)}
 			\pgfmathsetmacro{\fXfirst}{u(\Xfirst)}
 			\pgfmathsetmacro{\fXsecond}{u(\Xsecond)}
@@ -866,8 +864,8 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\pgfmathsetmacro{\fb}{u(\varB)}
 			\pgfmathsetmacro{\Xzeroth}{\varA}
 			\pgfmathsetmacro{\Xfirst}{\varB}
-			\pgfmathsetmacro{\Xsecond}{(xn(\Xzeroth,\Xfirst)}
-			\pgfmathsetmacro{\Xthird}{(xn(\Xfirst,\Xsecond)}
+			\pgfmathsetmacro{\Xsecond}{xn(\Xzeroth,\Xfirst)}
+			\pgfmathsetmacro{\Xthird}{xn(\Xfirst,\Xsecond)}
 			\pgfmathsetmacro{\fXzeroth}{u(\Xzeroth)}
 			\pgfmathsetmacro{\fXfirst}{u(\Xfirst)}
 			\pgfmathsetmacro{\fXsecond}{u(\Xsecond)}
