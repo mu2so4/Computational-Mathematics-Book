@@ -232,7 +232,7 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 так как по теореме \eqref{eq:polynominal_theorem} интерполяционный полином
 единственнен.
 
-\begin{define}
+\begin{define}\label{eq:divided_difference}
 	\textbf{Разделённая разность $n$-го порядка} функции $f(x)$ на попарно
 	разных узлах $x_0,...,x_n$ -- это число
 	\[f[x_0,..., x_{n}]=\frac{f[x_1,...,x_n]-f[x_0,...,x_{n-1}]}
@@ -302,7 +302,7 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 	\[\Rightarrow \boxed{A_{k+1}=\frac{f(x_{k+1})-P_k(x_{k+1})}
 	{\prod_{i=0}^{k}(x_{k+1}-x_i)}}.\qed\]
 
-\begin{lemma}
+\begin{lemma}\label{eq:newton_koef_formula}
 	Коэффициенты $A_k$ из леммы \eqref{eq:next_int_pol} равны разделённым
 	разностям $k$-го порядка, то есть $A_k=f[x_0,...,x_k].$
 
@@ -334,4 +334,21 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 	{k}(x_i-x_j)},\]
 	что по лемме \eqref{eq:div_diff_formula} и является разделённой
 	разностью $k$-го порядка на попарно разных узлах $x_0,...,x_k$.\qed
+
+\begin{theorem}[о представлении в форме Ньютона]
+	При $n=m$ решение ЗАИ \eqref{eq:interpolation_problem} представимо в
+	\textbf{форме Ньютона}:
+	\[\boxed{P_n(x)=\sum_{k=0}^{n}\big(f[x_0,...,x_k]\prod_{i=0}^{k-1}
+	(x-x_i)\big)},\]
+	где $f[x_0,...,x_k]$ -- разделённая разность $k$-го порядка
+	\eqref{eq:divided_difference}.
+\end{theorem}
+
+\beginproof
+
+	Данная теорема является следствием лемм \eqref{eq:next_int_pol} и
+	\eqref{eq:newton_koef_formula}:
+	\[P_n(x)=P_{n-1}(x)+A_n\prod_{k=0}^{n-1}(x-x_k)=...=
+	\sum_{k=0}^{n}\big(A_k\prod_{i=0}^{k-1}(x-x_i)\big),\]
+	в которой $A_k=f[x_0,...,x_k]$ и $A_0=f(x_0)$.\qed
 \end{document}
