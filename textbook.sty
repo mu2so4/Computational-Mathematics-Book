@@ -5,7 +5,8 @@
 \RequirePackage[english,russian]{babel}
 \RequirePackage{hyperref}
 \RequirePackage{xcolor}
-\RequirePackage[left=3cm, right=1cm, bottom=2cm, top=28mm, headheight=8mm]{geometry}
+\RequirePackage[left=3cm, right=1cm, bottom=2cm, top=28mm, headheight=8mm]
+	{geometry}
 \RequirePackage{indentfirst}
 \RequirePackage{listings}
 \RequirePackage[pagestyles]{titlesec}
@@ -20,7 +21,8 @@
 \newcommand{\sectionfont}{\fontfamily{kurier}}
 \newcommand{\beginproof}{{\bfseries\MakeUppercase{Доказательство. }}}
 \newcommand{\noproof}{{\bfseries\MakeUppercase{Без доказательства.}}}
-\newcommand{\proofexercise}{{\bfseries\MakeUppercase{Доказательство: упражнение.}}}
+\newcommand{\proofexercise}{{\bfseries\MakeUppercase
+	{Доказательство: упражнение.}}}
 \renewcommand{\subsectionmark}[1]{\markright{\small\thesubsection.\ #1}}
 
 \fancypagestyle{sectionstart} {
@@ -45,7 +47,8 @@
 }
 
 \titleformat{\section}
-	{\thispagestyle{sectionstart}\sectionfont\Large\bfseries}{Глава \thesection.}{1em}{}
+	{\thispagestyle{sectionstart}\sectionfont\Large\bfseries}
+	{Глава \thesection.}{1em}{}
 
 \titleformat{\subsection}
 	{\sectionfont\large\bfseries}{\thesubsection.}{1em}{}
