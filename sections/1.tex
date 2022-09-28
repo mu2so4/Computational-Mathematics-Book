@@ -500,17 +500,21 @@ $y(x)=0$. Если это просто абстрактное уравнение
 	$[-1,0]$. Взяв $x_0$ равным -0.5, начнём строить итерационную
 	последовательность:
 
-	\begin{enumerate}[noitemsep, nolistsep]
-		\item $x_1\approx -0.6385, |f(x_0)-x_0|\approx 0.1385$,
-		\item $x_2\approx -0.9025, |f(x_1)-x_1|\approx 0.2640$,
-		\item $x_3\approx -1.3395, |f(x_2)-x_2|\approx 0.4370$,
-		\item $x_4\approx -1.8897, |f(x_3)-x_3|\approx 0.5502$,
-		\item $x_5\approx -2.3428, |f(x_4)-x_4|\approx 0.4531$,
-		\item $x_6\approx -2.5770, |f(x_5)-x_5|\approx 0.2342$,
-		\item $x_7\approx -2.6638, |f(x_6)-x_6|\approx 0.0868$,
-		\item $x_8\approx -2.6913, |f(x_7)-x_7|\approx 0.0275$,
-		\item $x_9\approx -2.6995, |f(x_8)-x_8|\approx 0.0082$, и т. д.
-	\end{enumerate}\leavevmode
+	\begin{table}[h]
+		\centering
+		\resizebox{\columnwidth}{!}{\begin{tabular}{*{10}{|c}|}
+			\hline
+			$k$		& 0	& 1	& 2	& 3	& 4
+				& 5	& 6	&7	&8	\\
+			\hline
+			$x_k$		&-0.6385&-0.9025&-1.3395&-1.8897&-2.3428
+				&-2.5770&-2.6638&-2.6913&-2.6995\\
+			\hline
+			$|f(x_k)-x_k|$	& 0.1385& 0.2640& 0.4370& 0.5502& 0.4531
+				& 0.2342& 0.0868& 0.0275& 0.0082\\
+			\hline
+		\end{tabular}}
+	\end{table}
 
 	\begin{tikzpicture} [
 		declare function= {
@@ -616,7 +620,7 @@ $y(x)=0$. Если это просто абстрактное уравнение
 
 	С другой стороны, итерационная последовательность сошлась к числу не из
 	нашего отрезка.
-\end{example}\newpage
+\end{example}
 
 \subsection{Метод Ньютона}
 
