@@ -94,10 +94,70 @@
 замкнутого типа (то есть такие, что границы отрезка интегрирования являются
 частью сетки) при $n\in\{0,1,2\}$.
 
-\begin{define}
+\begin{define}\label{eq:rectangle_formula}
 	\textbf{Формула прямоугольников} -- простейшая квадратурная формула
 	Нью-тона-Котеса, интерполяционная функция которой задаётся единственным
 	узлом $x_0\in[a,b]$ и, следовательно, равна константе. Формула имеет вид
 	\[\boxed{\int_{a}^{b}f(x)dx\approx f(x_0)(b-a)}\]
+\end{define}
+
+Название идёт из того, что она совпадает с площадью прямоугольника со сторонами
+$(b-a)$ и $f(x_0)$. Не нужно забывать, что геометрический смысл интеграла -- это
+площадь фигуры под графиком функции.
+
+Несмотря на то что мы писали, что все формулы будут замкнутого типа, это не
+касается формулы прямоугольников, потому что для замкнутости не хватает узлов
+интерполяции.
+
+\begin{define}
+	Если в формуле \eqref{eq:rectangle_formula} $x_0$ такой, что
+	\begin{itemize}[noitemsep, nolistsep]
+		\item $x_0=a$, это \textbf{формула левого прямоугольника}.
+		\item $x_0=b$, это \textbf{формула правого прямоугольника}.
+		\item $x_0=\frac{a+b}{2}$, это \textbf{формула среднего
+			прямоугольника}.
+	\end{itemize}
+
+	На графике эти формулы выглядят вот так:
+
+	\begin{tikzpicture} [
+		declare function={
+			f(\x)= sin(\x / pi * 180)+0.5;
+		},]
+		\begin{axis} [
+			height=12cm,
+			width=16cm,
+			xlabel = {$x$},
+			ylabel = {$y$},
+			axis x line = middle,
+			axis y line = middle,
+			ymin = -0.1,
+			ymax = 1.6,
+			domain = 0:3.2,
+			ticks = none ]
+
+			\newcommand*{\varA}{0.8}
+			\newcommand*{\varB}{3}
+			\pgfmathsetmacro{\fa}{f(\varA)}
+			\pgfmathsetmacro{\fb}{f(\varB)}
+
+			\addplot[color=blue, line width=.08cm]{f(x)};
+
+			\coordinate(A) at 	(\varA,		\fa);
+			\coordinate(Ap) at 	(\varA,		0);
+			\coordinate(B) at 	(\varB,		\fb);
+			\coordinate(Bp) at 	(\varB,		0);
+
+			\node[below](Alb) at 	(\varA,		0) {$a$};
+			\node[below](Blb) at 	(\varB,		0) {$b$};
+
+			\addplot[mark=*,only marks, fill=black] (\varA, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\varB, 0)
+				node[above, pos=1]{};
+
+			\draw[fill=gray, fill opacity=0.2] (A) rectangle (Bp);
+		\end{axis}
+	\end{tikzpicture}
 \end{define}
 \end{document}
