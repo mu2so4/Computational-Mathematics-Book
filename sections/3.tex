@@ -119,27 +119,30 @@ $(b-a)$ и $f(x_0)$. Не нужно забывать, что геометрич
 	\end{itemize}
 
 	На графике эти формулы выглядят вот так:
+	\newline
 
-	\begin{tikzpicture} [
-		declare function={
-			f(\x)= sin(\x / pi * 180)+0.5;
-		},]
+	\tikzset{declare function={
+		f(\x)= sin(\x / pi * 180)+0.5;
+	}}
+	\begin{figure}[ht]
+	\centering
+	\newcommand*{\varA}{0.8}
+	\newcommand*{\varB}{3}
+	\pgfmathsetmacro{\fa}{f(\varA)}
+	\pgfmathsetmacro{\fb}{f(\varB)}
+
+	\begin{tikzpicture}
 		\begin{axis} [
-			height=12cm,
-			width=16cm,
+			height=6cm,
+			width=6cm,
 			xlabel = {$x$},
 			ylabel = {$y$},
 			axis x line = middle,
 			axis y line = middle,
-			ymin = -0.1,
+			ymin = -0.4,
 			ymax = 1.6,
 			domain = 0:3.2,
 			ticks = none ]
-
-			\newcommand*{\varA}{0.8}
-			\newcommand*{\varB}{3}
-			\pgfmathsetmacro{\fa}{f(\varA)}
-			\pgfmathsetmacro{\fb}{f(\varB)}
 
 			\addplot[color=blue, line width=.08cm]{f(x)};
 
@@ -155,9 +158,90 @@ $(b-a)$ и $f(x_0)$. Не нужно забывать, что геометрич
 				node[above, pos=1]{};
 			\addplot[mark=*,only marks, fill=black] (\varB, 0)
 				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\varA, \fa)
+				node[above, pos=1]{};
 
-			\draw[fill=gray, fill opacity=0.2] (A) rectangle (Bp);
+			\draw[fill=gray, fill opacity=0.5] (A) rectangle (Bp);
+		\end{axis}
+	\end{tikzpicture}\qquad
+	\begin{tikzpicture}
+		\begin{axis} [
+			height=6cm,
+			width=6cm,
+			xlabel = {$x$},
+			ylabel = {$y$},
+			axis x line = middle,
+			axis y line = middle,
+			ymin = -0.4,
+			ymax = 1.6,
+			domain = 0:3.2,
+			ticks = none ]
+
+			\addplot[color=blue, line width=.08cm]{f(x)};
+
+			\coordinate(A) at 	(\varA,		\fa);
+			\coordinate(Ap) at 	(\varA,		0);
+			\coordinate(B) at 	(\varB,		\fb);
+			\coordinate(Bp) at 	(\varB,		0);
+
+			\node[below](Alb) at 	(\varA,		0) {$a$};
+			\node[below](Blb) at 	(\varB,		0) {$b$};
+
+			\addplot[mark=*,only marks, fill=black] (\varA, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\varB, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\varB, \fb)
+				node[above, pos=1]{};
+
+			\draw[fill=gray, fill opacity=0.5] (Ap) rectangle (B);
+		\end{axis}
+	\end{tikzpicture}\qquad
+	\begin{tikzpicture}
+		\begin{axis} [
+			height=6cm,
+			width=6cm,
+			xlabel = {$x$},
+			ylabel = {$y$},
+			axis x line = middle,
+			axis y line = middle,
+			ymin = -0.4,
+			ymax = 1.6,
+			domain = 0:3.2,
+			ticks = none ]
+
+			\pgfmathsetmacro{\varC}{(\varA+\varB)/2}
+			\pgfmathsetmacro{\fc}{f(\varC)}
+
+			\addplot[color=blue, line width=.08cm]{f(x)};
+
+			\coordinate(A) at 	(\varA,		\fa);
+			\coordinate(Ap) at 	(\varA,		0);
+			\coordinate(B) at 	(\varB,		\fb);
+			\coordinate(Bp) at 	(\varB,		0);
+			\coordinate(C) at 	(\varC,		\fc);
+			\coordinate(Cp) at 	(\varC,		0);
+
+			\node[below](Alb) at 	(\varA,		0) {$a$};
+			\node[below](Blb) at 	(\varB,		0) {$b$};
+			\node[below](Blb) at 	(\varC,		0)
+				{$\frac{a+b}{2}$};
+
+			\addplot[mark=*,only marks, fill=black] (\varA, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\varB, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\varC, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\varC, \fc)
+				node[above, pos=1]{};
+
+			\draw[dashed] (Cp) -- (C);
+			\draw[fill=gray, fill opacity=0.5]
+				(\varA,\fc) rectangle (Bp);
 		\end{axis}
 	\end{tikzpicture}
+	\caption*{Левый, правый и средний прямоугольники соответственно}
+	\end{figure}
 \end{define}
 \end{document}
