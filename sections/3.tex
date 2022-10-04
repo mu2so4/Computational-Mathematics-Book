@@ -301,7 +301,7 @@ $\int_a^b(x-\frac{1}{2}(a+b))^2dx$.
 	уравнением прямой.
 \end{define}
 
-\begin{theorem}[формула трапеций]
+\begin{theorem}[формула трапеций]\label{eq:trapezoidal_rule}
 	Формула трапеций для интеграла $\int_a^b f(x)dx$ имеет
 	вид
 	\[\boxed{\int_a^b f(x)dx\approx\frac{b-a}{2}\big(f(a)+f(b)\big)}\]
@@ -459,5 +459,35 @@ $\int_a^b (a+b)^2dx$.
 	интерполяционная функция которой задаётся тремя узлами: граничными и
 	серединным, -- и, следовательно, является уравнением параболы.
 \end{define}
+
+\begin{theorem}[формула Симпсона]
+	Формула Симпсона для интеграла $\int_a^b f(x)dx$ имеет
+	вид
+	\[\boxed{\int_a^b f(x)dx\approx\frac{b-a}{6}\Big(f(a)+4f\big(\frac{a+b}
+	{2}\big)+f(b)\Big)}\]
+\end{theorem}
+
+\begin{proof}
+	Обозначим $c=\frac{a+b}{2}$, $h=b-a$. Представим интерполяционный полином
+	в форме Ньютона
+	\eqref{eq:newton_polynomial}:
+	\[P_2(x)=P_1(x)+f[a,b,c](x-a)(x-b).\]
+	Из \eqref{eq:trapezoidal_rule} и из доказательства
+	\eqref{eq:trapezoidal_rule_error}
+	\[\int_a^b P_1(x)dx=\frac{h}{2}\big(f(a)+f(b)\big),\quad\int_a^b (x-a)
+	(x-b)dx=-\frac{h^3}{6}.\]
+	Посчитаем разделённые разности:
+	\[f[a,b]=\frac{f(b)-f(a)}{b-a}=\frac{f(b)-f(a)}{h},\]
+	\[f[b,c]=\frac{f(c)-f(b)}{c-b}=2\cdot\frac{f(b)-f(c)}{h},\]
+	\[f[a,b,c]=\frac{2\cdot\frac{f(b)-f(c)}{h}-\frac{f(b)-f(a)}{h}}{h/2}=
+	\frac{2}{h^2}\big(f(a)-2f(c)+f(b)\big).\]
+	Окончательно получаем:
+	\[\int_a^b P_2(x)dx=\frac{h}{2}\big(f(a)+f(b)\big)-\frac{h^{\cancel{3}}}
+	{6}\frac{2}{\cancel{h^2}}\big(f(a)-2f(c)+f(b)\big)=\]
+	\[=\frac{h}{6}\big(f(a)+4f(c)+f(b)\big).\]
+\end{proof}
+
+Однако данное доказательство нашёл я. У С. П. Шарого и на лекции было совсем
+другое доказательство. Приведём и его.
 
 \end{document}
