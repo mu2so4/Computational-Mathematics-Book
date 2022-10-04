@@ -288,4 +288,130 @@ $(b-a)$ и $f(x_0)$. Не нужно забывать, что геометрич
 	\[|R_{[a,b]}(f)|=\Big|\;\frac{f'(\xi)(x-a)^2}{2}\Big|_a^b\;\Big|=
 	\Big|\frac{f'(\xi)h^2}{2}\Big|\le\frac{M_1h^2}{2}\qed\]
 
+На пути у нас формула Ньютона-Котеса первой степени, то есть $n=1$.
+
+\begin{define}
+	\textbf{Формула трапеций} -- квадратурная формула Ньютона-Котеса
+	\eqref{eq:newton_cotes_formula}, интерполяционная функция которой
+	задаётся двумя узлами и, следовательно, является уравнением прямой.
+\end{define}
+
+\begin{theorem}[формула трапеций]
+	Формула трапеций замкнутого типа для интеграла $\int_a^b f(x)dx$ имеет
+	вид
+	\[\boxed{\int_a^b f(x)dx\approx\frac{b-a}{2}\big(f(a)+f(b)\big)}\]
+\end{theorem}
+\newpage
+
+\begin{proof}
+	Представим интерполяционный полином квадратурной формулы в форме
+	Лагранжа \eqref{eq:lagrange_polynomial}:
+	\[P_1(x)=\frac{x-b}{a-b}f(a)+\frac{x-a}{b-a}f(b).\]
+	Проинтегрировав это равенство, получим:
+	\[\int_a^b P_1(x)dx=\frac{f(a)}{a-b}\int_a^b (x-b)dx +
+	\frac{f(b)}{b-a}\int_a^b (x-a)dx=\]
+	\[=\frac{f(a)}{a-b}\frac{(x-b)^2}{2}\Big|_a^b+\frac{f(b)}{b-a}
+	\frac{(x-a)^2}{2}\Big|_a^b=\frac{b-a}{2}\big(f(a)+f(b)\big).\]
+\end{proof}
+
+Так же, как и формулы прямоугольников, формула трапеций получила своё название
+благодаря тому, что графически это площадь трапеции:
+	\begin{figure}[ht]
+	\tikzset{declare function={
+		f(\x)= sin(\x / pi * 180)+0.5;
+	}}
+	\centering
+	\newcommand*{\varA}{0.8}
+	\newcommand*{\varB}{3}
+	\newcommand*{\Height}{7cm}
+	\newcommand*{\Width}{7cm}
+	\pgfmathsetmacro{\fa}{f(\varA)}
+	\pgfmathsetmacro{\fb}{f(\varB)}
+	\pgfmathsetmacro{\leftDomain}{\varA-0.5}
+	\pgfmathsetmacro{\rightDomain}{\varB+0.5}
+	\pgfmathsetmacro{\yMin}{-0.4}
+	\pgfmathsetmacro{\yMax}{1.6}
+
+	\begin{tikzpicture}
+		\begin{axis} [
+			height=\Height,
+			width=\Width,
+			xlabel = {$x$},
+			ylabel = {$y$},
+			axis x line = middle,
+			axis y line = middle,
+			ymin = \yMin,
+			ymax = \yMax,
+			domain = \leftDomain:\rightDomain,
+			ticks = none ]
+
+			\addplot[color=blue, line width=.08cm]{f(x)};
+
+			\coordinate(A) at 	(\varA,		\fa);
+			\coordinate(Ap) at 	(\varA,		0);
+			\coordinate(B) at 	(\varB,		\fb);
+			\coordinate(Bp) at 	(\varB,		0);
+
+			\node[below](Alb) at 	(\varA,		0) {$a$};
+			\node[below](Blb) at 	(\varB,		0) {$b$};
+
+			\addplot[mark=*,only marks, fill=black] (\varA, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\varB, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\varA, \fa)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\varB, \fb)
+				node[above, pos=1]{};
+
+			\draw[fill=gray, fill opacity=0.5] (Ap) -- (A) --(B) --
+				(Bp) -- (Ap);
+		\end{axis}
+	\end{tikzpicture}\qquad
+	\begin{tikzpicture}
+		\begin{axis} [
+			height=\Height,
+			width=\Width,
+			xlabel = {$x$},
+			ylabel = {$y$},
+			axis x line = middle,
+			axis y line = middle,
+			ymin = \yMin,
+			ymax = \yMax,
+			domain = \leftDomain:\rightDomain,
+			ticks = none ]
+
+			\pgfmathsetmacro{\varC}{(\varA+\varB)/2}
+			\pgfmathsetmacro{\fc}{f(\varC)}
+
+			\addplot[color=blue, line width=.08cm]{f(x)};
+
+			\coordinate(A) at 	(\varA,		\fa);
+			\coordinate(Ap) at 	(\varA,		0);
+			\coordinate(B) at 	(\varB,		\fb);
+			\coordinate(Bp) at 	(\varB,		0);
+			\coordinate(C) at 	(\varC,		\fc);
+			\coordinate(Cp) at 	(\varC,		0);
+
+			\node[below](Alb) at 	(\varA,		0) {$a$};
+			\node[below](Blb) at 	(\varB,		0) {$b$};
+			\node[below](Blb) at 	(\varC,		0)
+				{$\frac{a+b}{2}$};
+
+			\addplot[mark=*,only marks, fill=black] (\varA, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\varB, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\varC, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\varC, \fc)
+				node[above, pos=1]{};
+
+			\draw[dashed] (Cp) -- (C);
+			\draw[fill=gray, fill opacity=0.5]
+				(\varA,\fc) rectangle (Bp);
+		\end{axis}
+	\end{tikzpicture}
+	\caption*{Формула трапеций в сравнении с формулой средних прямоугольников}
+	\end{figure}
 \end{document}
