@@ -125,20 +125,26 @@ $(b-a)$ и $f(x_0)$. Не нужно забывать, что геометрич
 	\centering
 	\newcommand*{\varA}{0.8}
 	\newcommand*{\varB}{3}
+	\newcommand*{\Height}{6cm}
+	\newcommand*{\Width}{6cm}
 	\pgfmathsetmacro{\fa}{f(\varA)}
 	\pgfmathsetmacro{\fb}{f(\varB)}
+	\pgfmathsetmacro{\leftDomain}{\varA-0.5}
+	\pgfmathsetmacro{\rightDomain}{\varB+0.5}
+	\pgfmathsetmacro{\yMin}{-0.4}
+	\pgfmathsetmacro{\yMax}{1.6}
 
 	\begin{tikzpicture}
 		\begin{axis} [
-			height=6cm,
-			width=6cm,
+			height=\Height,
+			width=\Width,
 			xlabel = {$x$},
 			ylabel = {$y$},
 			axis x line = middle,
 			axis y line = middle,
-			ymin = -0.4,
-			ymax = 1.6,
-			domain = 0:3.2,
+			ymin = \yMin,
+			ymax = \yMax,
+			domain = \leftDomain:\rightDomain,
 			ticks = none ]
 
 			\addplot[color=blue, line width=.08cm]{f(x)};
@@ -163,15 +169,15 @@ $(b-a)$ и $f(x_0)$. Не нужно забывать, что геометрич
 	\end{tikzpicture}\qquad
 	\begin{tikzpicture}
 		\begin{axis} [
-			height=6cm,
-			width=6cm,
+			height=\Height,
+			width=\Width,
 			xlabel = {$x$},
 			ylabel = {$y$},
 			axis x line = middle,
 			axis y line = middle,
-			ymin = -0.4,
-			ymax = 1.6,
-			domain = 0:3.2,
+			ymin = \yMin,
+			ymax = \yMax,
+			domain = \leftDomain:\rightDomain,
 			ticks = none ]
 
 			\addplot[color=blue, line width=.08cm]{f(x)};
@@ -196,15 +202,15 @@ $(b-a)$ и $f(x_0)$. Не нужно забывать, что геометрич
 	\end{tikzpicture}\qquad
 	\begin{tikzpicture}
 		\begin{axis} [
-			height=6cm,
-			width=6cm,
+			height=\Height,
+			width=\Width,
 			xlabel = {$x$},
 			ylabel = {$y$},
 			axis x line = middle,
 			axis y line = middle,
-			ymin = -0.4,
-			ymax = 1.6,
-			domain = 0:3.2,
+			ymin = \yMin,
+			ymax = \yMax,
+			domain = \leftDomain:\rightDomain,
 			ticks = none ]
 
 			\pgfmathsetmacro{\varC}{(\varA+\varB)/2}
