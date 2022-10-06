@@ -152,11 +152,16 @@ $(b-a)$ и $f(x_0)$. Не нужно забывать, что геометрич
 			domain = \leftDomain:\rightDomain,
 			ticks = none ]
 
+			\newcommand*{\upBorder}{\fa}
+
 			\addplot[color=blue, line width=.08cm]{f(x)};
+			\addplot[color=black, line width=.03cm, name path=A,
+				domain=\varA:\varB]
+				{\upBorder};
 
 			\coordinate(A) at 	(\varA,		\fa);
 			\coordinate(Ap) at 	(\varA,		0);
-			\coordinate(B) at 	(\varB,		\fb);
+			\coordinate(B) at 	(\varB,		\fa);
 			\coordinate(Bp) at 	(\varB,		0);
 
 			\node[below](Alb) at 	(\varA,		0) {$a$};
@@ -169,7 +174,10 @@ $(b-a)$ и $f(x_0)$. Не нужно забывать, что геометрич
 			\addplot[mark=*,only marks, fill=white] (\varA, \fa)
 				node[above, pos=1]{};
 
-			\draw[fill=gray, fill opacity=0.5] (A) rectangle (Bp);
+			\draw[thick] (Ap) -- (A) (Bp) -- (B);
+			\addplot[draw=none,name path=B] {0};
+			\addplot[gray, fill opacity=0.5] fill between
+				[of=A and B,soft clip={domain=\varA:\varB}];
 		\end{axis}
 	\end{tikzpicture}\qquad
 	\begin{tikzpicture}
@@ -185,9 +193,14 @@ $(b-a)$ и $f(x_0)$. Не нужно забывать, что геометрич
 			domain = \leftDomain:\rightDomain,
 			ticks = none ]
 
-			\addplot[color=blue, line width=.08cm]{f(x)};
+			\newcommand*{\upBorder}{\fb}
 
-			\coordinate(A) at 	(\varA,		\fa);
+			\addplot[color=blue, line width=.08cm]{f(x)};
+			\addplot[color=black, line width=.03cm, name path=A,
+				domain=\varA:\varB]
+				{\upBorder};
+
+			\coordinate(A) at 	(\varA,		\fb);
 			\coordinate(Ap) at 	(\varA,		0);
 			\coordinate(B) at 	(\varB,		\fb);
 			\coordinate(Bp) at 	(\varB,		0);
@@ -202,7 +215,10 @@ $(b-a)$ и $f(x_0)$. Не нужно забывать, что геометрич
 			\addplot[mark=*,only marks, fill=white] (\varB, \fb)
 				node[above, pos=1]{};
 
-			\draw[fill=gray, fill opacity=0.5] (Ap) rectangle (B);
+			\draw[thick] (Ap) -- (A) (Bp) -- (B);
+			\addplot[draw=none,name path=B] {0};
+			\addplot[gray, fill opacity=0.5] fill between
+				[of=A and B,soft clip={domain=\varA:\varB}];
 		\end{axis}
 	\end{tikzpicture}\qquad
 	\begin{tikzpicture}
@@ -221,11 +237,16 @@ $(b-a)$ и $f(x_0)$. Не нужно забывать, что геометрич
 			\pgfmathsetmacro{\varC}{(\varA+\varB)/2}
 			\pgfmathsetmacro{\fc}{f(\varC)}
 
-			\addplot[color=blue, line width=.08cm]{f(x)};
+			\newcommand*{\upBorder}{\fc}
 
-			\coordinate(A) at 	(\varA,		\fa);
+			\addplot[color=blue, line width=.08cm]{f(x)};
+			\addplot[color=black, line width=.03cm, name path=A,
+				domain=\varA:\varB]
+				{\upBorder};
+
+			\coordinate(A) at 	(\varA,		\fc);
 			\coordinate(Ap) at 	(\varA,		0);
-			\coordinate(B) at 	(\varB,		\fb);
+			\coordinate(B) at 	(\varB,		\fc);
 			\coordinate(Bp) at 	(\varB,		0);
 			\coordinate(C) at 	(\varC,		\fc);
 			\coordinate(Cp) at 	(\varC,		0);
@@ -245,8 +266,10 @@ $(b-a)$ и $f(x_0)$. Не нужно забывать, что геометрич
 				node[above, pos=1]{};
 
 			\draw[dashed] (Cp) -- (C);
-			\draw[fill=gray, fill opacity=0.5]
-				(\varA,\fc) rectangle (Bp);
+			\draw[thick] (Ap) -- (A) (Bp) -- (B);
+			\addplot[draw=none,name path=B] {0};
+			\addplot[gray, fill opacity=0.5] fill between
+				[of=A and B,soft clip={domain=\varA:\varB}];
 		\end{axis}
 	\end{tikzpicture}
 	\caption*{Левый, правый и средний прямоугольники соответственно}
@@ -340,7 +363,12 @@ $\int_a^b(x-\frac{1}{2}(a+b))^2dx$.
 	\pgfmathsetmacro{\yMin}{-0.4}
 	\pgfmathsetmacro{\yMax}{1.6}
 
-	\begin{tikzpicture}
+	\begin{tikzpicture} [
+			declare function = {
+				linear(\x,\a,\b) = (\x-\b)*f(\a)/(\a-\b);
+				up(\x,\a,\b)= linear(\x,\a,\b) +
+					linear(\x,\b,\a);
+			},]
 		\begin{axis} [
 			height=\Height,
 			width=\Width,
@@ -354,6 +382,9 @@ $\int_a^b(x-\frac{1}{2}(a+b))^2dx$.
 			ticks = none ]
 
 			\addplot[color=blue, line width=.08cm]{f(x)};
+			\addplot[color=black, line width=.03cm, name path=A,
+				domain=\varA:\varB]
+				{up(x,\varA,\varB)};
 
 			\coordinate(A) at 	(\varA,		\fa);
 			\coordinate(Ap) at 	(\varA,		0);
@@ -372,8 +403,10 @@ $\int_a^b(x-\frac{1}{2}(a+b))^2dx$.
 			\addplot[mark=*,only marks, fill=white] (\varB, \fb)
 				node[above, pos=1]{};
 
-			\draw[fill=gray, fill opacity=0.5] (Ap) -- (A) --(B) --
-				(Bp) -- (Ap);
+			\draw[thick] (Ap) -- (A) (Bp) -- (B);
+			\addplot[draw=none,name path=B] {0};
+			\addplot[gray, fill opacity=0.5] fill between
+				[of=A and B,soft clip={domain=\varA:\varB}];
 		\end{axis}
 	\end{tikzpicture}\qquad
 	\begin{tikzpicture}
@@ -594,12 +627,17 @@ $\int_a^b (a+b)^2dx$.
 
 			\draw[thick] (Ap) -- (A) (Bp) -- (B);
 			\draw[dashed] (Cp) -- (C);
-			\addplot[draw=none,name path=B] {0};     % “fictional” curve
+			\addplot[draw=none,name path=B] {0};
 			\addplot[gray, fill opacity=0.5] fill between
 				[of=A and B,soft clip={domain=\varA:\varB}];
 		\end{axis}
 	\end{tikzpicture}\qquad
-	\begin{tikzpicture}
+	\begin{tikzpicture} [
+			declare function = {
+				linear(\x,\a,\b) = (\x-\b)*f(\a)/(\a-\b);
+				up(\x,\a,\b)= linear(\x,\a,\b) +
+					linear(\x,\b,\a);
+			},]
 		\begin{axis} [
 			height=\Height,
 			width=\Width,
@@ -613,6 +651,9 @@ $\int_a^b (a+b)^2dx$.
 			ticks = none ]
 
 			\addplot[color=blue, line width=.08cm]{f(x)};
+			\addplot[color=black, line width=.03cm, name path=A,
+				domain=\varA:\varB]
+				{up(x,\varA,\varB)};
 
 			\coordinate(A) at 	(\varA,		\fa);
 			\coordinate(Ap) at 	(\varA,		0);
@@ -631,8 +672,10 @@ $\int_a^b (a+b)^2dx$.
 			\addplot[mark=*,only marks, fill=white] (\varB, \fb)
 				node[above, pos=1]{};
 
-			\draw[fill=gray, fill opacity=0.5] (Ap) -- (A) --(B) --
-				(Bp) -- (Ap);
+			\draw[thick] (Ap) -- (A) (Bp) -- (B);
+			\addplot[draw=none,name path=B] {0};
+			\addplot[gray, fill opacity=0.5] fill between
+				[of=A and B,soft clip={domain=\varA:\varB}];
 		\end{axis}
 	\end{tikzpicture}
 	\caption*{Формулы Симпсона и трапеций в сравнении}
@@ -863,7 +906,12 @@ $\int_a^b (a+b)^2dx$.
 				[of=A and B,soft clip={domain=\varA:\varB}];
 		\end{axis}
 	\end{tikzpicture}\qquad
-	\begin{tikzpicture}
+	\begin{tikzpicture} [
+			declare function = {
+				linear(\x,\a,\b) = (\x-\b)*f(\a)/(\a-\b);
+				up(\x,\a,\b)= linear(\x,\a,\b) +
+					linear(\x,\b,\a);
+			},]
 		\begin{axis} [
 			height=\Height,
 			width=\Width,
@@ -877,6 +925,9 @@ $\int_a^b (a+b)^2dx$.
 			ticks = none ]
 
 			\addplot[color=blue, line width=.08cm]{f(x)};
+			\addplot[color=black, line width=.03cm, name path=A,
+				domain=\varA:\varB]
+				{up(x,\varA,\varB)};
 
 			\coordinate(A) at 	(\varA,		\fa);
 			\coordinate(Ap) at 	(\varA,		0);
@@ -895,8 +946,10 @@ $\int_a^b (a+b)^2dx$.
 			\addplot[mark=*,only marks, fill=white] (\varB, \fb)
 				node[above, pos=1]{};
 
-			\draw[fill=gray, fill opacity=0.5] (Ap) -- (A) --(B) --
-				(Bp) -- (Ap);
+			\draw[thick] (Ap) -- (A) (Bp) -- (B);
+			\addplot[draw=none,name path=B] {0};
+			\addplot[gray, fill opacity=0.5] fill between
+				[of=A and B,soft clip={domain=\varA:\varB}];
 		\end{axis}
 	\end{tikzpicture}
 	\caption*{Формулы трёх восьмых, Симпсона и трапеций в сравнении}
