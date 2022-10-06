@@ -1012,7 +1012,19 @@ $\int_a^b (a+b)^2dx$.
 \end{theorem}
 
 \begin{proof}
-	Очевидным способом выводится из простой формулы \eqref{eq:rectangle_rule}.
+	Формула легко выводится из простой формулы \eqref{eq:rectangle_rule}
+	со сложением частичных результатов.
+\end{proof}
+
+\begin{theorem}[составная формула трапеций]
+	\textbf{Составная формула трапеций} с разбиением на $N$ отрезков имеет вид
+	\[\boxed{\int_a^b f(x)dx\approx \frac{h}{2}\Big(f(a)+2\sum_{i=1}^{N-1}
+	f(x_i)+f(b)\Big),\quad h=\frac{b-a}{N}}\]
+\end{theorem}
+
+\begin{proof}
+	Формула выводится из \eqref{eq:trapezoidal_rule} так же, как и
+	предыдущая.
 \end{proof}
 
 \end{document}
