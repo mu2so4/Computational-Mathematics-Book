@@ -496,7 +496,7 @@ $\int_a^b (a+b)^2dx$.
 	серединным, -- и, следовательно, является уравнением параболы.
 \end{define}
 
-\begin{theorem}[формула Симпсона]\label{eq:simpsons_rule}
+\begin{theorem}[формула Симпсона]\label{eq:simpsons_1_3_rule}
 	Формула Симпсона для интеграла $\int_a^b f(x)dx$ имеет вид
 	\[\boxed{\int_a^b f(x)dx\approx\frac{b-a}{6}\Big(f(a)+4f\big(\frac{a+b}
 	{2}\big)+f(b)\Big)}\]
@@ -683,7 +683,7 @@ $\int_a^b (a+b)^2dx$.
 
 \begin{lemma}
 	Алгебраическая степень точности \eqref{eq:algebraic_degree_of_accuracy}
-	формулы Симпсона \eqref{eq:simpsons_rule} равна трём.
+	формулы Симпсона \eqref{eq:simpsons_1_3_rule} равна трём.
 \end{lemma}
 
 \begin{proof}
@@ -748,7 +748,7 @@ $\int_a^b (a+b)^2dx$.
 	уравнением кубической параболы.
 \end{define}
 
-\begin{theorem}[формула трёх восьмых]
+\begin{theorem}[формула трёх восьмых]\label{eq:simpsons_3_8_rule}
 	Формула трёх восьмых для интеграла $\int_a^b f(x)dx$ имеет вид
 	\[\boxed{\int_a^b f(x)dx\approx\frac{3h}{8}\big(f(a)+3f(a+h)+3f(b-h)+
 	f(b)\big)},\]
@@ -1026,5 +1026,20 @@ $\int_a^b (a+b)^2dx$.
 	Формула выводится из \eqref{eq:trapezoidal_rule} так же, как и
 	предыдущая.
 \end{proof}
+
+\begin{theorem}[составная формула Симпсона]
+	\textbf{Составная формула Симпсона} с разбиением на $N$ отрезков имеет вид
+	\[\boxed{\int_a^b f(x)dx\approx \frac{h}{6}\Big(f(a)+2\sum_{i=1}^{N-1}
+	f(x_{2i})+\sum_{j=2}^{N}f(x_{2j-1})+f(b)\Big),\quad h=\frac{b-a}{N}}\]
+\end{theorem}
+
+\begin{proof}
+	Аналогично предыдущим формулам из \eqref{eq:simpsons_1_3_rule}.
+\end{proof}
+
+\begin{remark}
+	Составная формула Симпсона с разбиением на $N$ отрезков использует $2N$
+	равных по длине элементарных отрезка разбиения.
+\end{remark}
 
 \end{document}
