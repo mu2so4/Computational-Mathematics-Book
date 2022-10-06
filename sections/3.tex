@@ -1068,7 +1068,7 @@ $\int_a^b (a+b)^2dx$.
 	\centering
 	\newcommand*{\varA}{2}
 	\newcommand*{\varB}{14}
-	\newcommand*{\Height}{8cm}
+	\newcommand*{\Height}{7.5cm}
 	\newcommand*{\Width}{8cm}
 	\pgfmathsetmacro{\fa}{f(\varA)}
 	\pgfmathsetmacro{\fb}{f(\varB)}
@@ -1078,6 +1078,64 @@ $\int_a^b (a+b)^2dx$.
 	\pgfmathsetmacro{\yMax}{5}
 	\pgfmathsetmacro{\varC}{(\varA+\varB)/2}
 	\pgfmathsetmacro{\fc}{f(\varC)}
+
+	\begin{tikzpicture} [
+		declare function = {
+			linear(\x,\a,\b) = (\x-\b)*f(\a)/(\a-\b);
+			up(\x,\a,\b)= linear(\x,\a,\b) +
+				linear(\x,\b,\a);
+		},]
+
+		\begin{axis} [
+			height=\Height,
+			width=\Width,
+			xlabel = {$x$},
+			ylabel = {$y$},
+			axis x line = middle,
+			axis y line = middle,
+			ymin = \yMin,
+			ymax = \yMax,
+			domain = \leftDomain:\rightDomain,
+			ticks = none ]
+
+			\newcommand*{\divCount}{6}
+			\pgfmathsetmacro{\divCou}{\divCount-1}
+			\pgfmathsetmacro{\Step}{(\varB-\varA)/\divCount}
+
+			\addplot[color=blue, line width=.08cm]{f(x)};
+			\addplot[draw=none,name path=B] {0};
+			\foreach \ind in {0,...,\divCou} {
+				\pgfmathsetmacro{\xx}{(\varA + \ind * \Step)}
+				\pgfmathsetmacro{\xF}{\xx+\Step}
+				\pgfmathsetmacro{\y}{f(\xx)}
+				\pgfmathsetmacro{\yF}{f(\xF)}
+				\addplot[color=black, thick]
+					coordinates {(\xx, 0) (\xx, \y)};
+				\addplot[color=black, thick, domain=\xx:\xF,
+					name path=A] {up(x,\xx,\xF)};
+				%\addplot[gray, fill opacity=0.5] fill between
+				%	[of=A and B,soft clip={domain=\xx:\xS}];
+				%\tikzfillbetween[of=A and B,
+				%	domain=\xx:\xS]{gray, opacity=0.5};
+			};
+
+			\coordinate(A) at 	(\varA,		\fa);
+			\coordinate(Ap) at 	(\varA,		0);
+			\coordinate(B) at 	(\varB,		\fb);
+			\coordinate(Bp) at 	(\varB,		0);
+
+			\node[below](Alb) at 	(\varA,		0) {$a$};
+			\node[below](Blb) at 	(\varB,		0) {$b$};
+
+			\addplot[mark=*,only marks, fill=black] (\varA, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\varB, 0)
+				node[above, pos=1]{};
+
+			\draw[thick] (Bp) -- (B);
+
+		\end{axis}
+	\end{tikzpicture}
 
 	\begin{tikzpicture} [
 		declare function = {
@@ -1118,8 +1176,7 @@ $\int_a^b (a+b)^2dx$.
 				\addplot[color=black, thick,dashed ]
 					coordinates {(\xF, 0) (\xF, \yF)};
 				\addplot[color=black, thick, domain=\xx:\xS,
-					name path=A]
-					{lag(x,\xx,\xF,\xS)};
+					name path=A] {lag(x,\xx,\xF,\xS)};
 				%\addplot[gray, fill opacity=0.5] fill between
 				%	[of=A and B,soft clip={domain=\xx:\xS}];
 				%\tikzfillbetween[of=A and B,
