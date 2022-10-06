@@ -13,16 +13,18 @@
 \usepackage{relsize}
 \usepackage{graphicx}
 \usepackage{wrapfig}
+\usepackage{caption}
 \usepackage{textbook}
 
 \pgfplotsset{compat=1.17}
+\usepgfplotslibrary{fillbetween}
 
 \begin{document}
 
 	\subfile{title}
 
 	\setcounter{page}{2}
-
+	\renewcommand*{\proofname}{\bfseries\MakeUppercase{Доказательство}}
 	\renewcommand{\contentsname}{Оглавление}
 	\tableofcontents
 
@@ -43,5 +45,9 @@
 	\newpage
 
 	\subfile{sections/2}
+
+	\newpage
+
+	\subfile{sections/3}
 
 \end{document}
