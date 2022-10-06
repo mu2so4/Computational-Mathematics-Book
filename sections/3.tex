@@ -1061,4 +1061,100 @@ $\int_a^b (a+b)^2dx$.
 	равных по длине элементарных отрезка разбиения.
 \end{remark}
 
+\begin{figure}[ht]
+	\tikzset{declare function={
+		f(\x)= cos(\x / pi * 180)+sqrt(\x);
+	}}
+	\centering
+	\newcommand*{\varA}{2}
+	\newcommand*{\varB}{14}
+	\newcommand*{\Height}{8cm}
+	\newcommand*{\Width}{8cm}
+	\pgfmathsetmacro{\fa}{f(\varA)}
+	\pgfmathsetmacro{\fb}{f(\varB)}
+	\pgfmathsetmacro{\leftDomain}{\varA-0.5}
+	\pgfmathsetmacro{\rightDomain}{\varB+0.9}
+	\pgfmathsetmacro{\yMin}{-0.9}
+	\pgfmathsetmacro{\yMax}{5}
+	\pgfmathsetmacro{\varC}{(\varA+\varB)/2}
+	\pgfmathsetmacro{\fc}{f(\varC)}
+
+	\begin{tikzpicture} [
+		declare function = {
+			divDiff1(\a,\b) = (f(\b)-f(\a)) / (\b-\a);
+			divDiff2(\a,\b,\c) = (divDiff1(\b,\c)-divDiff1(\a,\b)) /
+				(\c-\a);
+			divDiff3(\a,\b,\c,\d) = (divDiff2(\b,\c,\d) -
+				divDiff2(\a,\b,\c)) / (\d-\a);
+			newton(\x,\a,\b,\c,\d)= f(\a) + divDiff1(\a,\b)*(\x-\a)+
+				divDiff2(\a,\b,\c)*(\x-\a)*(\x-\b) +
+				divDiff3(\a,\b,\c,\d)*(\x-\a)*(\x-\b)*(\x-\c);
+		},]
+
+		\begin{axis} [
+			height=\Height,
+			width=\Width,
+			xlabel = {$x$},
+			ylabel = {$y$},
+			axis x line = middle,
+			axis y line = middle,
+			ymin = \yMin,
+			ymax = \yMax,
+			domain = \leftDomain:\rightDomain,
+			ticks = none ]
+
+			\pgfmathsetmacro{\varC}{(2*\varA+\varB)/3}
+			\pgfmathsetmacro{\varD}{(\varA+2*\varB)/3}
+			\pgfmathsetmacro{\fc}{f(\varC)}
+			\pgfmathsetmacro{\fd}{f(\varD)}
+			\newcommand*{\divCount}{2}
+			\pgfmathsetmacro{\divCou}{\divCount-1}
+			\pgfmathsetmacro{\Step}{(\varB-\varA)/\divCount}
+
+			\addplot[color=blue, line width=.08cm]{f(x)};
+			\addplot[draw=none,name path=B] {0};
+			\foreach \ind in {0,...,\divCou} {
+				\pgfmathsetmacro{\xx}{(\varA + \ind * \Step)}
+				\pgfmathsetmacro{\xF}{\xx+\Step/3}
+				\pgfmathsetmacro{\xS}{\xx+2*\Step/3}
+				\pgfmathsetmacro{\xT}{\xx+\Step}
+				\pgfmathsetmacro{\y}{f(\xx)}
+				\pgfmathsetmacro{\yF}{f(\xF)}
+				\pgfmathsetmacro{\yS}{f(\xS)}
+				\addplot[color=black, thick]
+					coordinates {(\xx, 0) (\xx, \y)};
+				\addplot[color=black, thick,dashed ]
+					coordinates {(\xF, 0) (\xF, \yF)};
+				\addplot[color=black, thick,dashed ]
+					coordinates {(\xS, 0) (\xS, \yS)};
+				\addplot[color=black, thick, domain=\xx:\xT,
+					name path=A]
+					{newton(x,\xx,\xF,\xS,\xT)};
+				%\addplot[gray, fill opacity=0.5] fill between
+				%	[of=A and B,soft clip={domain=\xx:\xT}];
+				%\tikzfillbetween[of=A and B,
+				%	domain=\xx:\xT]{gray, opacity=0.5};
+			};
+
+			\coordinate(A) at 	(\varA,		\fa);
+			\coordinate(Ap) at 	(\varA,		0);
+			\coordinate(B) at 	(\varB,		\fb);
+			\coordinate(Bp) at 	(\varB,		0);
+
+			\node[below](Alb) at 	(\varA,		0) {$a$};
+			\node[below](Blb) at 	(\varB,		0) {$b$};
+
+			\addplot[mark=*,only marks, fill=black] (\varA, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\varB, 0)
+				node[above, pos=1]{};
+
+			\draw[thick] (Bp) -- (B);
+
+		\end{axis}
+
+	\end{tikzpicture}
+	\caption*{Формулы трёх восьмых, Симпсона и трапеций в сравнении}
+\end{figure}
+
 \end{document}
