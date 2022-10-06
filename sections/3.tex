@@ -1012,8 +1012,8 @@ $\int_a^b (a+b)^2dx$.
 \end{theorem}
 
 \begin{proof}
-	Формула легко выводится из простой формулы \eqref{eq:rectangle_rule}
-	со сложением частичных результатов.
+	Формула легко выводится из простой формулы \\
+	\eqref{eq:rectangle_rule} со сложением частичных результатов.
 \end{proof}
 
 \begin{theorem}[составная формула трапеций]
@@ -1030,7 +1030,7 @@ $\int_a^b (a+b)^2dx$.
 \begin{theorem}[составная формула Симпсона]
 	\textbf{Составная формула Симпсона} с разбиением на $N$ отрезков имеет вид
 	\[\boxed{\int_a^b f(x)dx\approx \frac{h}{6}\Big(f(a)+2\sum_{i=1}^{N-1}
-	f(x_{2i})+\sum_{j=2}^{N}f(x_{2j-1})+f(b)\Big),\quad h=\frac{b-a}{N}}\]
+	f(x_{2i})+4\sum_{j=1}^{N}f(x_{2j-1})+f(b)\Big),\quad h=\frac{b-a}{N}}\]
 \end{theorem}
 
 \begin{proof}
@@ -1039,6 +1039,25 @@ $\int_a^b (a+b)^2dx$.
 
 \begin{remark}
 	Составная формула Симпсона с разбиением на $N$ отрезков использует $2N$
+	равных по длине элементарных отрезка разбиения.
+\end{remark}
+\newpage
+
+\begin{theorem}[составная формула трёх восьмых]
+	\textbf{Составная формула трёх восьмых} с разбиением на $N$ отрезков
+	имеет вид
+	\[\boxed{\int_a^b f(x)dx\approx \frac{h}{8}\Big(f(a)+2\sum_{i=1}^{N-1}
+	f(x_{3i})+3\sum_{j=1}^{N}f(x_{3j-1}+x_{3j-2})+f(b)\Big)}\]
+	\[\quad h=\frac{b-a}{N}\]
+\end{theorem}
+
+\begin{proof}
+	Аналогично предыдущим формулам из \eqref{eq:simpsons_3_8_rule}.
+\end{proof}
+
+\begin{remark}
+	Составная формула трёх восьмых с разбиением на $N$ отрезков использует
+	$3N$
 	равных по длине элементарных отрезка разбиения.
 \end{remark}
 
