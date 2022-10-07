@@ -1096,6 +1096,7 @@ $\int_a^b (a+b)^2dx$.
 			ymin = \yMin,
 			ymax = \yMax,
 			domain = \leftDomain:\rightDomain,
+			set layers=standard,
 			ticks = none ]
 
 			\newcommand*{\divCount}{6}
@@ -1112,7 +1113,7 @@ $\int_a^b (a+b)^2dx$.
 				\addplot[color=black, thick]
 					coordinates {(\xF, 0) (\xF, \y)};
 				\addplot[draw=none, domain=\xx:\xF, name path=B]
-				{0};
+					{0};
 				\addplot[color=black, thick, domain=\xx:\xF,
 					name path=A] {f(\xx+\Step/2)};
 				\tikzfillbetween[of=A and B]{gray, opacity=0.5};
@@ -1152,6 +1153,7 @@ $\int_a^b (a+b)^2dx$.
 			ymin = \yMin,
 			ymax = \yMax,
 			domain = \leftDomain:\rightDomain,
+			set layers=standard,
 			ticks = none ]
 
 			\newcommand*{\divCount}{6}
@@ -1160,20 +1162,19 @@ $\int_a^b (a+b)^2dx$.
 
 			\addplot[color=blue, line width=.08cm]{f(x)};
 			\addplot[draw=none,name path=B] {0};
-			\foreach \ind in {0,...,\divCou} {
-				\pgfmathsetmacro{\xx}{(\varA + \ind * \Step)}
+			\pgfplotsinvokeforeach{0,...,\divCou} {
+				\pgfmathsetmacro{\xx}{\varA + #1 * \Step}
 				\pgfmathsetmacro{\xF}{\xx+\Step}
 				\pgfmathsetmacro{\y}{f(\xx)}
 				\pgfmathsetmacro{\yF}{f(\xF)}
 				\addplot[color=black, thick]
 					coordinates {(\xx, 0) (\xx, \y)};
+				\addplot[draw=none, domain=\xx:\xF, name path=B]
+					{0};
 				\addplot[color=black, thick, domain=\xx:\xF,
 					name path=A] {up(x,\xx,\xF)};
-				%\addplot[gray, fill opacity=0.5] fill between
-				%	[of=A and B,soft clip={domain=\xx:\xS}];
-				%\tikzfillbetween[of=A and B,
-				%	domain=\xx:\xS]{gray, opacity=0.5};
-			};
+				\tikzfillbetween[of=A and B]{gray, opacity=0.5};
+			}
 
 			\coordinate(A) at 	(\varA,		\fa);
 			\coordinate(Ap) at 	(\varA,		0);
@@ -1213,6 +1214,7 @@ $\int_a^b (a+b)^2dx$.
 			ymin = \yMin,
 			ymax = \yMax,
 			domain = \leftDomain:\rightDomain,
+			set layers=standard,
 			ticks = none ]
 
 			\newcommand*{\divCount}{3}
@@ -1278,6 +1280,7 @@ $\int_a^b (a+b)^2dx$.
 			ymin = \yMin,
 			ymax = \yMax,
 			domain = \leftDomain:\rightDomain,
+			set layers=standard,
 			ticks = none ]
 
 			\newcommand*{\divCount}{2}
