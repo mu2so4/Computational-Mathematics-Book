@@ -1,6 +1,6 @@
 <p align="left">
  	<a href="https://coveralls.io/mu2so4/Computational-Mathematics-Book">
-		<img src="https://img.shields.io/badge/version-0.2-orange"
+		<img src="https://img.shields.io/badge/version-0.4-orange"
 			alt="version">
 	</a>
 </p>
@@ -14,6 +14,7 @@ Based on V. Ostapenko lectures for 3rd course FIT NSU.
 * `title.tex` - title page file;
 * `intro.tex` - foreword page file;
 * `sections/` - directory containing main material splitted by chapters.
+* `references.tex` - page containing reference list;
 
 ## Building project
 If you are a Windows user, jast download the [MiKTeX compiler](https://miktex.org/download).
