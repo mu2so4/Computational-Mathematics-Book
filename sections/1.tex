@@ -218,8 +218,7 @@ $y(x)=0$. Если это просто абстрактное уравнение
 \end{theorem}
 \newpage
 
-\beginproof
-
+\begin{proof}
 	Нам всего лишь нужно доказать, что $g(x)$ замкнута на $G$.
 	\begin{multline*}
 		\forall x\in G:|g(x)-a|=|g(x)-g(a)+g(a)-a|\le \\
@@ -235,7 +234,8 @@ $y(x)=0$. Если это просто абстрактное уравнение
 	G\;\;g(x)\in G$, что и даёт нам замкнутость $g(x)$ на этом отрезке.
 	Условие 1 и замкнутость даёт нам право считать $g(x)$ сжимающим
 	отображением, поэтому тут применима теорема Банаха о неподвижной точке
-	\eqref{eq:banach_fp_theorem} -- итерационный процесс сходится.\qed
+	\eqref{eq:banach_fp_theorem} -- итерационный процесс сходится.
+\end{proof}
 
 \begin{corollary}\label{eq:derivative_condition}
 	Пусть функция $f(x)\in C[a,b]=G$, причём $\forall c\in G$ $|f'(c)|<1$,
@@ -669,8 +669,7 @@ $y(x)=0$. Если это просто абстрактное уравнение
 	Ньютона, \underline{монотонно} сходится к нему.
 \end{theorem}
 
-\beginproof
-
+\begin{proof}
 	Из условий 2 и 3 по теореме Больцано-Коши мы сразу получаем существование
 	и единственность нуля функции $\widetilde{x}\in G$.
 
@@ -704,7 +703,8 @@ $y(x)=0$. Если это просто абстрактное уравнение
 	\eqref{eq:newton_iteration}:
 	\[\overline{x}=\overline{x}-\frac{f(\overline{x})}{f'(\overline{x})}
 		\Rightarrow f(\overline{x})=0\Rightarrow \overline{x}=
-		\widetilde{x}.\]\qed
+		\widetilde{x}.\]
+\end{proof}
 
 На словах нельзя утверждать, что метод Ньютона очень эффективен. Чтобы проверить
 его на деле, нужно узнать, как быстро уменьшается отклонение от искомого нуля
@@ -721,8 +721,7 @@ $y(x)=0$. Если это просто абстрактное уравнение
 	{m_1}}\]
 \end{lemma}
 
-\beginproof
-
+\begin{proof}
 	Из существования производной следует непрерывность функции, тогда
 	применима теорема Лагранжа о среднем:
 	\[f(\overline{x})-f(\widetilde{x})=f'(z)(\overline{x}-\widetilde{x}),\]
@@ -730,7 +729,8 @@ $y(x)=0$. Если это просто абстрактное уравнение
 	\[|f(\overline{x})-\underset{=0}{\underbrace{f(\widetilde{x})}}|=|f'(z)|
 		|\overline{x}-\widetilde{x}|\ge m_1|\overline{x}-\widetilde{x}|
 		\Rightarrow |\overline{x}-\widetilde{x}|\le
-		\frac{|f(\overline{x})|}{m_1}.\]\qed
+		\frac{|f(\overline{x})|}{m_1}.\]
+\end{proof}
 
 Так мы можем проверить погрешность для каждого члена последовательности. Тем не
 менее, мы можем усилить оценку в случае именно метода Ньютона.
