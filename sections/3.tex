@@ -1223,23 +1223,22 @@ $\int_a^b (a+b)^2dx$.
 
 			\addplot[color=blue, line width=.08cm]{f(x)};
 			\addplot[draw=none,name path=B] {0};
-			\foreach \ind in {0,...,\divCou} {
-				\pgfmathsetmacro{\xx}{(\varA + \ind * \Step)}
+			\pgfplotsinvokeforeach{0,...,\divCou} {
+				\pgfmathsetmacro{\xx}{\varA + #1 * \Step}
 				\pgfmathsetmacro{\xF}{\xx+\Step/2}
 				\pgfmathsetmacro{\xS}{\xx+\Step}
 				\pgfmathsetmacro{\y}{f(\xx)}
 				\pgfmathsetmacro{\yF}{f(\xF)}
+				\addplot[draw=none, domain=\xx:\xS, name path=B]
+					{0};
 				\addplot[color=black, thick]
 					coordinates {(\xx, 0) (\xx, \y)};
 				\addplot[color=black, thick,dashed ]
 					coordinates {(\xF, 0) (\xF, \yF)};
 				\addplot[color=black, thick, domain=\xx:\xS,
 					name path=A] {lag(x,\xx,\xF,\xS)};
-				%\addplot[gray, fill opacity=0.5] fill between
-				%	[of=A and B,soft clip={domain=\xx:\xS}];
-				%\tikzfillbetween[of=A and B,
-				%	domain=\xx:\xS]{gray, opacity=0.5};
-			};
+				\tikzfillbetween[of=A and B]{gray, opacity=0.5};
+			}
 
 			\coordinate(A) at 	(\varA,		\fa);
 			\coordinate(Ap) at 	(\varA,		0);
