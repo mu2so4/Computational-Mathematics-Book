@@ -3,8 +3,8 @@
 \begin{document}
 
 \section{Алгебраические методы интерполирования}
-Задача интерполирования функции состоит в том, чтобы по известным её значениям
-в некоторых точках определить её значения в остальных точках области задания.
+Задача интерполирования функции состоит в том, чтобы по известным её значениям в
+некоторых точках определить её значения в остальных точках области задания.
 Такая задача возникает, например, когда по результатам измерения некоторой
 физической величины в одних точках требуется определить её значения в других
 точках или когда в целях ускорения вычислений желательно приблизить заданную
@@ -35,8 +35,7 @@ $n+1$ условие. Единственность решения математ
 	ЗАИ при $n=m$ имеет единственное решение.
 \end{theorem}
 
-\beginproof
-
+\begin{proof}
 	Запишем систему в матричном виде:
 	\[
 	\begin{pmatrix}
@@ -62,7 +61,8 @@ $n+1$ условие. Единственность решения математ
 
 	Определитель этой матрицы -- определитель Вандермонда -- не равен нулю,
 	так как $x_i\ne x_j$ при $i\ne j$. Это необходимо и достаточно для
-	существования и единственности решения.\qed
+	существования и единственности решения.
+\end{proof}
 
 \subsection{Интерполяционный многочлен Лагранжа}
 В теореме \eqref{eq:polynominal_theorem}, мы доказали, что решение ЗАИ
@@ -78,8 +78,7 @@ $n+1$ условие. Единственность решения математ
 	\[\omega(x)=\prod_{l=0}^{n}(x-x_l).\]
 \end{theorem}
 
-\beginproof
-
+\begin{proof}
 	Для каждого $k\in\{0,1,...,n\}$ рассмотрим частный случай ЗАИ:
 	\[P_{n,k}(x_i)=\delta_{k,i},\;i\in\{0,1,...,n\},\]
 	где $\delta_{k,i}$ -- символ Кронекера. Так как полином $P_{n,k}$
@@ -96,7 +95,8 @@ $n+1$ условие. Единственность решения математ
 	полиномов -- многочлен степени $n$. А так как $\forall i\in\{0,...,n\}$
 	\[P_n(x_i)=\sum_{k=0}^{n}P_{n,k}(x_i)f(x_k)=\sum_{k=0}^{n}\delta_{i,k}
 	f(x_k)=f(x_i),\]
-	полином является интерполянтом функции $f(x)$.\qed
+	полином является интерполянтом функции $f(x)$.
+\end{proof}
 
 \begin{example}
 	Найдём интерполяционный многочлен Лагранжа функции \\ $f(x)=\cos x +
@@ -116,6 +116,7 @@ $n+1$ условие. Единственность решения математ
 	+\frac{1.346}{8(x-4)} \Big )=\]
 	\[=0.125(x^2-6x+8)-0.146(x^2-4x)+0.168(x^2-2x)=\]
 	\[=0.149x^2-0.502x+1.\]
+	\newpage
 
 	Найдём значения некоторых внутренних точек:\newline
 
@@ -127,7 +128,8 @@ $n+1$ условие. Единственность решения математ
 		\hline
 		$P_2(x)$& 0.645	& 0.818	\\
 		\hline
-	\end{tabular}\newpage
+	\end{tabular}
+	\leavevmode\newline
 
 	И изобразим всё это на графике:\newline
 
@@ -185,30 +187,30 @@ $n+1$ условие. Единственность решения математ
 			\node[below](Q2p) at	(\queryB,	0) {$\queryB$};
 			\coordinate(Q2true) at	(\queryB,	\RsecondTrue);
 
-			\addplot[mark=*,only marks, fill=white] (\varA,\fa)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (\varB,\fb)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (\varC,\fc)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (\queryA,\Rfirst)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (\queryA,\RfirstTrue)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (\queryB,\Rsecond)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (\queryB,\RsecondTrue)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=black] (\varA,0)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=black] (\varB,0)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=black] (\varC,0)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=black] (\queryA,0)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=black] (\queryB,0)
-				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white]
+				(\varA,\fa) node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white]
+				(\varB,\fb) node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white]
+				(\varC,\fc) node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white]
+				(\queryA,\Rfirst) node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white]
+				(\queryA,\RfirstTrue) node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white]
+				(\queryB,\Rsecond) node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white]
+				(\queryB,\RsecondTrue) node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black]
+				(\varA,0) node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black]
+				(\varB,0) node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black]
+				(\varC,0) node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black]
+				(\queryA,0) node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black]
+				(\queryB,0) node[above, pos=1]{};
 
 			\draw[thick] (Ap) -- (A)	(Bp) -- (B)
 				(Cp) -- (C);
@@ -229,8 +231,7 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 все ''коэффициенты'' вида \[\frac{\omega(x)}{(x-x_k)\omega'(x_k)}.\]
 
 Надо найти новую запись интерполяционного многочлена. Заметьте -- именно запись,
-так как по теореме \eqref{eq:polynominal_theorem} интерполяционный полином
-единственнен.
+так как по теореме \eqref{eq:polynominal_theorem} полином единственнен.
 
 \begin{define}\label{eq:divided_difference}
 	\textbf{Разделённая разность $n$-го порядка} функции $f(x)$ на попарно
@@ -248,14 +249,13 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 	{\prod_{\substack{j=0\\ j\neq i}}^{n}(x_i-x_j)}.\]
 \end{lemma}
 
-\beginproof
-
+\begin{proof}
 	Доказывать мы будем методом математической индукции. Для $n=1$ верность
 	леммы очевидна для разделённой разности первого порядка.
 
 	Теперь положим, что лемма верна при $n=m$. Докажем лемму для $m+1$.
 	\[f[x_0,...,x_{m+1}]=\frac{f[x_1,...,x_{m+1}]-f[x_0,...,x_m]}
-	{x_{m+1}-x_m}=\]
+	{x_{m+1}-x_0}=\]
 	\[{\overset{\substack{\text{инд.}\\\text{предп.}}}{=\joinrel=}}
 	\frac{1}{x_{m+1}-x_0}\Big( \sum_{i=1}^{m+1}\frac{f(x_i)}
 	{\prod_{\substack{j=1\\ j\neq i}}^{m+1}(x_i-x_j)} - \sum_{k=0}^{m}
@@ -275,22 +275,22 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 	(x_i-x_j)},\]
 
 	И окончательно из (*) получим:
-	\[f[x_0,...,x_n]=\frac{f(x_0)}{\prod_{i=1}^{m+1}(x_0-x_i)}+\sum_{j=1}^{m}
-	\frac{f(x_j)}{\prod_{\substack{i=0\\ i\neq j}}^{m+1}(x_j-x_i)}+\]
+	\[f[x_0,...,x_n]=\frac{f(x_0)}{\prod_{i=1}^{m+1}(x_0-x_i)}+\sum_{j=1}^
+	{m} \frac{f(x_j)}{\prod_{\substack{i=0\\ i\neq j}}^{m+1}(x_j-x_i)}+\]
 	\[+\frac{f(x_{m+1})}{\prod_{i=0}^{m}(x_{m+1}-x_i)}=
 	\sum_{i=0}^{m+1}\frac{f(x_i)}{\prod_{\substack{j=0\\ j\neq i}}^{m+1}
-	(x_i-x_j)}.\qed\]
+	(x_i-x_j)}.\]
+\end{proof}
 
 \begin{lemma}\label{eq:next_int_pol}
-	Пусть $P_k(x)$ и $P_{k+1}(x)$ -- интерполяционные многочлены функции $f(x)$,
-	тогда для них верно равенство:
+	Пусть $P_k(x)$ и $P_{k+1}(x)$ -- интерполяционные многочлены функции
+	$f(x)$, тогда для них верно равенство:
 	\[P_{k+1}(x)-P_k(x)=A_{k+1}\prod_{i=0}^{k}(x-x_k),\]
 	где
 	\[A_{k+1}=\frac{f(x_{k+1})-P_k(x_{k+1})}{\prod_{i=0}^{k}(x_{k+1}-x_i)}.\]
 \end{lemma}
 
-\beginproof
-
+\begin{proof}
 	Очевидно, что разность $P_{k+1}(x)-P_{k}(x)$ -- полином степени $k+1$.
 	Также верно, что для первых $k+1$ интерполяционных узлов $P_{k+1}(x_i)=
 	P_{k}(x_i)$. Поскольку у полинома степени $k+1$ ровно столько же нулей,
@@ -300,7 +300,8 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 	\[\underset{=f(x_{k+1})}{\underbrace{P_{k+1}(x_{k+1})}}-P_{k}(x_{k+1})=
 	A_{k+1}\prod_{i=0}^{k}(x_{k+1}-x_i)\Rightarrow\]
 	\[\Rightarrow \boxed{A_{k+1}=\frac{f(x_{k+1})-P_k(x_{k+1})}
-	{\prod_{i=0}^{k}(x_{k+1}-x_i)}}.\qed\]
+	{\prod_{i=0}^{k}(x_{k+1}-x_i)}}.\]
+\end{proof}
 
 \begin{lemma}\label{eq:newton_koef_formula}
 	Коэффициенты $A_k$ из леммы \eqref{eq:next_int_pol} равны разделённым
@@ -308,8 +309,7 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 
 \end{lemma}
 
-\beginproof
-
+\begin{proof}
 	По формуле
 	\[A_k=\frac{f(x_k)-P_{k-1}(x_k)}{\prod_{i=0}^{k-1}(x_k-x_i)}=
 	\frac{f(x_k)}{\prod_{i=0}^{k-1}(x_k-x_i)} - \frac{P_{k-1}(x_k)}
@@ -333,7 +333,8 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 	(x_i-x_j)}=\sum_{i=0}^{k}\frac{f(x_i)}{\prod_{\substack{j=0\\j\ne i}}^
 	{k}(x_i-x_j)},\]
 	что по лемме \eqref{eq:div_diff_formula} и является разделённой
-	разностью $k$-го порядка на попарно разных узлах $x_0,...,x_k$.\qed
+	разностью $k$-го порядка на попарно разных узлах $x_0,...,x_k$.
+\end{proof}
 
 \begin{theorem}[о представлении в форме Ньютона]\label{eq:newton_polynomial}
 	При $n=m$ решение ЗАИ \eqref{eq:interpolation_problem} представимо в
@@ -344,17 +345,17 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 	\eqref{eq:divided_difference}.
 \end{theorem}
 
-\beginproof
-
+\begin{proof}
 	Данная теорема является следствием лемм \eqref{eq:next_int_pol} и
 	\eqref{eq:newton_koef_formula}:
 	\[P_n(x)=P_{n-1}(x)+A_n\prod_{k=0}^{n-1}(x-x_k)=...=
 	\sum_{k=0}^{n}\big(A_k\prod_{i=0}^{k-1}(x-x_i)\big),\]
-	в которой $A_k=f[x_0,...,x_k]$ и $A_0=f(x_0)$.\qed
+	в которой $A_k=f[x_0,...,x_k]$ и $A_0=f(x_0)$.
+\end{proof}
 
 \begin{example}\label{eq:newton_polynomial_example}
-	Найдём для функции $f(x)=e^x-2\sin x$ на отрезке $[-4,2]$ интерполяционный
-	многочлен в форме Ньютона по следующей таблице:
+	Найдём для функции $f(x)=e^x-2\sin x$ на отрезке $[-4,2]$
+	интерполяционный многочлен в форме Ньютона по следующей таблице:\\
 
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
@@ -362,7 +363,7 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 		\hline
 		$f(x)$	&-1.495	& 1.954	& 1.000	& 5.570	\\
 		\hline
-	\end{tabular}
+	\end{tabular}\leavevmode\newline
 
 	Многочлен будет в форме
 	\[P_3(x)=f(-4)+f[-4,-2](x+4)+f[-4,-2,0](x+4)(x+2)+\]
@@ -397,12 +398,12 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 				(\c-\a);
 			divDiff3(\a,\b,\c,\d) = (divDiff2(\b,\c,\d) -
 				divDiff2(\a,\b,\c)) / (\d-\a);
-			newton(\x,\a,\b,\c,\d)= u(\a) + divDiff1(\a,\b)*(\x-\a) +
+			newton(\x,\a,\b,\c,\d)= u(\a) + divDiff1(\a,\b)*(\x-\a)+
 				divDiff2(\a,\b,\c)*(\x-\a)*(\x-\b) +
 				divDiff3(\a,\b,\c,\d)*(\x-\a)*(\x-\b)*(\x-\c);
 		},]
 		\begin{axis} [
-			height=10cm,
+			height=11cm,
 			width=16cm,
 			xlabel = {$x$},
 			ylabel = {$y$},
@@ -461,9 +462,9 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 \end{example}
 
 \subsection{Оценка погрешности интерполирования}
-Третий и самый главный вопрос интерполирования -- насколько отличаются значения
-интерполяционного многочлена $P_n(x)$ от значений интерполируемой функции $f(x)$?
-Сначала дадим простое определение.
+Четвёртый и самый главный вопрос интерполирования -- насколько отличаются значения
+интерполяционного многочлена $P_n(x)$ от значений интерполируемой функции
+$f(x)$? Сначала дадим простое определение.
 
 \begin{define}\label{eq:interpolation_error}
 	\textbf{Погрешность} или \textbf{ошибка интерполирования} функции $f(x)$
@@ -481,28 +482,27 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 	\omega(y)=\prod_{k=0}^{n}(y-x_n).\]
 \end{lemma}
 
-\beginproof
-
+\begin{proof}
 	Построим новый интерполяционный полином $P_{n+1}(x)$ для $f(x)$ на
-	$n+2$ попарно различных узлах $\{x_0,...,x_n,y\}$. Представим его в форме
-	Ньютона \eqref{eq:newton_polynomial}:
+	$n+2$ попарно различных узлах $\{x_0,...,x_n,y\}$. Представим его в
+	форме Ньютона \eqref{eq:newton_polynomial}:
 	\[P_{n+1}(x)=P_n(x)+f[x_0,...,x_n,y]\omega(x)\Rightarrow\]
 	\[\Rightarrow P_n(x)=P_{n+1}(x)-f[x_0,...,x_n,y]\omega(x).\]
 	И тогда
 	\[R_n(y)=f(y)-P_n(y)=\cancel{f(y)}-\cancel{P_{n+1}(y)}+f[x_0,...,x_n,y]
 	\omega(y)\Rightarrow\]
-	\[\Rightarrow \boxed{R_n(y)=f[x_0,...,x_n,y]\omega(y)}.\qed\]
+	\[\Rightarrow \boxed{R_n(y)=f[x_0,...,x_n,y]\omega(y)}.\]
+\end{proof}
 
 \begin{lemma}\label{eq:xi_in_ab}
 	Если $f(x)\in C^n([a,b])$, то
 	\[\exists\xi\in[a,b]:f[x_0,...,x_n] = \frac{f^{(n)}(\xi)}{n!}.\]
 \end{lemma}
 
-\beginproof
-
+\begin{proof}
 	Рассмотрим погрешность интерполирования $R_n(x)=f(x)-P_n(x)$. Выразим
-	$P_n(x)$ в форме Ньютона \eqref{eq:newton_polynomial} и продифференцируем
-	$n$ раз:
+	$P_n(x)$ в форме Ньютона \eqref{eq:newton_polynomial} и
+	продифференцируем $n$ раз:
 	\[R_n^{(n)}(x) = \Big(f(x) - \sum_{k=0}^{n}\big(f[x_0,...,x_k]\prod_
 	{i=0}^{k-1}(x-x_i)\big)\Big)^{(n)}=\]
 	\[=f^{(n)}(x) - n!f[x_0,...,x_n].\]
@@ -521,7 +521,7 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 	Провернём это же действие уже с функцией $R'_n(x)$ и получим, что у
 	$R''_n(x)$ не менее $n-1$ попарно различных корней. Сделав так $n$ раз,
 	получим, что у функции $R_n^{(n)}(x)$ есть минимум один ноль на $[a,b]$.
-	\qed
+\end{proof}
 
 \begin{theorem}\label{eq:interpolation_der_error_form}
 	Если $f(x)\in C^{n+1}([a,b])$, то погрешность интерполирования функции
@@ -532,15 +532,15 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 	[a,b],\;\omega(y)=\prod_{k=0}^{n}(y-x_k).\]
 \end{theorem}
 
-\beginproof
-
+\begin{proof}
 	Если $y$ совпадает с одним из узлов интерполяции, то теорема работает
 	$\forall\xi\in[a,b]$, так как $\omega(y)=0$.
 
 	В противном случае, по леммам \eqref{eq:interpolation_error_form} и
 	\eqref{eq:xi_in_ab}
 	\[R_n(y)=f[x_0,...,x_n,y]\omega(y)=\frac{f^{(n+1)}(\xi)}{(n+1)!}
-	\omega(y).\qed\]
+	\omega(y).\]
+\end{proof}
 
 Иногда является полезным найти не точное значение погрешности, а её верхнюю
 оценку, особенно если учесть, что поиск параметра $\xi$ может оказаться
@@ -558,7 +558,7 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 	||\omega(x)||_{C[a,b]},\quad \omega(x)=\prod_{k=0}^{n}(x-x_k).\]
 \end{corollary}
 
-\beginproof
+\begin{proof}
 	Из теоремы \eqref{eq:interpolation_der_error_form} верно равенство
 	\[|R_n(y)|=\frac{|f^{(n+1)}(\xi)|}{(n+1)!}|\omega(y)|.\]
 	Оценим равенство сверху:
@@ -566,7 +566,8 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 	{C[a,b]};\]
 	поскольку это верно $\forall y\in[a,b]$, можем заключить, что
 	\[||R_n(x)||_{C[a,b]}\le \frac{||f^{(n+1)}(x)||_{C[a,b]}}{(n+1)!}
-	||\omega(x)||_{C[a,b]}.\qed\]
+	||\omega(x)||_{C[a,b]}.\]
+\end{proof}
 
 Узлы интерполяции следует выбирать как можно равномерней, иначе на участке
 отрезка, обеднённом ими, погрешность будет гораздо выше.
@@ -574,26 +575,26 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 \begin{example}
 	Оценим погрешность интерполяционного полинома функции $f(x)=e^x-2\sin x$
 	из примера \eqref{eq:newton_polynomial_example}, на том
-	же отрезке $[-4,2]$ на тех же узлах $\{-4,-2,0,2\}$.
+	же отрезке $[-4,2]$ и на тех же узлах $\{-4,-2,0,2\}$.
 
-	Начнём с $\omega(x)=(x^2-4)(x^2+4x)=x^4+4x^3-8x^2-16x$. Попробуем найти экстремумы этого
-	многочлена:
-	\[\omega'(x)=4x^3+12x^2-8x-16=(x+1)(x+1+\sqrt 5)(x+1-\sqrt 5).\]
+	Начнём с $\omega(x)=(x^2-4)(x^2+4x)=x^4+4x^3-8x^2-16x$. Попробуем найти
+	экстремумы этого многочлена:
+	\[\omega'(x)=4x^3+12x^2-8x-16=4(x+1)(x+1+\sqrt 5)(x+1-\sqrt 5).\]
 
 	Так как все эти точки одинарной кратности, они являются экстремумами.
-	Более того, все они принадлежат отрезку $[-4,2]$. Проверим все из них:
-	\[\omega(-1)=1-4-4+16=9,\]
-	\[\omega(-1\pm\sqrt 5)=\big((1\mp 2\sqrt 5 + 5)-4\big)
-	\big((1\mp 2\sqrt 5 + 5)-4\pm 4\sqrt 5\big)=\]
-	\[=(2\mp 2\sqrt 5)(2\pm 2\sqrt 5)=-16.\]
+	Более того, все они принадлежат отрезку $[-4,2]$. Проверим все из них
+	(на краях отрезка функция зануляется):
+	\[\omega(-1)=9,\;\omega(-1\pm\sqrt 5)=-16\Rightarrow
+	||\omega(x)||_{C[-4,2]}=16.\]
 
-	Таким образом, $||\omega(x)||_{C[-4,2]}=16$.
-
-	Точно найти максимум модуля функции $f^{(3)}(x)=e^x+2\cos x$ не получится,
-	поэтому попробуем его оценить. Нижняя оценка очевидна: $f^{(3)}(x)>-2$.
-	Грубо оценим сверху. Очевидно, что максимум достигается в точке 2, тогда
-	$f^{(3)}(2)=e^2+\cos 2\le 7.4$:
-	\[||R_3(x)||_{C[-4,2]}\le\frac{7.4\cdot 16}{24}\approx 4.93.\]
+	Точно найти максимум модуля функции $f^{(4)}(x)=e^x-2\sin x$ не
+	получится, поэтому попробуем его оценить. Нижняя оценка очевидна:
+	$f^{(4)}(x)>-2$. Верхняя оценка, очевидно, достигается в точке 2:
+	$f^{(4)}(2)=e^2-\sin 2\le 7.4-2\cdot\frac{\sqrt 3}{2}\le 7.4-1.7=5.7$,
+	тогда
+	\[||R_3(x)||_{C[-4,2]}\le\frac{||e^x-2\sin x||_{C[-4,2]}}{4!}
+	||\omega(x)||_{C[-4,2]}\le\frac{5.7\cdot 16}{24}=3.8.\]
+	На практике, эта оценка даже близко не была достигнута.
 \end{example}
 
 \end{document}

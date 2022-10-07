@@ -2,7 +2,7 @@
 
 \begin{document}
 
-\section{Численное решение алгебраических уравнений}
+\section{Численное решение\\ алгебраических уравнений}
 
 Предположим, что нам нужно решить в действительных числах уравнение
 $y(x)=0$. Если это просто абстрактное уравнение, то нет единого
@@ -15,13 +15,13 @@ $y(x)=0$. Если это просто абстрактное уравнение
 деления отрезка пополам. Для него нужна лишь совсем небольшая математическая
 база.
 
-\begin{algorithm}[метод бисекции]
+\begin{algorithm}[метод бисекции]\label{eq:bisection_method}
 	Необходимо найти ноль функции $f(x)$ на отрезке $[a,b]$ таком, что:
 	\begin{enumerate}[noitemsep, nolistsep]
 		\item $f(x)\in C([a,b])$;
 		\item $f(a)f(b)<0$, то есть на концах отрезка функция
 			принимает значения, противоположные по знаку.
-	\end{enumerate}\leavevmode\newline
+	\end{enumerate}
 
 	Организуем систему вложенных отрезков $[a_n, b_n]$ так, что\\
 	$[a_1, b_1]=[a,b]$, а следующие отрезки сформированы следующим образом:
@@ -29,15 +29,15 @@ $y(x)=0$. Если это просто абстрактное уравнение
 	\begin{itemize}[noitemsep, nolistsep]
 		\item Если $f(c_k)=0$, то мы нашли корень, можно не продолжать;
 		\item В противном случае, мы берём тот конец отрезка, функция от
-			которой не совпала по знаку с $f(c_k)$, и формируем из него
-			и точки $c_k$ отрезок $[a_{k+1},b_{k+1}]$.
+			которой не совпала по знаку с $f(c_k)$, и формируем из
+			него и точки $c_k$ отрезок $[a_{k+1},b_{k+1}]$.
 	\end{itemize}
 
 	Условие выхода: $|f(c_n)|<\varepsilon$, где $\varepsilon>0$ -- некоторая
 	погрешность.
 
-	Если данный алгоритм усилить монотонным возрастанием или убыванием на $[a,b]$,
-	то ноль на нём будет единственный.
+	Если данный алгоритм усилить монотонным возрастанием или убыванием на
+	$[a,b]$, то ноль на нём будет единственный.
 \end{algorithm}
 
 Корректность данного алгоритма напрямую следует из теоремы Больцано-Коши, которая
@@ -65,7 +65,7 @@ $y(x)=0$. Если это просто абстрактное уравнение
 		\item $f(2.5)=0.125>0$, ищем на $[2.5,3]$;
 		\item $f(2.75)\approx -0.5781<0$, ищем на $[2.5,2.75]$;
 		\item $f(2.625)\approx -0.2259<0$, ищем на $[2.5,2.625]$ и т. д.
-	\end{itemize}\leavevmode\newline
+	\end{itemize}
 
 	На графике это выглядит вот так:\\
 
@@ -75,8 +75,8 @@ $y(x)=0$. Если это просто абстрактное уравнение
 		},
 	]
 		\begin{axis} [
-			height=9cm,
-			width=15cm,
+			height=12cm,
+			width=16cm,
 			xlabel = {$x$},
 			ylabel = {$f(x)$},
 			axis x line = middle,
@@ -102,7 +102,8 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\node[below](Ap) at 	(\varA,		0) {$a$};
 			\coordinate(B) at 	(\varB,		\fb);
 			\node[above](Bp) at 	(\varB,		0) {$b$};
-			\node[above](X) at 	(\X,		0) {$\widetilde{x}$};
+			\node[above](X) at 	(\X,		0)
+				{$\widetilde{x}$};
 			\coordinate(X1) at 	(\Xfirst,	\fXfirst);
 			\node[below](X1p) at 	(\Xfirst,	0) {$x_1$};
 			\coordinate(X2) at 	(\Xsecond,	\fXsecond);
@@ -114,7 +115,8 @@ $y(x)=0$. Если это просто абстрактное уравнение
 				node[above, pos=1]{};
 
 			\draw[very thick] (Ap) -- (A)	(Bp) -- (B);
-			\draw[dashed] (X1p) -- (X1)	(X2p) -- (X2)	(X3p) -- (X3);
+			\draw[dashed] (X1p) -- (X1)	(X2p) -- (X2)
+				(X3p) -- (X3);
 
 			\addlegendentry{$f(x)=x^3-6x^2+8x+2$};
 		\end{axis}
@@ -134,7 +136,8 @@ $y(x)=0$. Если это просто абстрактное уравнение
 		\item $x_1=f(x_0)$,
 		\item $x_2=f(x_1)=f(f(x_0))$,\\
 		...
-		\item $x_n=f(x_{n-1})=\underset{n}{\underbrace{f(f(...f}}(x_0)...))$.
+		\item $x_n=f(x_{n-1})=\underset{n}{\underbrace{f(f(...f}}
+			(x_0)...))$.
 	\end{itemize}
 
 	\textbf{Последовательность} $\{x_n\}$, образованная таким образом,
@@ -154,9 +157,9 @@ $y(x)=0$. Если это просто абстрактное уравнение
 	завершаем итерацию при $|g(x_n)-x_n|<\varepsilon$.
 \end{algorithm}
 
-Как нужно подобрать $\tau$, чтобы последовательность сошлась? Однозначного ответа
-нет. Однако тут частично выручает та теория, которую мы узнали на ДГМА. Дело
-идёт о так называемых сжимающих операторах.
+Как нужно подобрать $\tau$, чтобы последовательность сошлась? Однозначного
+ответа нет. Однако тут частично выручает та теория, которую мы узнали на ДГМА.
+Дело идёт о так называемых сжимающих операторах.
 
 Для начала не помешает освежить в своей памяти некоторые определения.
 
@@ -183,7 +186,7 @@ $y(x)=0$. Если это просто абстрактное уравнение
 	Число $q$ назовём \textbf{коэффициентом сжатия}.
 \end{define}
 
-\begin{theorem}[о сжимающем операторе]
+\begin{theorem}[о сжимающем операторе]\label{eq:banach_fp_theorem}
 	Пусть $(M,\rho)$ -- полное метрическое пространство, $f$ -- сжимающий
 	оператор на $M$ с коэффициентом сжатия $q$. Тогда:
 	\begin{enumerate}[noitemsep, nolistsep]
@@ -195,8 +198,9 @@ $y(x)=0$. Если это просто абстрактное уравнение
 	\end{enumerate}
 \end{theorem}
 
-Данная теорема была доказана в курсе ''Дополнительные главы математического анализа''.
-В литературе эта теорема также известна как ''Теорема Банаха о неподвижной точке''.
+Данная теорема была доказана в курсе ''Дополнительные главы математического
+анализа''. В литературе эта теорема также известна как ''Теорема Банаха о
+неподвижной точке''.
 
 Всё это нужно было для того, чтобы доказать красивую, но практически бесполезную
 теорему.
@@ -212,9 +216,9 @@ $y(x)=0$. Если это просто абстрактное уравнение
 		\item $|g(a)-a|\le(1-q)r$.
 	\end{enumerate}
 \end{theorem}
+\newpage
 
-\beginproof
-
+\begin{proof}
 	Нам всего лишь нужно доказать, что $g(x)$ замкнута на $G$.
 	\begin{multline*}
 		\forall x\in G:|g(x)-a|=|g(x)-g(a)+g(a)-a|\le \\
@@ -226,33 +230,42 @@ $y(x)=0$. Если это просто абстрактное уравнение
 		|g(x)-g(a)|+|g(a)-a|\le q|x-a|+(1-q)r\le qr+r-qr=r.
 	\end{align*}
 
-	Следовательно, $\forall x\in G: |g(x)-a|\le r\Rightarrow\forall x\in G\;\;g(x)\in G$,
-	что и даёт нам замкнутость $g(x)$ на этом отрезке. Условие 1 и замкнутость
-	даёт нам право считать $g(x)$ сжимающим отображением, поэтому тут применима
-	теорема Банаха о неподвижной точке -- итерационный процесс сходится.\qed\newline
+	Следовательно, $\forall x\in G: |g(x)-a|\le r\Rightarrow\forall x\in
+	G\;\;g(x)\in G$, что и даёт нам замкнутость $g(x)$ на этом отрезке.
+	Условие 1 и замкнутость даёт нам право считать $g(x)$ сжимающим
+	отображением, поэтому тут применима теорема Банаха о неподвижной точке
+	\eqref{eq:banach_fp_theorem} -- итерационный процесс сходится.
+\end{proof}
 
-\begin{corollary}
+\begin{corollary}\label{eq:derivative_condition}
 	Пусть функция $f(x)\in C[a,b]=G$, причём $\forall c\in G$ $|f'(c)|<1$,
 	а также она замкнута на $G$. Тогда $\exists x\in G: f(x)=x$.
 \end{corollary}
 
 \beginproof
 
-	Так как модуль производной ограничен сверху, будем считать, что $|f'(x)|\le q<1$.
+	Так как модуль производной ограничен сверху, будем считать, что
+	$|f'(x)|\le q<1$.
 
 	По теореме Лагранжа о среднем значении, $\forall x,y\in G$ \\
 	\[\exists z\in[x,y]: f(y)-f(x)=f'(z)(y-x).\]
 
 	Добавим модули: $|f(y)-f(x)|=|f'(z)||y-x|\le q|y-x|$, то есть имеем
-	непрерывность по Липшицу, и тогда неподвижная точка на $G$ существует.\qed
+	непрерывность по Липшицу, и тогда неподвижная точка на $G$ существует.
+	\qed
 
 \begin{example}[графическая интерпретация метода простой итерации]
 	Нужно решить уравнение \(e^x=x+2.\) Как и в предыдущем примере, с
 	непрерывностью у данной функции проблем нет.
+	\newpage
 
 	Отобразим функции $g(x)=e^x$ и $h(x)=x+2$ на графике:
-	\newline
 
+	{\makeatletter
+	\let\par\@@par
+	\par\parshape0
+	\everypar{}
+	\begin{wrapfigure}{l}{0.45\textwidth}
 	\begin{tikzpicture} [
 		declare function = {
 			g(\x)=e^\x;
@@ -280,14 +293,16 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\addplot[color=red, line width=.04cm]{h(x)};
 
 			\coordinate(X1) at 	(\Xfirst,	\fXfirst);
-			\node[below](X1p) at 	(\Xfirst,	0) {$\widetilde{x_1}$};
+			\node[below](X1p) at 	(\Xfirst,	0)
+				{$\widetilde{x_1}$};
 			\coordinate(X2) at 	(\Xsecond,	\fXsecond);
-			\node[below](X2p) at 	(\Xsecond,	0) {$\widetilde{x_2}$};
+			\node[below](X2p) at 	(\Xsecond,	0)
+				{$\widetilde{x_2}$};
 
-			\addplot[mark=*,only marks, fill=white] (\Xfirst,\fXfirst)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (\Xsecond,\fXsecond)
-				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white]
+				(\Xfirst,\fXfirst) node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white]
+				(\Xsecond,\fXsecond) node[above, pos=1]{};
 
 			\draw[dashed] (X1p) -- (X1)	(X2p) -- (X2);
 
@@ -295,36 +310,43 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\addlegendentry{$y=x+2$};
 		\end{axis}
 	\end{tikzpicture}
+	\end{wrapfigure}
 
-	Видно, что у уравнения имеются 2 решения. Обозначим их как $\widetilde{x_1}$
-	и $\widetilde{x_2}$. Запишем уравнение так, будто мы ищем нули функции:
-	$f(x) = e^x-x-2$. Теперь локализуем корни:
-	\newline
-
-	\begin{tabular}{ |c|c|c|c|c|c| }
+	Видно, что у уравнения имеются 2 решения. Обозначим их как
+	$\widetilde{x_1}$ и $\widetilde{x_2}$. Запишем уравнение так, будто мы
+	ищем нули функции: $f(x) = e^x-x-2$. Теперь локализуем корни:\\\\
+	\begin{tabular}{ *{6}{|c}| }
 		\hline
 		$x$		& -2	& -1	& 0	& 1	& 2 \\
 		\hline
 		Знак $f(x)$ 	& $+$	& $-$	& $-$	& $-$ 	& $+$\\
 		\hline
 	\end{tabular}
-	\newline
+	\\
 
 	$\widetilde{x_1}\in[-2,-1],\;\widetilde{x_2}\in[1,2]$.
 
 	Теперь запишем уравнение через поиск неподвижной точки, то есть как
 	$u(x)=e^x-2$.
+	\par}
 
-	Найдём сначала $\widetilde{x_1}$. За начальную точку возьмём $x_1=-1.5$ --
+
+	Найдём сначала $\widetilde{x_1}$. За начальную точку возьмём $x_0=-1.5$ --
 	середину отрезка. Поехали:
-	\begin{itemize}[noitemsep, nolistsep]
-		\item $x_1=u(-1.5000)\approx -1.7769$, $|u(x_0)-x_0|\approx 0.2769$;
-		\item $x_2=u(-1.7769)\approx -1.8308$, $|u(x_1)-x_1|\approx 0.0539$;
-		\item $x_3=u(-1.8308)\approx -1.8397$, $|u(x_2)-x_2|\approx 0.0089$ и т. д.
-	\end{itemize}
 
-	Итерационная последовательность очень быстро сходится к $\widetilde{x_1}$. Не менее
-	интересно будет посмотреть на это на графике:
+	\begin{tabular}{*{4}{|c}|}
+		\hline
+		$k$		& 0	& 1	& 2	\\
+		\hline
+		$x_k$		&-1.5000&-1.7769&-1.8308\\
+		\hline
+		$|u(x_k)-x_k|$	&0.2769	&0.0539	&0.0089	\\
+		\hline
+	\end{tabular}
+	\newline
+
+	Итерационная последовательность очень быстро сходится к $\widetilde{x_1}$.
+	Не менее интересно будет посмотреть на это на графике:
 	\newline
 
 	\begin{tikzpicture} [
@@ -362,7 +384,8 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\coordinate(B) at 	(\varB,		\fb);
 			\node[above](Bp) at	(\varB,		0) {$\varB$};
 			\coordinate(X) at 	(\trueX,	\trueX);
-			\node[above](Xp) at	(\trueX,	0) {$\widetilde{x}$};
+			\node[above](Xp) at	(\trueX,	0)
+				{$\widetilde{x}$};
 			\coordinate(X0) at 	(\Xzeroth,	\Xfirst);
 			\node[above](X0p) at	(\Xzeroth,	0) {$x_0$};
 			\coordinate(X0med) at 	(\Xfirst,	\Xfirst);
@@ -437,7 +460,8 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\coordinate(B) at 	(\varB,		\fb);
 			\node[below](Bp) at	(\varB,		0) {$\varB$};
 			\coordinate(X) at 	(\trueX,	\trueX);
-			\node[below](Xp) at	(\trueX,	0) {$\widetilde{x}$};
+			\node[below](Xp) at	(\trueX,	0)
+				{$\widetilde{x}$};
 			\coordinate(X0) at 	(\Xzeroth,	\Xfirst);
 			\node[below](X0p) at	(\Xzeroth,	0) {$x_0$};
 			\coordinate(X0med) at 	(\Xfirst,	\Xfirst);
@@ -462,8 +486,8 @@ $y(x)=0$. Если это просто абстрактное уравнение
 		\end{axis}
 	\end{tikzpicture}
 
-	Во втором случае расхождение последовательности произошло из-за того, что
-	производная $\forall x\ge 1: |u'(x)|>1$.
+	Во втором случае расхождение последовательности произошло из-за того,
+	что производная $\forall x\ge 1: |u'(x)|>1$.
 \end{example}
 
 Однако невыполнение условий теоремы ещё не означает, что итерационная
@@ -472,20 +496,31 @@ $y(x)=0$. Если это просто абстрактное уравнение
 \begin{example}\label{eq:ex_ex}
 	Необходимо найти неподвижные точки функции \[f(x)=-e^{2x}+4.5e^x-3.\]
 
-	Предположим, мы уже локализовали одну неподвижную точку на отрезке $[-1,0]$.
-	Взяв $x_0$ равным -0.5, начнём строить итерационную последовательность:
+	Предположим, мы уже локализовали одну неподвижную точку на отрезке
+	$[-1,0]$. Найдём значения производной $f'(x)=-2e^{2x}+4.5e^x$ в крайних
+	точках:
+	\[f'(0)=2.5,\quad f'(-1)=-\frac{2}{e^2}+\frac{4.5}{e}>-\frac{2}{4}+
+	\frac{4.5}{3}=1.\]
 
-	\begin{enumerate}[noitemsep, nolistsep]
-		\item $x_1\approx -0.6385, |f(x_0)-x_0|\approx 0.1385$,
-		\item $x_2\approx -0.9025, |f(x_1)-x_1|\approx 0.2640$,
-		\item $x_3\approx -1.3395, |f(x_2)-x_2|\approx 0.4370$,
-		\item $x_4\approx -1.8897, |f(x_3)-x_3|\approx 0.5502$,
-		\item $x_5\approx -2.3428, |f(x_4)-x_4|\approx 0.4531$,
-		\item $x_6\approx -2.5770, |f(x_5)-x_5|\approx 0.2342$,
-		\item $x_7\approx -2.6638, |f(x_6)-x_6|\approx 0.0868$,
-		\item $x_8\approx -2.6913, |f(x_7)-x_7|\approx 0.0275$,
-		\item $x_9\approx -2.6995, |f(x_8)-x_8|\approx 0.0082$, и т. д.
-	\end{enumerate}\leavevmode
+	То есть, по следствию \eqref{eq:derivative_condition}, итерационная
+	последовательность должна разойтись. Проверим это: возьмём $x_0=-0.5$
+	и начнём строить итерационную последовательность:
+
+	\begin{table}[h]
+		\centering
+		\resizebox{\columnwidth}{!}{\begin{tabular}{*{10}{|c}|}
+			\hline
+			$k$		& 0	& 1	& 2	& 3	& 4
+				& 5	& 6	&7	&8	\\
+			\hline
+			$x_k$		&-0.6385&-0.9025&-1.3395&-1.8897&-2.3428
+				&-2.5770&-2.6638&-2.6913&-2.6995\\
+			\hline
+			$|f(x_k)-x_k|$	& 0.1385& 0.2640& 0.4370& 0.5502& 0.4531
+				& 0.2342& 0.0868& 0.0275& 0.0082\\
+			\hline
+		\end{tabular}}
+	\end{table}
 
 	\begin{tikzpicture} [
 		declare function= {
@@ -536,8 +571,10 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\coordinate(X6) at 	(\Xsixth,	\Xseventh);
 			\node[above](Ap) at	(\varA,		0) {$\varA$};
 			\node[below](Bp) at	(\varB,		0) {$\varB$};
-			\node[above](X1trueP)at	(\trueXfirst,	0) {$\widetilde{x_1}$};
-			\node[above](X2trueP)at	(\trueXsecond,	0) {$\widetilde{x_2}$};
+			\node[above](X1trueP)at	(\trueXfirst,	0)
+				{$\widetilde{x_1}$};
+			\node[above](X2trueP)at	(\trueXsecond,	0)
+				{$\widetilde{x_2}$};
 			\node[above](X0p) at	(\Xzeroth,	0) {$x_0$};
 			\node[above](X1p) at	(\Xfirst,	0) {$x_1$};
 			\coordinate(X2p) at	(\Xsecond,	0);
@@ -552,30 +589,31 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\coordinate(X4med) at 	(\Xfifth,	\Xfifth);
 			\coordinate(X5med) at 	(\Xsixth,	\Xsixth);
 
-			\addplot[mark=*,only marks, fill=white] (\trueXfirst, \trueXfirst)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (\trueXsecond, \trueXsecond)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (\Xzeroth,\Xfirst)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (\Xfirst,\Xsecond)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (\Xsecond,\Xthird)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (\Xthird,\Xfourth)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (\Xfourth,\Xfifth)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (\Xfifth,\Xsixth)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (\Xsixth,\Xseventh)
-				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white]
+				(\trueXfirst, \trueXfirst) node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white]
+				(\trueXsecond, \trueXsecond)node[above,pos=1]{};
+			\addplot[mark=*,only marks, fill=white]
+				(\Xzeroth,\Xfirst) node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white]
+				(\Xfirst,\Xsecond) node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white]
+				(\Xsecond,\Xthird) node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white]
+				(\Xthird,\Xfourth) node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white]
+				(\Xfourth,\Xfifth) node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white]
+				(\Xfifth,\Xsixth) node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white]
+				(\Xsixth,\Xseventh) node[above, pos=1]{};
 
 			\draw[very thick] (Ap) -- (A)		(Bp) -- (B);
-			\draw[dashed] (X1trueP) -- (X1true)	(X2trueP) -- (X2true)
-				(X0p) -- (X0)	(X1p) -- (X1)	(X2p) -- (X2)
-				(X3p) -- (X3)	(X4p) -- (X4)	(X5p) -- (X5)
-				(X6p) -- (X6);
+			\draw[dashed] (X1trueP) -- (X1true)
+				(X2trueP) -- (X2true)	(X0p) -- (X0)
+				(X1p) -- (X1)	(X2p) -- (X2)
+				(X3p) -- (X3)	(X4p) -- (X4)
+				(X5p) -- (X5)	(X6p) -- (X6);
 
 			\draw[-latex, very thick] (X0) edge (X0med) (X1) edge (X1med)
 				(X2) edge (X2med) (X3) edge (X3med) (X4) edge (X4med)
@@ -588,7 +626,7 @@ $y(x)=0$. Если это просто абстрактное уравнение
 
 	С другой стороны, итерационная последовательность сошлась к числу не из
 	нашего отрезка.
-\end{example}\newpage
+\end{example}
 
 \subsection{Метод Ньютона}
 
@@ -597,7 +635,7 @@ $y(x)=0$. Если это просто абстрактное уравнение
 Здесь будет испозьзована линеаризация уравнения, которая сводит решение
 нелинейной задачи к решению последовательности линейных задач.
 
-\begin{algorithm}[метод Ньютона]\label{eq:newton}
+\begin{algorithm}[метод Ньютона]\label{eq:newton_iteration}
 	Пусть для уравнения $f(x)=0$ построено приближение $x_k$ к корню
 	$\widetilde{x}$. Представим функцию $f(x)$ в окрестности точки $x_k$ в
 	виде ряда Тейлора:
@@ -622,23 +660,23 @@ $y(x)=0$. Если это просто абстрактное уравнение
 		\item $f(x)\in C^2(G)$;
 		\item $f(a)f(b)<0$;
 		\item $f'(x)$ и $f''(x)$ отличны от нуля и знакопостоянны на $G$;
-		\item Для начального приближения $x_0\in G$ верно $f(x_0)f''(x_0)>0$.
+		\item Для начального приближения $x_0\in G$ верно
+			$f(x_0)f''(x_0)>0$.
 	\end{enumerate}
 
 	Тогда у функции существует единственный ноль $\widetilde{x}$ на $G$, а
-	итерационная последовательность $\{x_n\}$, построенная по методу Ньютона,
-	\underline{монотонно} сходится к нему.
+	итерационная последовательность $\{x_n\}$, построенная по методу
+	Ньютона, \underline{монотонно} сходится к нему.
 \end{theorem}
 
-\beginproof
-
+\begin{proof}
 	Из условий 2 и 3 по теореме Больцано-Коши мы сразу получаем существование
 	и единственность нуля функции $\widetilde{x}\in G$.
 
 	Далее, для определённости будем считать, что
 	\[f(a)<0, f(b)>0,\;\forall x\in G f'(x)>0, f''(x)>0.\]
 
-	Доказательство для второго случая аналогичное.
+	Доказательство для других случаев аналогичное.
 
 	В рассматриваемом случае, из условия 4 $f(x_0)>0$, можем взять конкретно
 	$x_0=b$. Теперь методом математической индукции докажем, что
@@ -661,10 +699,12 @@ $y(x)=0$. Если это просто абстрактное уравнение
 
 	Из этого же неравенства вытекает $x_{k+1}<x_k$. Тогда последовательность
 	$\{x_n\}$ имеет предел $\overline{x}$, поскольку она монотонно убывает и
-	ограничена снизу. Перейдём к пределу в формуле метода Ньютона \eqref{eq:newton}:
+	ограничена снизу. Перейдём к пределу в формуле метода Ньютона
+	\eqref{eq:newton_iteration}:
 	\[\overline{x}=\overline{x}-\frac{f(\overline{x})}{f'(\overline{x})}
 		\Rightarrow f(\overline{x})=0\Rightarrow \overline{x}=
-		\widetilde{x}.\]\qed
+		\widetilde{x}.\]
+\end{proof}
 
 На словах нельзя утверждать, что метод Ньютона очень эффективен. Чтобы проверить
 его на деле, нужно узнать, как быстро уменьшается отклонение от искомого нуля
@@ -674,29 +714,32 @@ $y(x)=0$. Если это просто абстрактное уравнение
 
 \begin{lemma}[общая оценка погрешности]\label{eq:general_error}
 	Пусть $\widetilde{x}$ и $\overline{x}$ -- точный и приближённый корни
-	уравнения $f(x)=0$ на отрезке $[a,b]$ соответственно, сама функция $f(x)$
-	такая, что \\ $\forall x\in[a,b]\;\;|f'(x)|\ge m_1>0$. Тогда верно неравенство
+	уравнения $f(x)=0$ на отрезке $[a,b]$ соответственно, сама функция
+	$f(x)$ такая, что \\ $\forall x\in[a,b]\;\;|f'(x)|\ge m_1>0$. Тогда
+	верно неравенство
 	\[\boxed{|\overline{x}-\widetilde{x}|\le\frac{|f(\overline{x})|}
 	{m_1}}\]
 \end{lemma}
 
-\beginproof
-
-	Из существования производной следует непрерывность функции, тогда применима
-	теорема Лагранжа о среднем:
+\begin{proof}
+	Из существования производной следует непрерывность функции, тогда
+	применима теорема Лагранжа о среднем:
 	\[f(\overline{x})-f(\widetilde{x})=f'(z)(\overline{x}-\widetilde{x}),\]
 	где $z\in[\overline{x},\widetilde{x}]\subseteq[a,b]$. Добавим модулей:
 	\[|f(\overline{x})-\underset{=0}{\underbrace{f(\widetilde{x})}}|=|f'(z)|
-		|\overline{x}-\widetilde{x}|\ge m_1|\overline{x}-\widetilde{x}|\Rightarrow
-		|\overline{x}-\widetilde{x}|\le\frac{|f(\overline{x})|}{m_1}.\]\qed
+		|\overline{x}-\widetilde{x}|\ge m_1|\overline{x}-\widetilde{x}|
+		\Rightarrow |\overline{x}-\widetilde{x}|\le
+		\frac{|f(\overline{x})|}{m_1}.\]
+\end{proof}
 
 Так мы можем проверить погрешность для каждого члена последовательности. Тем не
 менее, мы можем усилить оценку в случае именно метода Ньютона.
 
 \begin{theorem}[об оценке погрешности метода Ньютона]
-	Если для функции $f(x)$ на отрезке $[a,b]=G$, с нулём функции $\widetilde{x}
-	\in G$ и стартовом значении $x_0\in G$ применим метод Ньютона, то для
-	любого члена итерационной последовательности $\{x_n\}$ верно неравенство
+	Если для функции $f(x)$ на отрезке $[a,b]=G$, с нулём функции
+	$\widetilde{x}\in G$ и стартовом значении $x_0\in G$ применим метод
+	Ньютона, то для любого члена итерационной последовательности $\{x_n\}$
+	верно неравенство
 	\[\boxed{|\widetilde{x}-x_{n+1}|\le \frac{M_2}{2m_1}
 	(\widetilde{x}-x_n)^2},\]
 	где $m_1=\underset{x\in G}{min}|f'(x)|$, а $M_2=\underset{x\in G}{max}
@@ -708,7 +751,8 @@ $y(x)=0$. Если это просто абстрактное уравнение
 	Представим функцию $f(x)$ в окрестности $x_{n-1}$ в виде ряда Тейлора:
 	\[f(x_n)=f(x_{n-1})+f'(x_{n-1})(x_n-x_{n-1})+\frac{f''(z_{n-1})}{2}
 	(x_n-x_{n-1})^2,\]
-	где $z_{n-1}\in[x_{n-1},x_n]$. В силу определения $x_n$ \eqref{eq:newton},
+	где $z_{n-1}\in[x_{n-1},x_n]$. В силу определения $x_n$
+	\eqref{eq:newton_iteration},
 	\[f(x_{n-1})+f'(x_{n-1})(x_n-x_{n-1})=0.\]
 
 	Тогда после добавления модулей имеем:
@@ -736,7 +780,7 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			tangent(\x,\p) = uDer(\p) * (\x - \p) + u(\p);
 		},]
 		\begin{axis} [
-			height=11cm,
+			height=9cm,
 			width=16cm,
 			xlabel = {$x$},
 			ylabel = {$y$},
@@ -760,15 +804,18 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\pgfmathsetmacro{\fXsecond}{u(\Xsecond)}
 
 			\addplot[color=blue, line width=.08cm]{u(x)};
-			\addplot[color=red, line width=.04cm, dashed]{tangent(x, \Xzeroth)};
-			\addplot[color=violet, line width=.04cm, dashed]{tangent(x, \Xfirst)};
+			\addplot[color=red, line width=.04cm, dashed]
+				{tangent(x, \Xzeroth)};
+			\addplot[color=violet, line width=.04cm, dashed]
+				{tangent(x, \Xfirst)};
 
 			%\coordinate(A) at 	(\varA,		\fa);
 			%\node[below](Ap) at	(\varA,		0) {$\varA$};
 			\node[below](A0) at	(\Az,		0) {$\Az$};
 			\coordinate(B) at 	(\varB,		\fb);
 			\coordinate(Bp) at	(\varB,		0);
-			\node[above](X) at	(\trueX,	0) {$\widetilde{x}$};
+			\node[above](X) at	(\trueX,	0)
+				{$\widetilde{x}$};
 			\coordinate(X0) at 	(\Xzeroth,	\fXzeroth);
 			\coordinate(X0p) at	(\Xzeroth,	0);
 			\coordinate(X1) at 	(\Xfirst,	\fXfirst);
@@ -793,21 +840,21 @@ $y(x)=0$. Если это просто абстрактное уравнение
 		\end{axis}
 	\end{tikzpicture}
 
-	Точка $x_2$ на графике практически неотличима от $\widetilde{x}$.\newpage
+	Точка $x_2$ на графике практически неотличима от $\widetilde{x}$.
 
 \end{example}
 
 \subsection{Модификации метода Ньютона}
 
 Всё это работает, пока у нас корень только одинарной кратности. При большей
-кратности метод Ньютона \eqref{eq:newton} перестаёт работать, потому что
-производная при приближении к нулю функции тоже стремится к нулю, а в формуле она
-в знаменателе. Надо как-то изменить формулу.
+кратности метод Ньютона \eqref{eq:newton_iteration} перестаёт работать, потому
+что производная при приближении к нулю функции тоже стремится к нулю, а в
+формуле она в знаменателе. Надо как-то изменить формулу.
 
 \begin{algorithm}[метод одной касательной]
 	Пусть для уравнения $f(x)=0$ построено начальное приближение $x_0$, для
-	которой существует и конечна производная $f'(x_0)$. Тогда следующие члены
-	итерационной последовательности $\{x_n\}$ вычисляются по формуле
+	которой существует и конечна производная $f'(x_0)$. Тогда следующие
+	члены итерационной последовательности $\{x_n\}$ вычисляются по формуле
 	\[\boxed{x_{k+1}=x_k-\frac{f(x_k)}{f'(x_0)}}.\]
 
 	Условие завершение алгоритма: $|f(x_n)|<\varepsilon$.
@@ -820,9 +867,9 @@ $y(x)=0$. Если это просто абстрактное уравнение
 \begin{algorithm}[метод хорд]
 	Пусть для уравнения $f(x)=0$ мы знаем, $f(a)f(b)<0$, а сама функция
 	непрерывна. Возьмём $x_0=a,\;x_1=b$. Проведём через них прямую и отметим
-	её точку пересечения с осью абсцисс $x_2$. Возьмём среди предыдущих точек
-	ту, чья функция другого знака относительно $f(x_2)$. Повтореям так до тех
-	пор, пока не получим $|f(x_n)|<\varepsilon$.
+	её точку пересечения с осью абсцисс $x_2$. Возьмём среди предыдущих
+	точек ту, чья функция другого знака относительно $f(x_2)$. Повтореям так
+	до тех пор, пока не получим $|f(x_n)|<\varepsilon$.
 
 	Построим прямую $y=kx+b$, которая соединяет точки $x_{n-1}$ и $x_n$.
 	\[k=\frac{\Delta y}{\Delta x}=\frac{f(x_n)-f(x_{n-1})}{x_n-x_{n-1}}.\]
@@ -872,14 +919,17 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\pgfmathsetmacro{\fXthird}{u(\Xthird)}
 
 			\addplot[color=blue, line width=.08cm]{u(x)};
-			\addplot[color=violet, line width=.04cm, dashed]{chorde(x,\Xzeroth,\Xfirst)};
-			\addplot[color=violet, line width=.04cm, dashed]{chorde(x,\Xfirst,\Xsecond)};
+			\addplot[color=violet, line width=.04cm, dashed]
+				{chorde(x,\Xzeroth,\Xfirst)};
+			\addplot[color=violet, line width=.04cm, dashed]
+				{chorde(x,\Xfirst,\Xsecond)};
 
 			\coordinate(A) at 	(\varA,		\fa);
 			\node[below](Ap) at	(\varA,		0) {$\varA$};
 			\coordinate(B) at 	(\varB,		\fb);
 			\node[above](Bp) at	(\varB,		0) {$\varB$};
-			\node[above](X) at	(\trueX,	0) {$\widetilde{x}$};
+			\node[above](X) at	(\trueX,	0)
+				{$\widetilde{x}$};
 			\coordinate(X0) at 	(\Xzeroth,	\fXzeroth);
 			\coordinate(X0p) at	(\Xzeroth,	0);
 			\coordinate(X1) at 	(\Xfirst,	\fXfirst);
@@ -889,22 +939,22 @@ $y(x)=0$. Если это просто абстрактное уравнение
 			\coordinate(X3) at 	(\Xthird,	\fXthird);
 			\node[below](X3p) at	(\Xthird,	0) {$x_3$};
 
-			\addplot[mark=*,only marks, fill=white] (\trueX,0)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (\Xzeroth,\fXzeroth)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (\Xfirst,\fXfirst)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (\Xsecond,\fXsecond)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=black] (\varA,0)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=black] (\varB,0)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=black] (\Xsecond,0)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=black] (\Xthird,0)
-				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white]
+				(\trueX,0) node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white]
+				(\Xzeroth,\fXzeroth) node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white]
+				(\Xfirst,\fXfirst) node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white]
+				(\Xsecond,\fXsecond) node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black]
+				(\varA,0) node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black]
+				(\varB,0) node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black]
+				(\Xsecond,0) node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black]
+				(\Xthird,0) node[above, pos=1]{};
 
 			\draw[very thick] (Ap) -- (A)	(Bp) -- (B);
 			%\draw[-latex, dashed, red, thick] (X0) -- (X1p);
