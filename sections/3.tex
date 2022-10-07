@@ -1073,7 +1073,7 @@ $\int_a^b (a+b)^2dx$.
 	\pgfmathsetmacro{\fa}{f(\varA)}
 	\pgfmathsetmacro{\fb}{f(\varB)}
 	\pgfmathsetmacro{\leftDomain}{\varA-0.5}
-	\pgfmathsetmacro{\rightDomain}{\varB+0.9}
+	\pgfmathsetmacro{\rightDomain}{\varB+1.1}
 	\pgfmathsetmacro{\yMin}{-0.9}
 	\pgfmathsetmacro{\yMax}{5}
 	\pgfmathsetmacro{\varC}{(\varA+\varB)/2}
@@ -1233,7 +1233,7 @@ $\int_a^b (a+b)^2dx$.
 					{0};
 				\addplot[color=black, thick]
 					coordinates {(\xx, 0) (\xx, \y)};
-				\addplot[color=black, thick,dashed ]
+				\addplot[color=black, thick,dashed]
 					coordinates {(\xF, 0) (\xF, \yF)};
 				\addplot[color=black, thick, domain=\xx:\xS,
 					name path=A] {lag(x,\xx,\xF,\xS)};
@@ -1288,28 +1288,26 @@ $\int_a^b (a+b)^2dx$.
 
 			\addplot[color=blue, line width=.08cm]{f(x)};
 			\addplot[draw=none,name path=B] {0};
-			\foreach \ind in {0,...,\divCou} {
-				\pgfmathsetmacro{\xx}{(\varA + \ind * \Step)}
+			\pgfplotsinvokeforeach{0,...,\divCou} {
+				\pgfmathsetmacro{\xx}{\varA + #1 * \Step}
 				\pgfmathsetmacro{\xF}{\xx+\Step/3}
-				\pgfmathsetmacro{\xS}{\xx+2*\Step/3}
+				\pgfmathsetmacro{\xS}{\xx+\Step*2/3}
 				\pgfmathsetmacro{\xT}{\xx+\Step}
 				\pgfmathsetmacro{\y}{f(\xx)}
 				\pgfmathsetmacro{\yF}{f(\xF)}
 				\pgfmathsetmacro{\yS}{f(\xS)}
+				\addplot[draw=none, domain=\xx:\xT, name path=B]
+					{0};
 				\addplot[color=black, thick]
 					coordinates {(\xx, 0) (\xx, \y)};
-				\addplot[color=black, thick,dashed ]
+				\addplot[color=black, thick,dashed]
 					coordinates {(\xF, 0) (\xF, \yF)};
-				\addplot[color=black, thick,dashed ]
+				\addplot[color=black, thick,dashed]
 					coordinates {(\xS, 0) (\xS, \yS)};
 				\addplot[color=black, thick, domain=\xx:\xT,
-					name path=A]
-					{newton(x,\xx,\xF,\xS,\xT)};
-				%\addplot[gray, fill opacity=0.5] fill between
-				%	[of=A and B,soft clip={domain=\xx:\xT}];
-				%\tikzfillbetween[of=A and B,
-				%	domain=\xx:\xT]{gray, opacity=0.5};
-			};
+					name path=A] {newton(x,\xx,\xF,\xS,\xT)};
+				\tikzfillbetween[of=A and B]{gray, opacity=0.5};
+			}
 
 			\coordinate(A) at 	(\varA,		\fa);
 			\coordinate(Ap) at 	(\varA,		0);
@@ -1328,7 +1326,7 @@ $\int_a^b (a+b)^2dx$.
 
 		\end{axis}
 	\end{tikzpicture}
-	\caption*{Составные формулы в сравнении (заливка потом будет)}
+	\caption*{Составные формулы в сравнении}
 \end{figure}
 
 \end{document}
