@@ -255,70 +255,8 @@ $y(x)=0$. Если это просто абстрактное уравнение
 	Не менее интересно будет посмотреть на это на графике:
 	\newline
 
-	\begin{tikzpicture} [
-		declare function= {
-			u(\x) = e^\x-2;
-			i(\x) = \x;
-		},]
-		\begin{axis} [
-			height=11cm,
-			width=16cm,
-			xlabel = {$x$},
-			ylabel = {$y$},
-			axis x line = middle,
-			hide y axis,
-			ymax = 0.3,
-			domain = -2.2:-0.8,
-			ticks = none,
-			legend pos = south east ]
+	\subfile{graphs/1.2-first-point}
 
-			\newcommand*{\varA}{-2}
-			\newcommand*{\varB}{-1}
-			\newcommand*{\trueX}{-1.841}
-			\pgfmathsetmacro{\fa}{min(u(\varA), i(\varA))}
-			\pgfmathsetmacro{\fb}{min(u(\varB), i(\varB))}
-			\pgfmathsetmacro{\Xzeroth}{(\varA+\varB)/2}
-			\pgfmathsetmacro{\Xfirst}{u(\Xzeroth)}
-			\pgfmathsetmacro{\Xsecond}{u(\Xfirst)}
-			\pgfmathsetmacro{\Xthird}{u(\Xsecond)}
-
-			\addplot[color=blue, line width=.08cm]{u(x)};
-			\addplot[color=red, line width=.04cm]{i(x)};
-
-			\coordinate(A) at 	(\varA,		\fa);
-			\node[above](Ap) at	(\varA,		0) {$\varA$};
-			\coordinate(B) at 	(\varB,		\fb);
-			\node[above](Bp) at	(\varB,		0) {$\varB$};
-			\coordinate(X) at 	(\trueX,	\trueX);
-			\node[above](Xp) at	(\trueX,	0)
-				{$\widetilde{x}$};
-			\coordinate(X0) at 	(\Xzeroth,	\Xfirst);
-			\node[above](X0p) at	(\Xzeroth,	0) {$x_0$};
-			\coordinate(X0med) at 	(\Xfirst,	\Xfirst);
-			\coordinate(X1) at 	(\Xfirst,	\Xsecond);
-			\node[above](X1p) at	(\Xfirst,	0) {$x_1$};
-			\coordinate(X1med) at 	(\Xsecond,	\Xsecond);
-			\coordinate(X2) at 	(\Xsecond,	\Xthird);
-			\coordinate(X2p) at	(\Xsecond,	0);
-
-			\addplot[mark=*,only marks, fill=white] (\trueX,\trueX)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (\Xzeroth,\Xfirst)
-				node[above, pos=1]{};
-			\addplot[mark=*,only marks, fill=white] (\Xfirst,\Xsecond)
-				node[above, pos=1]{};
-
-			\draw[very thick] (Ap) -- (A)	(Bp) -- (B);
-			\draw[dashed] (Xp) -- (X)	(X0p) -- (X0)
-				(X1p) -- (X1)	(X2p) -- (X2);
-
-			\draw[-latex, very thick] (X0) edge (X0med)
-				(X1) -- (X1med);
-
-			\addlegendentry{$y=e^x-2$};
-			\addlegendentry{$y=x$};
-		\end{axis}
-	\end{tikzpicture}
 	\newpage
 
 	Теперь попробуем найти $x_2$, который где-то на отрезке $[1,2]$. Как и
