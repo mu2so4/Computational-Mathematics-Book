@@ -13,8 +13,9 @@ Based on V. Ostapenko lectures for 3rd course FIT NSU.
 * `textbook.sty` - style file;
 * `title.tex` - title page file;
 * `intro.tex` - foreword page file;
-* `sections/` - directory containing main material splitted by chapters.
-* `references.tex` - page containing reference list;
+* `sections/` - directory containing main material splitted by chapters;
+* `sections/graphs/` - directory containing graphs;
+* `references.tex` - page containing reference list.
 
 ## Building project
 If you are a Windows user, jast download the [MiKTeX compiler](https://miktex.org/download).
