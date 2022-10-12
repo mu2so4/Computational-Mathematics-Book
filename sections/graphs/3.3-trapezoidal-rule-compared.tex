@@ -1,0 +1,112 @@
+\documentclass[14pt]{extarticle}
+
+\begin{document}
+\begin{figure}[ht]
+	\tikzset{declare function={
+		f(\x)= sin(\x / pi * 180)+0.5;
+	}}
+	\centering
+	\newcommand*{\varA}{0.8}
+	\newcommand*{\varB}{3}
+	\newcommand*{\Height}{7cm}
+	\newcommand*{\Width}{7cm}
+	\pgfmathsetmacro{\fa}{f(\varA)}
+	\pgfmathsetmacro{\fb}{f(\varB)}
+	\pgfmathsetmacro{\leftDomain}{\varA-0.5}
+	\pgfmathsetmacro{\rightDomain}{\varB+0.5}
+	\pgfmathsetmacro{\yMin}{-0.4}
+	\pgfmathsetmacro{\yMax}{1.6}
+
+	\begin{tikzpicture} [
+			declare function = {
+				linear(\x,\a,\b) = (\x-\b)*f(\a)/(\a-\b);
+				up(\x,\a,\b)= linear(\x,\a,\b) +
+					linear(\x,\b,\a);
+			},]
+		\begin{axis} [
+			height=\Height,
+			width=\Width,
+			xlabel = {$x$},
+			ylabel = {$y$},
+			axis x line = middle,
+			axis y line = middle,
+			ymin = \yMin,
+			ymax = \yMax,
+			domain = \leftDomain:\rightDomain,
+			ticks = none ]
+
+			\addplot[color=blue, line width=.08cm]{f(x)};
+			\addplot[color=black, line width=.03cm, name path=A,
+				domain=\varA:\varB]
+				{up(x,\varA,\varB)};
+
+			\coordinate(A) at 	(\varA,		\fa);
+			\coordinate(Ap) at 	(\varA,		0);
+			\coordinate(B) at 	(\varB,		\fb);
+			\coordinate(Bp) at 	(\varB,		0);
+
+			\node[below](Alb) at 	(\varA,		0) {$a$};
+			\node[below](Blb) at 	(\varB,		0) {$b$};
+
+			\addplot[mark=*,only marks, fill=black] (\varA, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\varB, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\varA, \fa)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\varB, \fb)
+				node[above, pos=1]{};
+
+			\draw[thick] (Ap) -- (A) (Bp) -- (B);
+			\addplot[draw=none,name path=B] {0};
+			\addplot[gray, fill opacity=0.5] fill between
+				[of=A and B,soft clip={domain=\varA:\varB}];
+		\end{axis}
+	\end{tikzpicture}\qquad
+	\begin{tikzpicture}
+		\begin{axis} [
+			height=\Height,
+			width=\Width,
+			xlabel = {$x$},
+			ylabel = {$y$},
+			axis x line = middle,
+			axis y line = middle,
+			ymin = \yMin,
+			ymax = \yMax,
+			domain = \leftDomain:\rightDomain,
+			ticks = none ]
+
+			\pgfmathsetmacro{\varC}{(\varA+\varB)/2}
+			\pgfmathsetmacro{\fc}{f(\varC)}
+
+			\addplot[color=blue, line width=.08cm]{f(x)};
+
+			\coordinate(A) at 	(\varA,		\fa);
+			\coordinate(Ap) at 	(\varA,		0);
+			\coordinate(B) at 	(\varB,		\fb);
+			\coordinate(Bp) at 	(\varB,		0);
+			\coordinate(C) at 	(\varC,		\fc);
+			\coordinate(Cp) at 	(\varC,		0);
+
+			\node[below](Alb) at 	(\varA,		0) {$a$};
+			\node[below](Blb) at 	(\varB,		0) {$b$};
+			\node[below](Blb) at 	(\varC,		0)
+				{$\frac{a+b}{2}$};
+
+			\addplot[mark=*,only marks, fill=black] (\varA, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\varB, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\varC, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\varC, \fc)
+				node[above, pos=1]{};
+
+			\draw[dashed] (Cp) -- (C);
+			\draw[fill=gray, fill opacity=0.5]
+				(\varA,\fc) rectangle (Bp);
+		\end{axis}
+	\end{tikzpicture}
+	\caption*{Формулы трапеций и средних прямоугольников}
+\end{figure}
+\end{document}
