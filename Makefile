@@ -5,7 +5,7 @@ TARGET=main
 
 all: $(TARGET).pdf
 
-$(TARGET).pdf: *.tex sections/*.tex *.sty
+$(TARGET).pdf: *.tex sections/*.tex sections/graphs/*.tex *.sty
 	$(CC) $(FLAGS) $(TARGET).tex
 
 clean:
