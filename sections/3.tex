@@ -247,8 +247,8 @@ $\int_a^b(x-\frac{1}{2}(a+b))^2dx$.
 \label{eq:trapezoidal_rule_error}
 	Погрешность формулы трапеций для интеграла $\int_a^b f(x)dx$ может быть
 	оценена следующим неравенством:
-	\[\boxed{|R_{[a,b]}(f)|\le\frac{M_2h^3}{12}},\]
-	где $h=b-a$, $M_2=\underset{x\in[a,b]}{max}|f^{(2)}(x)|.$
+	\[\boxed{|R_{[a,b]}(f)|\le\frac{M_2|h|^3}{12}},\quad
+	h=b-a,\;M_2=\underset{x\in[a,b]}{max}|f^{(2)}(x)|.\]
 \end{theorem}
 
 \begin{proof}
@@ -266,11 +266,26 @@ $\int_a^b(x-\frac{1}{2}(a+b))^2dx$.
 	\[=\frac{h}{6}\Big(2(a^2+ab+b^2)-3(a^2+2ab+b^2)+6ab\Big)=-\frac{h^3}{6}.
 	\]
 	Окончательно имеем
-	\[|R_{[a,b]}(f)|\le\frac{M_2h^3}{12}.\]
+	\[|R_{[a,b]}(f)|\le\frac{M_2|h|^3}{12}.\]
 \end{proof}
 
 Эта оценка также неулучшаема: она достигается для интеграла\\
 $\int_a^b (a+b)^2dx$.
+
+\begin{example}\label{eq:trapezoidal_rule_example}
+	Применим формулу трапеций \eqref{eq:trapezoidal_rule} к интегралу из
+	примера \eqref{eq:rectangle_rules_example}:
+	\[I\approx \frac{\pi/2-\pi/4}{2}\Big(\sin{\frac{\pi}{4}}+\sin{\frac{\pi}
+	{2}}\Big)\approx 0.392\cdot 1.707\approx 0.669,\quad R(f)\approx 0.038.\]
+
+	По погрешности формула проиграла лишь формуле средних прямоугольников.
+	Как и тогда, оценим, в каких границах она могла
+	\eqref{eq:trapezoidal_rule_error} быть:
+	\[|R_{[a,b]}(f)|\le\frac{M_2|h|^3}{12}=\frac{1}{12}\Big(\frac{\pi}{4}
+	\Big)^3\approx\frac{(0.785)^3}{12}\approx 0.040.\]
+
+	В нашем случае, оценка погрешности почти была достигнута.
+\end{example}
 
 \subsection{Формула парабол (Симпсона)}
 После полинома первой степени (прямой) идёт полином степени второй, или же
