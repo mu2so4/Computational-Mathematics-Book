@@ -7,9 +7,27 @@
 		dydx(\a,\b) = (u(\b)-u(\a)) / (\b-\a);
 		chorde(\x,\a,\b) = dydx(\a,\b) * (\x-\b) + u(\b);
 		xn(\a,\b) = \b - u(\b)/dydx(\a,\b);
-	},]
+	},
+]
+	\newcommand*{\varA}{1}
+	\newcommand*{\varB}{2}
+	\newcommand*{\trueX}{1.895}
+	\pgfmathsetmacro{\fa}{u(\varA)}
+	\pgfmathsetmacro{\fb}{u(\varB)}
+	\pgfmathsetmacro{\Xzeroth}{\varA}
+	\pgfmathsetmacro{\Xfirst}{\varB}
+	\pgfmathsetmacro{\Xsecond}{xn(\Xzeroth,\Xfirst)}
+	\pgfmathsetmacro{\Xthird}{xn(\Xfirst,\Xsecond)}
+	\pgfmathsetmacro{\Xfourth}{xn(\Xsecond,\Xthird)}
+	\pgfmathsetmacro{\fXzeroth}{u(\Xzeroth)}
+	\pgfmathsetmacro{\fXfirst}{u(\Xfirst)}
+	\pgfmathsetmacro{\fXsecond}{u(\Xsecond)}
+	\pgfmathsetmacro{\fXthird}{u(\Xthird)}
+	\pgfmathsetmacro{\fXfourth}{u(\Xfourth)}
+
+
 	\begin{axis} [
-		height=11cm,
+		height=10cm,
 		width=16cm,
 		xlabel = {$x$},
 		ylabel = {$y$},
@@ -17,21 +35,7 @@
 		hide y axis,
 		domain = 0.9:2.1,
 		ticks = none,
-		legend pos = south west ]
-
-		\newcommand*{\varA}{1}
-		\newcommand*{\varB}{2}
-		\newcommand*{\trueX}{1.895}
-		\pgfmathsetmacro{\fa}{u(\varA)}
-		\pgfmathsetmacro{\fb}{u(\varB)}
-		\pgfmathsetmacro{\Xzeroth}{\varA}
-		\pgfmathsetmacro{\Xfirst}{\varB}
-		\pgfmathsetmacro{\Xsecond}{xn(\Xzeroth,\Xfirst)}
-		\pgfmathsetmacro{\Xthird}{xn(\Xfirst,\Xsecond)}
-		\pgfmathsetmacro{\fXzeroth}{u(\Xzeroth)}
-		\pgfmathsetmacro{\fXfirst}{u(\Xfirst)}
-		\pgfmathsetmacro{\fXsecond}{u(\Xsecond)}
-		\pgfmathsetmacro{\fXthird}{u(\Xthird)}
+	]
 
 		\addplot[color=blue, line width=.08cm]{u(x)};
 		\addplot[color=violet, line width=.04cm, dashed]
@@ -54,6 +58,8 @@
 		\coordinate(X3) at 	(\Xthird,	\fXthird);
 		\node[below](X3p) at	(\Xthird,	0) {$x_3$};
 
+		\coordinate(legend) at (axis description cs:0.97,0.97);
+
 		\addplot[mark=*,only marks, fill=white]
 			(\trueX,0) node[above, pos=1]{};
 		\addplot[mark=*,only marks, fill=white]
@@ -72,10 +78,26 @@
 			(\Xthird,0) node[above, pos=1]{};
 
 		\draw[very thick] (Ap) -- (A)	(Bp) -- (B);
-		%\draw[-latex, dashed, red, thick] (X0) -- (X1p);
 		\draw[dashed] (X2p) -- (X2);
-
-		\addlegendentry{$2\sin x-x$};
 	\end{axis}
+
+	\matrix [
+		draw,
+		matrix of nodes,
+		anchor=north east,
+		style = {
+			/pgf/number format/.cd,
+			fixed relative,
+			precision=3
+		},
+	] at (legend) {
+		$k$	& $x_k$	& $f(x_k)$		\\
+		\hline
+		0	& \Xzeroth	&\fXzeroth	\\
+		1	& \Xfirst	&\fXfirst	\\
+		2	& \Xsecond	&\fXsecond	\\
+		3	& \Xthird	&\fXthird	\\
+		4	& \Xfourth	&\fXfourth	\\
+	};
 \end{tikzpicture}
 \end{document}

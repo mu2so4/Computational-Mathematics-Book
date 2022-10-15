@@ -8,29 +8,34 @@
 		xn(\x) = \x - u(\x) / uDer(\x);
 		tangent(\x,\p) = uDer(\p) * (\x - \p) + u(\p);
 	},]
+	\newcommand*{\varA}{-2}
+	\newcommand*{\Az}{-0.45}
+	\newcommand*{\varB}{0}
+	\newcommand*{\trueX}{-0.371}
+	\pgfmathsetmacro{\leftDomain}{\Az-0.05}
+	\pgfmathsetmacro{\rightDomain}{\varB+0.05}
+	\pgfmathsetmacro{\fa}{u(\varA)}
+	\pgfmathsetmacro{\fb}{u(\varB)}
+	\pgfmathsetmacro{\Xzeroth}{\varB}
+	\pgfmathsetmacro{\Xfirst}{xn(\Xzeroth)}
+	\pgfmathsetmacro{\Xsecond}{xn(\Xfirst)}
+	\pgfmathsetmacro{\Xthird}{xn(\Xsecond)}
+	\pgfmathsetmacro{\fXzeroth}{u(\Xzeroth)}
+	\pgfmathsetmacro{\fXfirst}{u(\Xfirst)}
+	\pgfmathsetmacro{\fXsecond}{u(\Xsecond)}
+	\pgfmathsetmacro{\fXthird}{u(\Xthird)}
+
 	\begin{axis} [
 		height=9cm,
-		width=16cm,
+		width=18cm,
 		xlabel = {$x$},
 		ylabel = {$y$},
 		axis x line = middle,
 		axis y line = middle,
-		domain = -0.5:0.05,
+		domain = \leftDomain:\rightDomain,
 		ticks = none,
-		legend pos = north west ]
+	]
 
-		%\newcommand*{\varA}{-2}
-		\newcommand*{\Az}{-0.45}
-		\newcommand*{\varB}{0}
-		\newcommand*{\trueX}{-0.371}
-		%\pgfmathsetmacro{\fa}{u(\varA)}
-		\pgfmathsetmacro{\fb}{u(\varB)}
-		\pgfmathsetmacro{\Xzeroth}{\varB}
-		\pgfmathsetmacro{\Xfirst}{xn(\Xzeroth)}
-		\pgfmathsetmacro{\Xsecond}{xn(\Xfirst)}
-		\pgfmathsetmacro{\fXzeroth}{u(\Xzeroth)}
-		\pgfmathsetmacro{\fXfirst}{u(\Xfirst)}
-		\pgfmathsetmacro{\fXsecond}{u(\Xsecond)}
 
 		\addplot[color=blue, line width=.08cm]{u(x)};
 		\addplot[color=red, line width=.04cm, dashed]
@@ -38,8 +43,6 @@
 		\addplot[color=violet, line width=.04cm, dashed]
 			{tangent(x, \Xfirst)};
 
-		%\coordinate(A) at 	(\varA,		\fa);
-		%\node[below](Ap) at	(\varA,		0) {$\varA$};
 		\node[below](A0) at	(\Az,		0) {$\Az$};
 		\coordinate(B) at 	(\varB,		\fb);
 		\coordinate(Bp) at	(\varB,		0);
@@ -52,6 +55,8 @@
 		\coordinate(X2) at 	(\Xsecond,	\fXsecond);
 		\coordinate(X2p) at	(\Xsecond,	0);
 
+		\coordinate(legend) at (axis description cs:0.03,0.97);
+
 		\addplot[mark=*,only marks, fill=white] (\trueX,0)
 			node[above, pos=1]{};
 		\addplot[mark=*,only marks, fill=white] (\Xfirst,\fXfirst)
@@ -61,11 +66,21 @@
 		\addplot[mark=*,only marks, fill=black] (\Az,0)
 			node[above, pos=1]{};
 
-		%\draw[very thick] (Ap) -- (A);
-		%\draw[-latex, dashed, red, thick] (X0) -- (X1p);
 		\draw[dashed] (X1p) -- (X1);
-
-		\addlegendentry{$-e^{2x}+4.5e^x-x-3$};
 	\end{axis}
+
+	\matrix [
+		draw,
+		matrix of nodes,
+		anchor=north west,
+	] at (legend) {
+		$k$	& $x_k$	& $f(x_k)$		\\
+		\hline
+		0 	& \Xzeroth	&\fXzeroth	\\
+		1	& \Xfirst	&\fXfirst	\\
+		2	& \Xsecond	&\fXsecond	\\
+		3	& \Xthird	&\fXthird	\\
+	};
 \end{tikzpicture}
+
 \end{document}
