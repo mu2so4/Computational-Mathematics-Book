@@ -61,13 +61,19 @@ $y(x)=0$. Если это просто абстрактное уравнение
 	\newline
 
 	Тогда $\exists c\in[2,3]: f(c)=0$. Найдём его методом бисекции:
-	\begin{itemize}[noitemsep, nolistsep]
-		\item $f(2.5)=0.125>0$, ищем на $[2.5,3]$;
-		\item $f(2.75)\approx -0.5781<0$, ищем на $[2.5,2.75]$;
-		\item $f(2.625)\approx -0.2259<0$, ищем на $[2.5,2.625]$ и т. д.
-	\end{itemize}
+	\newline
 
-	На графике это выглядит вот так:\\
+	\begin{tabular}{*{4}{|c}|}
+		\hline
+		$x$ &	2.5	& 2.75	& 2.625 \\
+		\hline
+		$f(x)$ &0.125	& -0.578&-0.226 \\
+		\hline
+	\end{tabular}\leavevmode\newline
+
+	Представим метод бисекции графически:
+	\newline
+
 	\subfile{graphs/1.1-cubical}
 
 \end{example}
