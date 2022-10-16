@@ -171,6 +171,12 @@ $\int_a^b(x-\frac{1}{2}(a+b))^2dx$.
 	\Big|\frac{f'(\xi)h^2}{2}\Big|\le\frac{M_1h^2}{2}.\]
 \end{proof}
 
+\begin{corollary}
+	Формулы средних прямоугольников имеют алгебраическую степень
+	точности \eqref{eq:algebraic_degree_of_accuracy}, равную 1, а у всех
+	остальных формул прямоугольников, в том числе правых и левых, -- 0.
+\end{corollary}
+
 \begin{example}\label{eq:rectangle_rules_example}
 	Найдём интеграл
 	\[I=\int_{\pi/4}^{\pi/2}\sin x\;dx\]
@@ -211,6 +217,7 @@ $\int_a^b(x-\frac{1}{2}(a+b))^2dx$.
 	Полученные оценки погрешностей квадратурных формул довольно близки к
 	реальным значениям.
 \end{example}
+\newpage
 
 \subsection{Формула трапеций}
 На пути у нас формула Ньютона-Котеса первой степени, то есть $n=1$.
@@ -272,6 +279,11 @@ $\int_a^b(x-\frac{1}{2}(a+b))^2dx$.
 Эта оценка также неулучшаема: она достигается для интеграла\\
 $\int_a^b (a+b)^2dx$.
 
+\begin{corollary}
+	Формула средних прямоугольников имеют алгебраическую степень
+	точности \eqref{eq:algebraic_degree_of_accuracy}, равную 1.
+\end{corollary}
+
 \begin{example}\label{eq:trapezoidal_rule_example}
 	Применим формулу трапеций \eqref{eq:trapezoidal_rule} к интегралу из
 	примера \eqref{eq:rectangle_rules_example}:
@@ -286,7 +298,6 @@ $\int_a^b (a+b)^2dx$.
 
 	В нашем случае, оценка погрешности почти была достигнута.
 \end{example}
-\newpage
 
 \subsection{Формула парабол (Симпсона)}
 После полинома первой степени (прямой) идёт полином степени второй, или же
@@ -472,6 +483,7 @@ $\int_a^b (a+b)^2dx$.
 	\[\boxed{|R(f)|\le\frac{M_4|b-a|^5}{6480}}\]
 \end{theorem}
 \proofexercise
+\newpage
 
 \begin{example}
 	Завершим рассмотрение вычисления интеграла из примера
@@ -528,7 +540,6 @@ $\int_a^b (a+b)^2dx$.
 	на котором производится интегрирование. Он может включать в себя один
 	или несколько \underline{последовательных} элементарных отрезков.
 \end{define}
-\newpage
 
 \begin{define}
 	\textbf{Составная квадратурная формула} с разбиением на $N$ отрезков --
@@ -557,8 +568,7 @@ $\int_a^b (a+b)^2dx$.
 \end{theorem}
 
 \begin{proof}
-	Формула выводится из \eqref{eq:trapezoidal_rule} так же, как и
-	предыдущая.
+	Аналогично предыдущей формуле из \eqref{eq:trapezoidal_rule}.
 \end{proof}
 
 \begin{theorem}[составная формула Симпсона]
