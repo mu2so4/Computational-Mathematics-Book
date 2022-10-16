@@ -478,6 +478,7 @@ $\int_a^b (a+b)^2dx$.
 \proofexercise
 
 \begin{theorem}[оценка погрешности формулы трёх восьмых]
+\label{eq:simpsons_3_8_rule_error}
 	Погрешность формулы трёх восьмых для интеграла $\int_a^b f(x)dx$ может
 	быть оценена следующим неравенством:
 	\[\boxed{|R(f)|\le\frac{M_4|b-a|^5}{6480}}\]
@@ -550,6 +551,7 @@ $\int_a^b (a+b)^2dx$.
 \end{define}
 
 \begin{theorem}[составная формула средних прямоугольников]
+\label{eq:composite_middlepoint_rectangle_rule}
 	\textbf{Составная формула средних прямоугольников} с разбиением на $N$
 	отрезков имеет вид
 	\[\boxed{\int_a^b f(x)dx\approx h\sum_{i=1}^{N}f\Big(\frac{x_{i-1}+x_i}
@@ -562,6 +564,7 @@ $\int_a^b (a+b)^2dx$.
 \end{proof}
 
 \begin{theorem}[составная формула трапеций]
+\label{eq:composite_trapezoidal_rule}
 	\textbf{Составная формула трапеций} с разбиением на $N$ отрезков имеет вид
 	\[\boxed{\int_a^b f(x)dx\approx \frac{h}{2}\Big(f(a)+2\sum_{i=1}^{N-1}
 	f(x_i)+f(b)\Big),\quad h=\frac{b-a}{N}}\]
@@ -572,6 +575,7 @@ $\int_a^b (a+b)^2dx$.
 \end{proof}
 
 \begin{theorem}[составная формула Симпсона]
+\label{eq:composite_simpsons_1_3_rule}
 	\textbf{Составная формула Симпсона} с разбиением на $N$ отрезков имеет вид
 	\[\boxed{\int_a^b f(x)dx\approx \frac{h}{6}\Big(f(a)+2\sum_{i=1}^{N-1}
 	f(x_{2i})+4\sum_{j=1}^{N}f(x_{2j-1})+f(b)\Big),\quad h=\frac{b-a}{N}}\]
@@ -587,6 +591,7 @@ $\int_a^b (a+b)^2dx$.
 \end{remark}
 
 \begin{theorem}[составная формула трёх восьмых]
+\label{eq:composite_simpsons_3_8_rule}
 	\textbf{Составная формула трёх восьмых} с разбиением на $N$ отрезков
 	имеет вид
 	\[\boxed{\int_a^b f(x)dx\approx \frac{h}{8}\Big(f(a)+2\sum_{i=1}^{N-1}
@@ -644,5 +649,54 @@ $\int_a^b (a+b)^2dx$.
 К тому же, строить квадратурные формулы высших степеней довольно трудоёмко.
 
 \subfile{graphs/3.6-composite-rules}
+
+\begin{example}
+	Применим все 4 составные формулы к интегралу $I=\int_0^6 x^4 \;dx$. Его
+	истинное значение равно $I=\frac{x^5}{5}\Big|_0^6=1555.2$.
+
+	Все 4 формулы будут использовать 6 элементарных отрезков длиной $h=1$.
+	Соответственно, интегрирование идёт на узлах $\{0,1,...,6\}$.
+
+	Составная формула средних прямоугольников
+	\eqref{eq:composite_middlepoint_rectangle_rule}:
+	\[I\approx1\cdot\sum_{k=1}^{N}f\Big(\frac{x_{k-1}+x_k}{2}\Big)=
+	\frac{1}{16}(1^4+3^4+5^4+7^4+9^4+11^4)=1519.375.\]
+
+	Составная формула трапеций \eqref{eq:composite_trapezoidal_rule}:
+	\[I\approx\frac{1}{2}\Big(0^4+2\sum_{k=1}^{5}k^4+6^4\Big)=1627.\]
+
+	Составная формула Симпсона \eqref{eq:composite_simpsons_1_3_rule} будет использовать
+	по 2 элементарных отрезка, то есть она будет применена $N=3$ раза:
+	\[I\approx\frac{2}{6}\Big(0^4+2(2^4+4^4)+4\sum_{k=1}^{3}(2k-1)^4+6^4
+	\Big)=1556.\]
+
+	Составная формула трёх восьмых \eqref{eq:composite_simpsons_3_8_rule} будет
+	использовать по 3 элементарных отрезка, то есть она будет применена
+	$N=2$ раза:
+	\[I\approx\frac{3}{8}\Big(0^4+2\cdot 3^4+3\sum_{k=1}^{2}\big((3k-2)^4+
+	(3k-1)^4\big)+6^4\Big)=1557.\]
+
+	Оценим погрешности формул и сопоставим их с реальными.
+
+	Оценка погрешности составной формулы прямоугольников
+	\eqref{eq:middle_rectangle_rule_error}:
+	\[|R_1(f)|\le6\;\frac{M_2\cdot |h|^3}{24}=108,\quad R_1(f)=35.825.\]
+
+	Оценка погрешности составной формулы трапеций
+	\eqref{eq:trapezoidal_rule_error}:
+	\[|R_2(f)|\le6\;\frac{M_2\cdot |h|^3}{12}=216,\quad R_2(f)=-71.8.\]
+
+	Оценка погрешности составной формулы Симпсона
+	\eqref{eq:simpsons_1_3_rule_error}, $h=2$:
+	\[|R_3(f)|\le3\;\frac{M_4\cdot |h|^5}{2880}=0.8,\quad R_3(f)=-0.8.\]
+
+	Оценка погрешности составной формулы трёх восьмых
+	\eqref{eq:simpsons_3_8_rule_error}, $h=3$:
+	\[|R_4(f)|\le2\;\frac{M_4\cdot |h|^5}{6480}=1.8,\quad R_4(f)=-1.8.\]
+
+	Как итог, составная формула Симпсона показала лучший результат, формула
+	трапеций -- худший. Погрешности формул Симпсона и трёх восьмых достигли
+	своих оценок.
+\end{example}
 
 \end{document}
