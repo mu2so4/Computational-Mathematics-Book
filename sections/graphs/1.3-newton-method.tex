@@ -1,0 +1,86 @@
+\documentclass[14pt]{extarticle}
+
+\begin{document}
+\begin{tikzpicture} [
+	declare function= {
+		u(\x) = -e^(2*\x) + 4.5 * e^\x -\x - 3;
+		uDer(\x) = -2*e^(2*\x) + 4.5 * e^\x - 1;
+		xn(\x) = \x - u(\x) / uDer(\x);
+		tangent(\x,\p) = uDer(\p) * (\x - \p) + u(\p);
+	},]
+	\newcommand*{\varA}{-2}
+	\newcommand*{\Az}{-0.45}
+	\newcommand*{\varB}{0}
+	\newcommand*{\trueX}{-0.371}
+	\pgfmathsetmacro{\leftDomain}{\Az-0.05}
+	\pgfmathsetmacro{\rightDomain}{\varB+0.05}
+	\pgfmathsetmacro{\fa}{u(\varA)}
+	\pgfmathsetmacro{\fb}{u(\varB)}
+	\pgfmathsetmacro{\Xzeroth}{\varB}
+	\pgfmathsetmacro{\Xfirst}{xn(\Xzeroth)}
+	\pgfmathsetmacro{\Xsecond}{xn(\Xfirst)}
+	\pgfmathsetmacro{\Xthird}{xn(\Xsecond)}
+	\pgfmathsetmacro{\fXzeroth}{u(\Xzeroth)}
+	\pgfmathsetmacro{\fXfirst}{u(\Xfirst)}
+	\pgfmathsetmacro{\fXsecond}{u(\Xsecond)}
+	\pgfmathsetmacro{\fXthird}{u(\Xthird)}
+
+	\begin{axis} [
+		height=9cm,
+		width=18cm,
+		xlabel = {$x$},
+		ylabel = {$y$},
+		axis x line = middle,
+		axis y line = middle,
+		domain = \leftDomain:\rightDomain,
+		ticks = none,
+	]
+
+
+		\addplot[color=blue, line width=.08cm]{u(x)};
+		\addplot[color=red, line width=.04cm, dashed]
+			{tangent(x, \Xzeroth)};
+		\addplot[color=violet, line width=.04cm, dashed]
+			{tangent(x, \Xfirst)};
+
+		\node[below](A0) at	(\Az,		0) {$\Az$};
+		\coordinate(B) at 	(\varB,		\fb);
+		\coordinate(Bp) at	(\varB,		0);
+		\node[above](X) at	(\trueX,	0)
+			{$\widetilde{x}$};
+		\coordinate(X0) at 	(\Xzeroth,	\fXzeroth);
+		\coordinate(X0p) at	(\Xzeroth,	0);
+		\coordinate(X1) at 	(\Xfirst,	\fXfirst);
+		\node[below](X1p) at	(\Xfirst,	0) {$x_1$};
+		\coordinate(X2) at 	(\Xsecond,	\fXsecond);
+		\coordinate(X2p) at	(\Xsecond,	0);
+
+		\coordinate(legend) at (axis description cs:0.03,0.97);
+
+		\addplot[mark=*,only marks, fill=white] (\trueX,0)
+			node[above, pos=1]{};
+		\addplot[mark=*,only marks, fill=white] (\Xfirst,\fXfirst)
+			node[above, pos=1]{};
+		\addplot[mark=*,only marks, fill=white] (\Xzeroth,\fXzeroth)
+			node[above, pos=1]{};
+		\addplot[mark=*,only marks, fill=black] (\Az,0)
+			node[above, pos=1]{};
+
+		\draw[dashed] (X1p) -- (X1);
+	\end{axis}
+
+	\matrix [
+		draw,
+		matrix of nodes,
+		anchor=north west,
+	] at (legend) {
+		$k$	& $x_k$	& $f(x_k)$		\\
+		\hline
+		0 	& \Xzeroth	&\fXzeroth	\\
+		1	& \Xfirst	&\fXfirst	\\
+		2	& \Xsecond	&\fXsecond	\\
+		3	& \Xthird	&\fXthird	\\
+	};
+\end{tikzpicture}
+
+\end{document}

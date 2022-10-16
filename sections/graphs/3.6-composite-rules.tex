@@ -1,0 +1,271 @@
+\documentclass[14pt]{extarticle}
+
+\begin{document}
+\begin{figure}[ht]
+	\tikzset{declare function={
+		f(\x)= cos(\x / pi * 180)+sqrt(\x);
+	}}
+	\centering
+	\newcommand*{\varA}{2}
+	\newcommand*{\varB}{14}
+	\newcommand*{\Height}{8.5cm}
+	\newcommand*{\Width}{8.5cm}
+	\pgfmathsetmacro{\fa}{f(\varA)}
+	\pgfmathsetmacro{\fb}{f(\varB)}
+	\pgfmathsetmacro{\leftDomain}{\varA-0.5}
+	\pgfmathsetmacro{\rightDomain}{\varB+1.1}
+	\pgfmathsetmacro{\yMin}{-0.9}
+	\pgfmathsetmacro{\yMax}{5}
+	\pgfmathsetmacro{\varC}{(\varA+\varB)/2}
+	\pgfmathsetmacro{\fc}{f(\varC)}
+
+	\begin{tikzpicture} [
+		declare function = {
+			linear(\x,\a,\b) = (\x-\b)*f(\a)/(\a-\b);
+			up(\x,\a,\b)= linear(\x,\a,\b) +
+				linear(\x,\b,\a);
+		},]
+
+		\begin{axis} [
+			height=\Height,
+			width=\Width,
+			xlabel = {$x$},
+			ylabel = {$y$},
+			axis x line = middle,
+			axis y line = middle,
+			ymin = \yMin,
+			ymax = \yMax,
+			domain = \leftDomain:\rightDomain,
+			set layers=standard,
+			ticks = none ]
+
+			\newcommand*{\divCount}{6}
+			\pgfmathsetmacro{\divCou}{\divCount-1}
+			\pgfmathsetmacro{\Step}{(\varB-\varA)/\divCount}
+
+			\addplot[color=blue, line width=.08cm]{f(x)};
+			\pgfplotsinvokeforeach{0,...,\divCou} {
+				\pgfmathsetmacro{\xx}{\varA + #1 * \Step}
+				\pgfmathsetmacro{\xF}{\xx+\Step}
+				\pgfmathsetmacro{\y}{f(\xx+\Step/2)}
+				\addplot[color=black, thick]
+					coordinates {(\xx, 0) (\xx, \y)};
+				\addplot[color=black, thick]
+					coordinates {(\xF, 0) (\xF, \y)};
+				\addplot[draw=none, domain=\xx:\xF, name path=B]
+					{0};
+				\addplot[color=black, thick, domain=\xx:\xF,
+					name path=A] {f(\xx+\Step/2)};
+				\tikzfillbetween[of=A and B]{gray, opacity=0.5};
+			}
+
+			\coordinate(A) at 	(\varA,		\fa);
+			\coordinate(Ap) at 	(\varA,		0);
+			\coordinate(B) at 	(\varB,		\fb);
+			\coordinate(Bp) at 	(\varB,		0);
+
+			\node[below](Alb) at 	(\varA,		0) {$a$};
+			\node[below](Blb) at 	(\varB,		0) {$b$};
+
+			\addplot[mark=*,only marks, fill=black] (\varA, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\varB, 0)
+				node[above, pos=1]{};
+
+			%\draw[thick] (Bp) -- (B);
+
+		\end{axis}
+	\end{tikzpicture}\qquad
+	\begin{tikzpicture} [
+		declare function = {
+			linear(\x,\a,\b) = (\x-\b)*f(\a)/(\a-\b);
+			up(\x,\a,\b)= linear(\x,\a,\b) +
+				linear(\x,\b,\a);
+		},]
+
+		\begin{axis} [
+			height=\Height,
+			width=\Width,
+			xlabel = {$x$},
+			ylabel = {$y$},
+			axis x line = middle,
+			axis y line = middle,
+			ymin = \yMin,
+			ymax = \yMax,
+			domain = \leftDomain:\rightDomain,
+			set layers=standard,
+			ticks = none ]
+
+			\newcommand*{\divCount}{6}
+			\pgfmathsetmacro{\divCou}{\divCount-1}
+			\pgfmathsetmacro{\Step}{(\varB-\varA)/\divCount}
+
+			\addplot[color=blue, line width=.08cm]{f(x)};
+			\addplot[draw=none,name path=B] {0};
+			\pgfplotsinvokeforeach{0,...,\divCou} {
+				\pgfmathsetmacro{\xx}{\varA + #1 * \Step}
+				\pgfmathsetmacro{\xF}{\xx+\Step}
+				\pgfmathsetmacro{\y}{f(\xx)}
+				\pgfmathsetmacro{\yF}{f(\xF)}
+				\addplot[color=black, thick]
+					coordinates {(\xx, 0) (\xx, \y)};
+				\addplot[draw=none, domain=\xx:\xF, name path=B]
+					{0};
+				\addplot[color=black, thick, domain=\xx:\xF,
+					name path=A] {up(x,\xx,\xF)};
+				\tikzfillbetween[of=A and B]{gray, opacity=0.5};
+			}
+
+			\coordinate(A) at 	(\varA,		\fa);
+			\coordinate(Ap) at 	(\varA,		0);
+			\coordinate(B) at 	(\varB,		\fb);
+			\coordinate(Bp) at 	(\varB,		0);
+
+			\node[below](Alb) at 	(\varA,		0) {$a$};
+			\node[below](Blb) at 	(\varB,		0) {$b$};
+
+			\addplot[mark=*,only marks, fill=black] (\varA, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\varB, 0)
+				node[above, pos=1]{};
+
+			\draw[thick] (Bp) -- (B);
+
+		\end{axis}
+	\end{tikzpicture}
+
+	\begin{tikzpicture} [
+		declare function = {
+			subpolynonominal(\x,\A,\b,\c) = (\x-\b)*(\x-\c) /
+				((\A-\b)*(\A-\c)) * f(\A);
+			lag(\x,\a,\b,\c) =
+				subpolynonominal(\x,\a,\b,\c) +
+				subpolynonominal(\x,\b,\c,\a) +
+				subpolynonominal(\x,\c,\a,\b);
+		},]
+
+		\begin{axis} [
+			height=\Height,
+			width=\Width,
+			xlabel = {$x$},
+			ylabel = {$y$},
+			axis x line = middle,
+			axis y line = middle,
+			ymin = \yMin,
+			ymax = \yMax,
+			domain = \leftDomain:\rightDomain,
+			set layers=standard,
+			ticks = none ]
+
+			\newcommand*{\divCount}{3}
+			\pgfmathsetmacro{\divCou}{\divCount-1}
+			\pgfmathsetmacro{\Step}{(\varB-\varA)/\divCount}
+
+			\addplot[color=blue, line width=.08cm]{f(x)};
+			\addplot[draw=none,name path=B] {0};
+			\pgfplotsinvokeforeach{0,...,\divCou} {
+				\pgfmathsetmacro{\xx}{\varA + #1 * \Step}
+				\pgfmathsetmacro{\xF}{\xx+\Step/2}
+				\pgfmathsetmacro{\xS}{\xx+\Step}
+				\pgfmathsetmacro{\y}{f(\xx)}
+				\pgfmathsetmacro{\yF}{f(\xF)}
+				\addplot[draw=none, domain=\xx:\xS, name path=B]
+					{0};
+				\addplot[color=black, thick]
+					coordinates {(\xx, 0) (\xx, \y)};
+				\addplot[color=black, thick,dashed]
+					coordinates {(\xF, 0) (\xF, \yF)};
+				\addplot[color=black, thick, domain=\xx:\xS,
+					name path=A] {lag(x,\xx,\xF,\xS)};
+				\tikzfillbetween[of=A and B]{gray, opacity=0.5};
+			}
+
+			\coordinate(A) at 	(\varA,		\fa);
+			\coordinate(Ap) at 	(\varA,		0);
+			\coordinate(B) at 	(\varB,		\fb);
+			\coordinate(Bp) at 	(\varB,		0);
+
+			\node[below](Alb) at 	(\varA,		0) {$a$};
+			\node[below](Blb) at 	(\varB,		0) {$b$};
+
+			\addplot[mark=*,only marks, fill=black] (\varA, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\varB, 0)
+				node[above, pos=1]{};
+
+			\draw[thick] (Bp) -- (B);
+
+		\end{axis}
+	\end{tikzpicture}\qquad
+	\begin{tikzpicture} [
+		declare function = {
+			divDiff1(\a,\b) = (f(\b)-f(\a)) / (\b-\a);
+			divDiff2(\a,\b,\c) = (divDiff1(\b,\c)-divDiff1(\a,\b)) /
+				(\c-\a);
+			divDiff3(\a,\b,\c,\d) = (divDiff2(\b,\c,\d) -
+				divDiff2(\a,\b,\c)) / (\d-\a);
+			newton(\x,\a,\b,\c,\d)= f(\a) + divDiff1(\a,\b)*(\x-\a)+
+				divDiff2(\a,\b,\c)*(\x-\a)*(\x-\b) +
+				divDiff3(\a,\b,\c,\d)*(\x-\a)*(\x-\b)*(\x-\c);
+		},]
+
+		\begin{axis} [
+			height=\Height,
+			width=\Width,
+			xlabel = {$x$},
+			ylabel = {$y$},
+			axis x line = middle,
+			axis y line = middle,
+			ymin = \yMin,
+			ymax = \yMax,
+			domain = \leftDomain:\rightDomain,
+			set layers=standard,
+			ticks = none ]
+
+			\newcommand*{\divCount}{2}
+			\pgfmathsetmacro{\divCou}{\divCount-1}
+			\pgfmathsetmacro{\Step}{(\varB-\varA)/\divCount}
+
+			\addplot[color=blue, line width=.08cm]{f(x)};
+			\addplot[draw=none,name path=B] {0};
+			\pgfplotsinvokeforeach{0,...,\divCou} {
+				\pgfmathsetmacro{\xx}{\varA + #1 * \Step}
+				\pgfmathsetmacro{\xF}{\xx+\Step/3}
+				\pgfmathsetmacro{\xS}{\xx+\Step*2/3}
+				\pgfmathsetmacro{\xT}{\xx+\Step}
+				\pgfmathsetmacro{\y}{f(\xx)}
+				\pgfmathsetmacro{\yF}{f(\xF)}
+				\pgfmathsetmacro{\yS}{f(\xS)}
+				\addplot[draw=none, domain=\xx:\xT, name path=B]
+					{0};
+				\addplot[color=black, thick]
+					coordinates {(\xx, 0) (\xx, \y)};
+				\addplot[color=black, thick,dashed]
+					coordinates {(\xF, 0) (\xF, \yF)};
+				\addplot[color=black, thick,dashed]
+					coordinates {(\xS, 0) (\xS, \yS)};
+				\addplot[color=black, thick, domain=\xx:\xT,
+					name path=A] {newton(x,\xx,\xF,\xS,\xT)};
+				\tikzfillbetween[of=A and B]{gray, opacity=0.5};
+			}
+
+			\coordinate(A) at 	(\varA,		\fa);
+			\coordinate(Ap) at 	(\varA,		0);
+			\coordinate(B) at 	(\varB,		\fb);
+			\coordinate(Bp) at 	(\varB,		0);
+
+			\node[below](Alb) at 	(\varA,		0) {$a$};
+			\node[below](Blb) at 	(\varB,		0) {$b$};
+
+			\addplot[mark=*,only marks, fill=black] (\varA, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\varB, 0)
+				node[above, pos=1]{};
+
+			\draw[thick] (Bp) -- (B);
+
+		\end{axis}
+	\end{tikzpicture}
+	\caption*{Составные формулы в сравнении}
+\end{figure}
+\end{document}

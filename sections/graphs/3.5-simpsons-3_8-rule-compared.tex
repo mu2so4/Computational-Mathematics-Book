@@ -1,0 +1,202 @@
+\documentclass[14pt]{extarticle}
+
+\begin{document}
+\begin{figure}[ht]
+	\tikzset{declare function={
+		f(\x)= cos(\x / pi * 180)+sqrt(\x);
+	}}
+	\centering
+	\newcommand*{\varA}{2}
+	\newcommand*{\varB}{9}
+	\newcommand*{\Height}{6.5cm}
+	\newcommand*{\Width}{6.5cm}
+	\pgfmathsetmacro{\fa}{f(\varA)}
+	\pgfmathsetmacro{\fb}{f(\varB)}
+	\pgfmathsetmacro{\leftDomain}{\varA-0.5}
+	\pgfmathsetmacro{\rightDomain}{\varB+0.9}
+	\pgfmathsetmacro{\yMin}{-0.9}
+	\pgfmathsetmacro{\yMax}{4}
+	\pgfmathsetmacro{\varC}{(\varA+\varB)/2}
+	\pgfmathsetmacro{\fc}{f(\varC)}
+
+	\begin{tikzpicture} [
+		declare function = {
+			divDiff1(\a,\b) = (f(\b)-f(\a)) / (\b-\a);
+			divDiff2(\a,\b,\c) = (divDiff1(\b,\c)-divDiff1(\a,\b)) /
+				(\c-\a);
+			divDiff3(\a,\b,\c,\d) = (divDiff2(\b,\c,\d) -
+				divDiff2(\a,\b,\c)) / (\d-\a);
+			newton(\x,\a,\b,\c,\d)= f(\a) + divDiff1(\a,\b)*(\x-\a)+
+				divDiff2(\a,\b,\c)*(\x-\a)*(\x-\b) +
+				divDiff3(\a,\b,\c,\d)*(\x-\a)*(\x-\b)*(\x-\c);
+		},]
+		\begin{axis} [
+			height=\Height,
+			width=\Width,
+			xlabel = {$x$},
+			ylabel = {$y$},
+			axis x line = middle,
+			axis y line = middle,
+			ymin = \yMin,
+			ymax = \yMax,
+			domain = \leftDomain:\rightDomain,
+			ticks = none ]
+
+			\pgfmathsetmacro{\varC}{(2*\varA+\varB)/3}
+			\pgfmathsetmacro{\varD}{(\varA+2*\varB)/3}
+			\pgfmathsetmacro{\fc}{f(\varC)}
+			\pgfmathsetmacro{\fd}{f(\varD)}
+
+			\addplot[color=blue, line width=.08cm]{f(x)};
+			\addplot[color=black, line width=.04cm, name path=A,
+				domain=\varA:\varB]{newton(x,\varA,\varB,\varC,
+				\varD)};
+
+			\coordinate(A) at 	(\varA,		\fa);
+			\coordinate(Ap) at 	(\varA,		0);
+			\coordinate(B) at 	(\varB,		\fb);
+			\coordinate(Bp) at 	(\varB,		0);
+			\coordinate(C) at 	(\varC,		\fc);
+			\coordinate(Cp) at 	(\varC,		0);
+			\coordinate(D) at 	(\varD,		\fd);
+			\coordinate(Dp) at 	(\varD,		0);
+
+			\node[below](Alb) at 	(\varA,		0) {$a$};
+			\node[below](Blb) at 	(\varB,		0) {$b$};
+			\node[below](Clb) at 	(\varC,		0) {$\frac{2a+b}
+				{3}$};
+			\node[below](Dlb) at 	(\varD,		0) {$\frac{a+2b}
+				{3}$};
+
+			\addplot[mark=*,only marks, fill=black] (\varA, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\varB, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\varC, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\varD, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\varA, \fa)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\varB, \fb)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\varC, \fc)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\varD, \fd)
+				node[above, pos=1]{};
+
+			\draw[thick] (Ap) -- (A) (Bp) -- (B);
+			\draw[dashed] (Cp) -- (C) (Dp) -- (D);
+
+			\addplot[draw=none,name path=B] {0};
+			\addplot[gray, fill opacity=0.5] fill between
+				[of=A and B,soft clip={domain=\varA:\varB}];
+		\end{axis}
+	\end{tikzpicture}\qquad
+	\begin{tikzpicture} [
+			declare function = {
+			subpolynonominal(\x,\A,\b,\c) = (\x-\b)*(\x-\c) /
+				((\A-\b)*(\A-\c)) * f(\A);
+			lag(\x,\a,\b,\c) =
+				subpolynonominal(\x,\a,\b,\c) +
+				subpolynonominal(\x,\b,\c,\a) +
+				subpolynonominal(\x,\c,\a,\b);
+		},]
+		\begin{axis} [
+			height=\Height,
+			width=\Width,
+			xlabel = {$x$},
+			ylabel = {$y$},
+			axis x line = middle,
+			axis y line = middle,
+			ymin = \yMin,
+			ymax = \yMax,
+			domain = \leftDomain:\rightDomain,
+			ticks = none ]
+
+			\addplot[color=blue, line width=.08cm]{f(x)};
+			\addplot[color=black, line width=.03cm, name path=A,
+				domain=\varA:\varB]
+				{lag(x,\varA,\varB,\varC)};
+
+			\coordinate(A) at 	(\varA,		\fa);
+			\coordinate(Ap) at 	(\varA,		0);
+			\coordinate(B) at 	(\varB,		\fb);
+			\coordinate(Bp) at 	(\varB,		0);
+			\coordinate(C) at 	(\varC,		\fc);
+			\coordinate(Cp) at 	(\varC,		0);
+
+			\node[below](Alb) at 	(\varA,		0) {$a$};
+			\node[below](Blb) at 	(\varB,		0) {$b$};
+			\node[below](Blb) at 	(\varC,		0)
+				{$\frac{a+b}{2}$};
+
+			\addplot[mark=*,only marks, fill=black] (\varA, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\varB, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\varC, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\varA, \fa)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\varB, \fb)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\varC, \fc)
+				node[above, pos=1]{};
+
+			\draw[thick] (Ap) -- (A) (Bp) -- (B);
+			\draw[dashed] (Cp) -- (C);
+			\addplot[draw=none,name path=B] {0};
+			\addplot[gray, fill opacity=0.5] fill between
+				[of=A and B,soft clip={domain=\varA:\varB}];
+		\end{axis}
+	\end{tikzpicture}\qquad
+	\begin{tikzpicture} [
+			declare function = {
+				linear(\x,\a,\b) = (\x-\b)*f(\a)/(\a-\b);
+				up(\x,\a,\b)= linear(\x,\a,\b) +
+					linear(\x,\b,\a);
+			},]
+		\begin{axis} [
+			height=\Height,
+			width=\Width,
+			xlabel = {$x$},
+			ylabel = {$y$},
+			axis x line = middle,
+			axis y line = middle,
+			ymin = \yMin,
+			ymax = \yMax,
+			domain = \leftDomain:\rightDomain,
+			ticks = none ]
+
+			\addplot[color=blue, line width=.08cm]{f(x)};
+			\addplot[color=black, line width=.03cm, name path=A,
+				domain=\varA:\varB]
+				{up(x,\varA,\varB)};
+
+			\coordinate(A) at 	(\varA,		\fa);
+			\coordinate(Ap) at 	(\varA,		0);
+			\coordinate(B) at 	(\varB,		\fb);
+			\coordinate(Bp) at 	(\varB,		0);
+
+			\node[below](Alb) at 	(\varA,		0) {$a$};
+			\node[below](Blb) at 	(\varB,		0) {$b$};
+
+			\addplot[mark=*,only marks, fill=black] (\varA, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=black] (\varB, 0)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\varA, \fa)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\varB, \fb)
+				node[above, pos=1]{};
+
+			\draw[thick] (Ap) -- (A) (Bp) -- (B);
+			\addplot[draw=none,name path=B] {0};
+			\addplot[gray, fill opacity=0.5] fill between
+				[of=A and B,soft clip={domain=\varA:\varB}];
+		\end{axis}
+	\end{tikzpicture}
+	\caption*{Формулы трёх восьмых, Симпсона и трапеций в сравнении}
+\end{figure}
+\end{document}
