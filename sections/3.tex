@@ -384,6 +384,7 @@ $\int_a^b (a+b)^2dx$.
 \end{proof}
 
 \begin{theorem}[оценка погрешности формулы Симпсона]
+\label{eq:simpsons_1_3_rule_error}
 	Погрешность формулы Симпсона для интеграла $\int_a^b f(x)dx$ может быть
 	оценена следующим неравенством:
 	\[\boxed{|R(f)|\le\frac{M_4|h|^5}{2880}},\]
@@ -415,6 +416,27 @@ $\int_a^b (a+b)^2dx$.
 	\[\Big|\frac{f^{(4)}(\xi)}{24}\Big|\le\frac{M_4}{24},\;\int_a^b\omega(x)
 	dx=-\frac{h^5}{120}\quad\Rightarrow\quad|R(f)|\le\frac{M_4|h|^5}{2880}.\]
 \end{proof}
+
+\begin{example}\label{eq:simpsons_1_3_rule_example}
+	Применим формулу Симпсона \eqref{eq:simpsons_1_3_rule} к интегралу из
+	того же примера \eqref{eq:rectangle_rules_example}. Оттуда же получаем
+	\[\sin{\frac{a+b}{2}}=\sin{\frac{3\pi}{8}}\approx 0.9239,\quad I\approx
+	0.7071.\]
+
+	Тогда интеграл примерно равен
+	\[I\approx\frac{\pi/2-\pi/4}{6}\Big(\sin\frac{\pi}{4}+4\sin\frac{3\pi}
+	{8}+\sin\frac{\pi}{2}\Big)\approx\]
+	\[\approx\frac{3.1416}{24}(0.7071+4\cdot0.9239+1)\approx0.7072,\quad
+	R(f)\approx -0.0001.\]
+
+	Именно ради погрешности в одну десятитысячную пришлось увеличить
+	количество знаков после запятой. Впрочем, оценка
+	\eqref{eq:simpsons_1_3_rule_error} тоже радует:
+	\[|R(f)|\le\frac{M_4|h|^5}{2880}=\frac{1}{2880}\Big(\frac{\pi}{4}
+	\Big)^5\approx 0.0001.\]
+
+	Без учёта округлений чисел, оценка погрешности почти была достигнута.
+\end{example}
 
 \subsection{Формула трёх восьмых}
 Коротко представим квадратурную формулу, которая использует полиномы третьей
