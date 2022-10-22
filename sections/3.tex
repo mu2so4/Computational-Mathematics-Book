@@ -45,12 +45,12 @@
 \begin{define}
 	\textbf{Погрешность квадратурной формулы} или её \textbf{остаточный
 	член} -- это разность
-	\[R_{[a,b]}(f)=\int_a^b f(x)dx - \sum_{k=0}^n c_kf(x_k).\]
+	\[R(f)=\int_a^b f(x)dx - \sum_{k=0}^n c_kf(x_k).\]
 \end{define}
 
 \begin{define}
 	Квадратурная формула называется \textbf{точной} для функции $f$ или
-	класса $\mathcal F\ni f$ на интервале $[a,b]$, если верно $R_{[a,b]}(f)=0$.
+	класса $\mathcal F\ni f$ на интервале $[a,b]$, если верно $R(f)=0$.
 \end{define}
 
 То, насколько широк класс $\mathcal F$, на которых квадратурная формула точна,
@@ -130,7 +130,7 @@ $(b-a)$ и $f(x_0)$. Не нужно забывать, что геометрич
 \label{eq:middle_rectangle_rule_error}
 	Погрешность формулы средних прямоугольников для интеграла $\int_a^b
 	f(x)dx$ может быть оценена следующим неравенством:
-	\[\boxed{|R_{[a,b]}(f)|\le\frac{M_2|h|^3}{24}},\]
+	\[\boxed{|R(f)|\le\frac{M_2|h|^3}{24}},\]
 	где $h=b-a$, $M_i=\underset{x\in[a,b]}{max}|f^{(i)}(x)|.$
 \end{theorem}
 
@@ -139,7 +139,7 @@ $(b-a)$ и $f(x_0)$. Не нужно забывать, что геометрич
 	\[f(x)=f(c)+f'(c)(x-c)+\frac{f''(\xi)(x-c)^2}{2},\]
 	где $c=\frac{a+b}{2},\;\xi\in[a,b].$ Погрешность квадратурной формулы
 	равна:
-	\[R_{[a,b]}(f)=\int_a^b f(x)dx - f(c)(b-a)=\int_a^b\big(f(x) - f(c)\big)
+	\[R(f)=\int_a^b f(x)dx - f(c)(b-a)=\int_a^b\big(f(x) - f(c)\big)
 	dx=\]
 	\[=\int_a^b \Big(\cancel{f'(c)(x-c)}+\frac{f''(\xi)(x-c)^2}{2}\Big)dx=
 	\frac{f''(\xi)(x-c)^3}{6}\Big|_a^b=\]
@@ -147,7 +147,7 @@ $(b-a)$ и $f(x_0)$. Не нужно забывать, что геометрич
 	\frac{h}{2}\Big)^3=\frac{f''(\xi)h^3}{24}.\]
 
 	Теперь оценка очевидна:
-	\[|R_{[a,b]}(f)|=\Big|\frac{f''(\xi)h^3}{24}\Big|\le\frac{M_2|h|^3}{24}.
+	\[|R(f)|=\Big|\frac{f''(\xi)h^3}{24}\Big|\le\frac{M_2|h|^3}{24}.
 	\]
 \end{proof}
 
@@ -158,7 +158,7 @@ $\int_a^b(x-\frac{1}{2}(a+b))^2dx$.
 \label{eq:rl_rectangle_rule_error}
 	Погрешность формулы правых и левых прямоугольников для интеграла
 	$\int_a^b f(x)dx$ может быть оценена следующим неравенством:
-	\[\boxed{|R_{[a,b]}(f)|\le\frac{M_1h^2}{2}}\]
+	\[\boxed{|R(f)|\le\frac{M_1h^2}{2}}\]
 \end{theorem}
 
 \begin{proof}
@@ -167,7 +167,7 @@ $\int_a^b(x-\frac{1}{2}(a+b))^2dx$.
 	функцию $f(x)$ в ряд Тейлора только до первой производной и проделав
 	тот же путь, что и в \eqref{eq:middle_rectangle_rule_error}, получим
 	следующее:
-	\[|R_{[a,b]}(f)|=\Big|\;\frac{f'(\xi)(x-a)^2}{2}\Big|_a^b\;\Big|=
+	\[|R(f)|=\Big|\;\frac{f'(\xi)(x-a)^2}{2}\Big|_a^b\;\Big|=
 	\Big|\frac{f'(\xi)h^2}{2}\Big|\le\frac{M_1h^2}{2}.\]
 \end{proof}
 
@@ -254,7 +254,7 @@ $\int_a^b(x-\frac{1}{2}(a+b))^2dx$.
 \label{eq:trapezoidal_rule_error}
 	Погрешность формулы трапеций для интеграла $\int_a^b f(x)dx$ может быть
 	оценена следующим неравенством:
-	\[\boxed{|R_{[a,b]}(f)|\le\frac{M_2|h|^3}{12}},\quad
+	\[\boxed{|R(f)|\le\frac{M_2|h|^3}{12}},\quad
 	h=b-a,\;M_2=\underset{x\in[a,b]}{max}|f^{(2)}(x)|.\]
 \end{theorem}
 
@@ -273,7 +273,7 @@ $\int_a^b(x-\frac{1}{2}(a+b))^2dx$.
 	\[=\frac{h}{6}\Big(2(a^2+ab+b^2)-3(a^2+2ab+b^2)+6ab\Big)=-\frac{h^3}{6}.
 	\]
 	Окончательно имеем
-	\[|R_{[a,b]}(f)|\le\frac{M_2|h|^3}{12}.\]
+	\[|R(f)|\le\frac{M_2|h|^3}{12}.\]
 \end{proof}
 
 Эта оценка также неулучшаема: она достигается для интеграла\\
@@ -293,7 +293,7 @@ $\int_a^b (a+b)^2dx$.
 	По погрешности формула проиграла лишь формуле средних прямоугольников.
 	Как и тогда, оценим, в каких границах она могла
 	\eqref{eq:trapezoidal_rule_error} быть:
-	\[|R_{[a,b]}(f)|\le\frac{M_2|h|^3}{12}=\frac{1}{12}\Big(\frac{\pi}{4}
+	\[|R(f)|\le\frac{M_2|h|^3}{12}=\frac{1}{12}\Big(\frac{\pi}{4}
 	\Big)^3\approx\frac{(0.785)^3}{12}\approx 0.040.\]
 
 	В нашем случае, оценка погрешности почти была достигнута.
