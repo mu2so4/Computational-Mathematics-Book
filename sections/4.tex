@@ -85,4 +85,38 @@
 	аппроксимируемой функции.
 \end{remark}
 
+\subsection{Аппроксимация с $k$-м порядком $n$-й производной}
+Мы рассмотрели частные случаи аппроксимации функций. Теперь мы рассмотрим более
+общий случай разностных операторов.
+
+\begin{theorem}
+	Если для функции $y(x)$, множества чисел $M$ -- шаблона оператора, -- а
+	также для множества констант $\{a_j\mid j\in M\}$ выполняются следующие
+	условия:
+	\begin{enumerate}
+		\item $y(x)\in C^{n+k+1}$,
+		\item $\forall m\in\overline{0,n-1}\cup\overline{n+1,n+k-1}
+			\quad\mathlarger\sum_{j\in M}a_jj^m=0$,
+		\item $\mathlarger\sum_{j\in M}a_jj^n=n!$,
+		\item $\mathlarger\sum_{j\in M}a_jj^{n+k}\ne 0$,
+	\end{enumerate}
+
+	то разностный оператор
+	\[\boxed{\Lambda_h[y(x)]=\frac{1}{h^n}\sum_{j\in M}a_jy(x+jh)}\]
+	аппроксимирует $y^{(n)}(x)$ с $k$-ым порядком аппроксимации.
+\end{theorem}
+
+\begin{proof}
+	Разложим в ряд Тейлора функцию:
+	\[y(x+jh)=\sum_{m=0}^{n+k}\frac{(jh)^m}{m!}y^{(m)}(x)+O(h^{n+k+1}).\]
+
+	Подставим это в $\Lambda_h[y(x)]$ и поменяем порядок суммирования:
+	\[\Lambda_h[y(x)]=\frac{1}{h^n}\sum_{j\in M}a_j\sum_{m=0}^{n+k}\Big(
+	\frac{(jh)^m}{m!}y^{(m)}(x)+O(h^{n+k+1})\Big)=\]
+	\[=\sum_{m=0}^{n+k}\Big(\frac{h^{m-n}}{m!}y^{(m)}(x)\sum_{j\in M}
+	a_jj^m\Big)+O(h^{k+1})=y^{(m)}(x)+\Delta_h[y(x)]+O(h^{k+1}),\]
+	где главный член ошибки имеет вид
+	\[\Delta_h[y(x)]=\frac{h^k}{(n+k)!}\Big(\sum_{j\in M}a_jj^{n+k}\Big)
+	y^{(n+k)}(x).\]
+\end{proof}
 \end{document}
