@@ -96,7 +96,8 @@
 	\begin{enumerate}
 		\item $y(x)\in C^{n+k+1}$,
 		\item $\forall m\in\overline{0,n-1}\cup\overline{n+1,n+k-1}
-			\quad\mathlarger\sum_{j\in M}a_jj^m=0$,
+			\quad\mathlarger\sum_{j\in M}a_jj^m=0$, считая при этом
+			$0^0=1$,
 		\item $\mathlarger\sum_{j\in M}a_jj^n=n!$,
 		\item $\mathlarger\sum_{j\in M}a_jj^{n+k}\ne 0$,
 	\end{enumerate}
@@ -119,4 +120,36 @@
 	\[\Delta_h[y(x)]=\frac{h^k}{(n+k)!}\Big(\sum_{j\in M}a_jj^{n+k}\Big)
 	y^{(n+k)}(x).\]
 \end{proof}
+
+\begin{example}
+	Построим разностный оператор $n=1$ производной и с $k=2$ порядком
+	аппроксимации на шаблоне $M=\{0,1,2\}$. Составим систему уравнений:
+	\begin{equation*}
+		\begin{cases}
+			a_0+a_1+a_2=0, \\
+			0+a_1+2a_2=1, \\
+			0+a_1+4a_2=0. \\
+		\end{cases}
+		\Rightarrow
+		\begin{pmatrix}
+			a_0 \\
+			a_1 \\
+			a_2 \\
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			-1.5 \\
+			2 \\
+			-0.5 \\
+		\end{pmatrix}
+	\end{equation*}
+
+	Тогда желаемый разностный оператор имеет вид
+	\[\Lambda_h[y(x)]=\frac{-3y(x)+4y(x+h)-y(x+2h)}{2h}.\]
+
+	Найдём его главный член ошибки:
+	\[\Delta_h[y(x)]=\frac{h^2}{3!}\big(0a_0+a_1+8a_2\big)y'''(x)=
+	-\frac{h^2}{3}y'''(x).\]
+\end{example}
+
 \end{document}
