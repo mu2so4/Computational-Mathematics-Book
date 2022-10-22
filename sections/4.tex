@@ -85,9 +85,9 @@
 	аппроксимируемой функции.
 \end{remark}
 
-\subsection{Аппроксимация с $k$-м порядком $n$-й производной}
-Мы рассмотрели частные случаи аппроксимации функций. Теперь мы рассмотрим более
-общий случай разностных операторов.
+\subsection{Задача аппроксимации производных}
+Здесь мы рассмотрим общую задачу аппроксимации производных разностными
+операторами.
 
 \begin{define}\label{eq:general_difference_operator}
 	Разностный оператор, аппроксимирующий производную $y^{(n)}(x)$, в общем
@@ -100,7 +100,7 @@
 \begin{theorem}
 	Если для функции $y(x)$, шаблона оператора $M$, а также для множества
 	констант $\{a_j\mid j\in M\}$ выполняются следующие условия:
-	\begin{enumerate}
+	\begin{enumerate}[noitemsep]
 		\item $y(x)\in C^{n+k+1}$,
 		\item $\forall m\in\overline{0,n-1}\cup\overline{n+1,n+k-1}
 			\quad\mathlarger\sum_{j\in M}a_jj^m=0$, считая при этом
@@ -108,7 +108,6 @@
 		\item $\mathlarger\sum_{j\in M}a_jj^n=n!$,
 		\item $\mathlarger\sum_{j\in M}a_jj^{n+k}\ne 0$,
 	\end{enumerate}
-
 	то разностный оператор \eqref{eq:general_difference_operator}
 	аппроксимирует производную $y^{(n)}(x)$ с $k$-ым порядком аппроксимации.
 \end{theorem}
