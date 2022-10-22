@@ -32,18 +32,11 @@
 	$y(x)\in C^{n+k}$ с $k$-ым порядком аппроксимации, то $\Delta_h[y(x)]=
 	c(h)y^{(n+k)}(x)$, где $c(h)$ -- константа, зависящая от $h$.
 \end{define}
-\newpage
 
-Рассмотрим простейшие аппроксимации дифференциальных операторов первого порядка.
-
-\begin{define}
-	\textbf{Направленный вперёд разностный оператор 1-го порядка} --
-	оператор вида
-	\[\Lambda_h^+[y(x)]=\frac{y(x+h)-y(x)}{h}.\]
-
-	\textbf{Направленный назад разностный оператор 1-го порядка} --
-	оператор вида
-	\[\Lambda_h^-[y(x)]=\frac{y(x)-y(x-h)}{h}.\]
+\begin{define} \label{eq:simpliest_difference_operators}
+	Определим простейщие разностные операторы 1-го порядка:
+	\[\Lambda_h^+[y(x)]=\frac{y(x+h)-y(x)}{h},\qquad
+	\Lambda_h^-[y(x)]=\frac{y(x)-y(x-h)}{h}.\]
 \end{define}
 
 \begin{lemma}
@@ -63,5 +56,14 @@
 	\[\Lambda_h[y(x)]-F[y(x)]=\frac{h}{2}y''(x)+\frac
 	{h^2}{6}y'''(x)+O(h^3)\Rightarrow \Delta_h[y(x)]=\frac{h}{2}y''(x).\]
 \end{proof}
+
+\begin{define}
+	Разностные операторы из \eqref{eq:simpliest_difference_operators}
+	относятся к \textbf{операторам направленной разности} (вперёд и назад
+	соответственно). Из них можно составить оператор \textbf{симметричной}
+	разности:
+	\[\Lambda_h^*[y(x)]=\frac{\Lambda_h^+[y(x)]+\Lambda_h^-[y(x)]}{2}=
+	\frac{y(x+h)-y(x-h)}{2h}.\]
+\end{define}
 
 \end{document}
