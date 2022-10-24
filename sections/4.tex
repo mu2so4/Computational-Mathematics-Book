@@ -247,7 +247,12 @@
 	\end{equation*}
 
 	Тогда разностный оператор имеет вид
-	\[\Lambda_h[y(x)]=\frac{-y(x-2h)+16y(x-h)-30y(x)+16y(x+h)-y(x+2h)}{6h^2}\]
+	\[\Lambda_h[y(x)]=\frac{-y(x-2h)+16y(x-h)-30y(x)+16y(x+h)-y(x+2h)}
+	{6h^2}.\]
+
+	Теперь найдём его главный член ошибки:
+	\[\Delta_h[y(x)]=\frac{2h^4}{6!}\big(0^6a_0+1^6a_1+2^6a_2\big)y^{(6)}
+	(x)=-\frac{h^4}{45}y^{(6)}(x).\]
 \end{example}
 
 \end{document}
