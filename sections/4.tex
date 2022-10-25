@@ -284,7 +284,7 @@
 			$T_{jh}=T_j$.
 		\item Композиция операторов сдвига $T$: $\underset{j\text{ раз}}
 			{\underbrace{T\circ T\circ...\circ T}}=T^j$.
-		\item Операторная форма равномерного разностного оператора:
+		\item Общая запись разностного оператора на равномерном шаблоне:
 			\[\Lambda_h[y(x)]=\frac{1}{h^n}\sum_{j=0}^{n}a_jy(x+jh)=
 			\frac{1}{h^n}\Big(\sum_{j=0}^{n}T_{jh}\Big)\circ y(x)=
 			\frac{1}{h^n}\underset{P_n(T)}{\underbrace{\Big(
@@ -295,13 +295,14 @@
 \begin{theorem}
 	Разностный оператор, аппроксимирующий $n$-ую производную на равномерном
 	шаблоне, имеет вид
-	\[\boxed{\Lambda_h[y(x)]=\frac{1}{h^n}\sum_{j=0}^{n}(-1)^jC_n^j\;
-	y(x+jh)},\quad C_n^k=\frac{n!}{(n-k)!\;k!}.\]
+	\[\boxed{\Lambda_h[y(x)]=\frac{1}{h^n}\Big(\sum_{j=0}^{n}(-1)^jC_n^j\;
+	T_{jh}\Big)\circ y(x)},\quad C_n^k=\frac{n!}{(n-k)!\;k!}.\]
 \end{theorem}
 
 \begin{proof}
 	Рассмотрим разностный оператор, аппроксимирующий первую производную
-	\[\Lambda_h^1[y(x)]=\Big(\frac{T_h-E}{h}\Big)\circ y(x).\]
+	\[\Lambda_h^1[y(x)]=\Big(\frac{T_h-E}{h}\Big)\circ y(x)=\frac{y(x+h)-
+	y(x)}{h}.\]
 	Вторую производную мы найдём ''дифференцированием'' первой:
 	\[\Lambda_h^2[y(x)]=\Big(\frac{T_h-E}{h}\Big)\circ\Lambda_h^1[y(x)]=
 	\frac{1}{h^2}(T_h-E)^2\circ y(x).\]
