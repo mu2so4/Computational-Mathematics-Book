@@ -276,4 +276,18 @@
 	Очевидно.
 \end{proof}
 
+\begin{define}
+	Введём следующие обозначения:
+	\begin{itemize}[nosep]
+		\item Если в контестке минимальный шаг сдвига равен $h$, то
+			$T_{jh}=T_j$.
+		\item Композиция операторов сдвига $T$: $\underset{j\text{ раз}}
+			{\underbrace{T\circ T\circ...\circ T}}=T^j$.
+		\item Операторная форма равномерного разностного оператора:
+			\[\Lambda_h[y(x)]=\sum_{j=0}^{n}a_jy(x+jh)=\Big(\sum_
+			{j=0}^{n}T_{jh}\Big)\circ y(x)=\underset{P_n(T)}
+			{\underbrace{\Big(\sum_{j=0}^{n}T_j\Big)}}\circ y(x).\]
+	\end{itemize}
+\end{define}
+
 \end{document}
