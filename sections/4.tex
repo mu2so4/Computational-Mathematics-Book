@@ -265,7 +265,7 @@
 
 \begin{define}
 	\textbf{Оператор сдвига} $T_s$ -- оператор такой, что
-	$\; T_s\circ y(x)=y(x+s)$. Будем считать, что $T_0=E$.
+	$\; T_s\circ y(x)=y(x+s)$.
 \end{define}
 
 \begin{lemma}
@@ -279,16 +279,38 @@
 \begin{define}
 	Введём следующие обозначения:
 	\begin{itemize}[nosep]
+		\item $T_0=E$.
 		\item Если в контестке минимальный шаг сдвига равен $h$, то
 			$T_{jh}=T_j$.
 		\item Композиция операторов сдвига $T$: $\underset{j\text{ раз}}
 			{\underbrace{T\circ T\circ...\circ T}}=T^j$.
 		\item Операторная форма равномерного разностного оператора:
-			\[\Lambda_h[y(x)]=\frac{1}{h^m}\sum_{j=0}^{n}a_jy(x+jh)=
-			\frac{1}{h^m}\Big(\sum_{j=0}^{n}T_{jh}\Big)\circ y(x)=
-			\frac{1}{h^m}\underset{P_n(T)}{\underbrace{\Big(
+			\[\Lambda_h[y(x)]=\frac{1}{h^n}\sum_{j=0}^{n}a_jy(x+jh)=
+			\frac{1}{h^n}\Big(\sum_{j=0}^{n}T_{jh}\Big)\circ y(x)=
+			\frac{1}{h^n}\underset{P_n(T)}{\underbrace{\Big(
 			\sum_{j=0}^{n}T_j\Big)}}\circ y(x).\]
 	\end{itemize}
 \end{define}
+
+\begin{theorem}
+	Разностный оператор, аппроксимирующий $n$-ую производную на равномерном
+	шаблоне, имеет вид
+	\[\boxed{\Lambda_h[y(x)]=\frac{1}{h^n}\sum_{j=0}^{n}(-1)^jC_n^j\;
+	y(x+jh)},\quad C_n^k=\frac{n!}{(n-k)!\;k!}.\]
+\end{theorem}
+
+\begin{proof}
+	Рассмотрим разностный оператор, аппроксимирующий первую производную
+	\[\Lambda_h^1[y(x)]=\Big(\frac{T_h-E}{h}\Big)\circ y(x).\]
+	Вторую производную мы найдём ''дифференцированием'' первой:
+	\[\Lambda_h^2[y(x)]=\Big(\frac{T_h-E}{h}\Big)\circ\Lambda_h^1[y(x)]=
+	\frac{1}{h^2}(T_h-E)^2\circ y(x).\]
+
+	Аналогичным образом получаем, что
+	\[\Lambda_h[y(x)]=\Lambda_h^n[y(x)]=\frac{1}{h^n}(T_h-E)^n\circ y(x).\]
+
+	Зная, что $T^a\circ T^b=T^{a+b}$, разложим степень по биному Ньютона
+	и получим требуемую форму.
+\end{proof}
 
 \end{document}
