@@ -295,8 +295,8 @@
 \begin{theorem}
 	Разностный оператор, аппроксимирующий $n$-ую производную на равномерном
 	шаблоне, имеет вид
-	\[\boxed{\Lambda_h[y(x)]=\frac{1}{h^n}\Big(\sum_{j=0}^{n}(-1)^jC_n^j\;
-	T_{jh}\Big)\circ y(x)},\quad C_n^k=\frac{n!}{(n-k)!\;k!}.\]
+	\[\boxed{\Lambda_h[y(x)]=\frac{1}{h^n}\Big(\sum_{k=0}^{n}(-1)^kC_n^k\;
+	T_{kh}\Big)\circ y(x)},\quad C_n^k=\frac{n!}{(n-k)!\;k!}.\]
 \end{theorem}
 
 \begin{proof}
@@ -312,6 +312,19 @@
 
 	Зная, что $T^a\circ T^b=T^{a+b}$, разложим степень по биному Ньютона
 	и получим требуемую форму.
+\end{proof}
+
+\begin{lemma}
+	Если разностный оператор $\Lambda_h$ аппроксимирует с $k$-м порядком
+	$n$-ю производную, а $T_{mh}=T_m$ -- оператор сдвига, то $T_m\circ
+	\Lambda_h$ тоже аппроксимирует с $k$-м порядком $n$-ю производную.
+\end{lemma}
+
+\begin{proof}
+	Разложим в ряд Тейлора по $h$ при $h=0$ выражение $T_m\circ y(x)$:
+	\[T_m\circ y(x)=y(x+mh)=y(x)+O(h),\]
+	то есть $T_m=E+O(h)$. Тогда
+	\[T_m\Lambda_h[y(x)]=T_m\circ\big(y^{(n)}+O(h^k)\big)=y^{(n)}+O(h^k).\]
 \end{proof}
 
 \end{document}
