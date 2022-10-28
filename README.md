@@ -1,6 +1,6 @@
 <p align="left">
  	<a href="https://coveralls.io/mu2so4/Computational-Mathematics-Book">
-		<img src="https://img.shields.io/badge/version-0.5-orange"
+		<img src="https://img.shields.io/badge/version-0.6-orange"
 			alt="version">
 	</a>
 </p>
@@ -18,7 +18,7 @@ Based on V. Ostapenko lectures for 3rd course FIT NSU.
 * `references.tex` - page containing reference list.
 
 ## Building project
-If you are a Windows user, jast download the [MiKTeX compiler](https://miktex.org/download).
+If you are a Windows user, just download the [MiKTeX compiler](https://miktex.org/download).
 You do not have to install extra packages manually, MiKTeX does it automatically.
 
 If you are a Linux user, you also can install this compiler but I recommend run
