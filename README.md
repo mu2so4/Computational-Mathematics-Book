@@ -13,8 +13,10 @@ Based on V. Ostapenko lectures for 3rd course FIT NSU.
 * `textbook.sty` - style file;
 * `title.tex` - title page file;
 * `intro.tex` - foreword page file;
-* `sections/` - directory containing main material splitted by chapters;
-* `sections/graphs/` - directory containing graphs;
+* `sections/` - directory containing main material splitted by sections. Every
+  section has its own directory:
+    * `section.tex` - main section file;
+    * `graph-*.tex` - graph files;
 * `references.tex` - page containing reference list.
 
 ## Building project
