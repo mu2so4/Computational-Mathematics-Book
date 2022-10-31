@@ -470,10 +470,64 @@
 этого помимо производных $y(x)$ аппроксимируют функцию $g(x)$.
 
 \begin{define}
-	\textbf{Компактная разностная схема} -- схема $\Lambda_h[y,g]$,
-	в которой содержатся аппроксимации производной $y^{(n)}(x)$ и
-	функции $g(x)$ на одном и том же шаблоне.
+	\textbf{Компактная разностная схема} -- разностная схема
+	$\Lambda_h[y,g]=0$, в которой содержатся аппроксимации производной
+	$y^{(n)}(x)$ и функции $g(x)$ на одном и том же шаблоне. Компактная
+	разностная схема записывается следующим образом:
+	\[\Lambda_h\big[y(x),g(x)\big]=\overline{\Lambda}_h\big[y(x)\big]-
+	\Omega_h\big[g(x)].\]
 \end{define}
+
+\begin{theorem}[о компактной разностной схеме]
+	Если компактная разностная схема $\Lambda_h[y(x),g(x)]$ аппроксимирует
+	решение дифференциального уравнения $y^{(n)}-g=0$ на $k$-точечном
+	шаблоне $M$ с $k$-м порядком аппроксимации, разностный оператор
+	$\overline{\Lambda}_h[y]$ построен на коэффициентах $a_j$, а
+	$\Omega_h\big[g(x)]$ -- на $b_j$, то для коэффициентов верно соотношение
+	\[\boxed{\forall i\in\overline{1,k-1}\quad m!\sum_{j\in M}a_jj^m=(n+m)!
+	\sum_{j\in M}b_jj^m}.\]
+\end{theorem}
+
+\begin{proof}
+	Запишем разностные операторы через коэффициенты:
+	\[\Lambda_h[y(x),g(x)]=\overline{\Lambda}_h[y(x)]-\Omega_h[g(x)]=0,\]
+	\[\text{где }\overline{\Lambda}_h[y]=\frac{1}{h^n}\sum_{j\in M}a_j
+	y(x+jh),\quad\Omega_h[g]=\sum_{j\in M}b_jg(x+jh).\]
+
+	Распишем наше дифференциальное уравнение:
+	\[y^{(n)}-g=\frac{1}{h^n}\sum_{j\in M}a_jy(x+jh)-\sum_{j\in M}b_j
+	g(x+jh)+O(h^{k+1})=\]
+	\[=\frac{1}{h^n}\sum_{j\in M}a_j\sum_{m=0}^{n+k} \frac{(jh)^m}{m!}
+	y^{(m)}(x)-\sum_{j\in M}b_j\sum_{m=0}^{k}\frac{(jh)^m}{m!}g^{(m)}(x)+
+	O(h^{k+1})=\]
+	\[=\sum_{m=0}^{n+k}\frac{h^{m-n}}{m!}y^{(m)}(x)\sum_{j\in M}a_jj^m-
+	\sum_{m=0}^{k}\frac{h^m}{m!}g^{(m)}\sum_{j\in M}b_jj^m+O(h^{k+1}).\]
+
+	Tеорема \eqref{eq:general_difference_operator_theorem} позволяет
+	установить следующие свойства коэффициентов $a_j$ и $b_j$:
+	\begin{enumerate}
+		\item $\sum_{j\in M}a_jj^m=0,m\in\{0,...,n-1\}\backslash\{n\}$,
+		\item $\sum_{j\in M}a_jj^n=n!$,
+		\item $\sum_{j\in M}b_j=1$.
+	\end{enumerate}
+
+	Тогда
+	\[y^{(n)}-g=y^{(n)}+\sum_{m=n+1}^{n+k}\frac{h^{m-n}}{m!}y^{(m)}(x)
+	\sum_{j\in M}a_jj^m-\]
+	\[-g-\sum_{m=1}^{k}\frac{h^m}{m!}g^{(m)}\sum_{j\in M}b_jj^m+O(h^{k+1})=
+	y^{(n)}-g+S+O(h^{k+1}).\]
+
+	Обозначим $m-n=s\Rightarrow m=n+s$ и продолжим считать суммы $S$:
+	\[S=\sum_{s=1}^{k}\frac{h^s}{(n+s)!}y^{(n+s)}\sum_{j\in M}a_jj^{n+s}-
+	\sum_{m=1}^{k}\frac{h^m}{m!}g^{(m)}(x)\sum_{j\in M}b_jj^m.\]
+
+	В первой сумме обозначим переменную цикла $s$ как $m$:
+	\[S=\sum_{m=1}^{k}h^m\Big(\frac{1}{(n+m)!}y^{(n+m)}(x)\sum_{j\in M}a_j
+	j^m-\frac{1}{m!}g^{(m)}(x)\sum_{j\in M}b_jj^m\Big).\]
+
+	И наконец, применив дифференциальные следствия, получаем требуемые
+	условия на коэффициенты.
+\end{proof}
 
 \begin{example}
 	Решим уравнение $y'(x)-g(x)=0$ на трёхточечном шаблоне $\{-1,0,1\}$ при
