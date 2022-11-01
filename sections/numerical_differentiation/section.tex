@@ -496,6 +496,7 @@
 \end{define}
 
 \begin{theorem}[о компактной разностной схеме]
+\label{eq:compact_difference_scheme_theorem}
 	Если компактная разностная схема $\Lambda_h[y(x),g(x)]$ аппроксимирует
 	решение дифференциального уравнения $y^{(n)}-g=0$ на шаблоне $M$ с $k$-м
 	порядком аппроксимации, разностный оператор $\overline{\Lambda}_h[y]$
@@ -614,9 +615,65 @@
 частных производных.
 
 \begin{define}
+\label{eq:conservation_law}
 	Если уравнение в частных производных имеет вид
-	\[\frac{d^nu}{dt^n}=\frac{d^mf(u)}{dx^m},\]
+	\[\frac{\partial^nu}{\partial t^n}=\frac{\partial^mf(u)}{\partial x^m},\]
 	где $u=u(x,t)$, оно называется \textbf{законом сохранения}.
 \end{define}
+
+\begin{theorem}
+	Если разностная схема аппроксимирует дифференциальное уравнение в
+	частных производных \eqref{eq:conservation_law} на шаблоне $M$ с $k$-м
+	порядком аппроксимации, то её можно записать как
+	\[\boxed{\widetilde{A}_n^k\circ\Delta_n^k\circ u=\widetilde{\Delta}_n^k
+	\circ A_n^k\circ f},\]
+	где пара операторов $\Delta_n^k$ и $A$ аппроксимируют с $k$-м порядком
+	$n$-ую производную $u(x,t)$ по $t$, а $\widetilde\Delta_n^k$ и
+	$\widetilde{A}$ -- $n$-ую производную $f(u)$ по $x$.
+\end{theorem}
+
+\begin{proof}
+	Чтобы найти аппроксимацию частной производной $u$ по $t$ при помощи
+	разностных схем, обозначим $g=\frac{\partial^mf}{\partial x^m}$,
+	тогда уравнение примет вид
+	\[u^{(n)}_t-g=0.\]
+
+	На переменную $x$ пока не обращаем внимания. Построим компактную
+	разностную схему:
+	\[\Delta_n^k\circ u-A_n^k\circ g=0,\]
+	\[\Delta_n^k=\sum_{j\in M}a_jT_{jh},\quad A_n^k=\sum_{j\in M}b_j
+	T_{jh}.\]
+
+	Подставим то, что мы спрятали за $g$, и воспользуемся линейностью
+	оператора $A_n^k$:
+	\[\Delta_n^k\circ u-A_n^k\circ \frac{\partial^mf}{\partial x^m}=
+	\Delta_n^k\circ u-\frac{\partial^mA_n^kf}{\partial x^m}.\]
+
+	Введём следующие обозначения:
+	\[\phi=A_n^k\circ f,\quad\psi=\Delta_n^k\circ u\]
+	и получим следующую форму уравнения:
+	\[\frac{\partial^m\phi}{\partial x^m}=\psi.\]
+
+	Мы получили дифференциальное уравнение относительно переменной $x$,
+	относительно которой мы также можем построить компактную разностную
+	схему, только уже по производной $f$. Совершим те же действия, что
+	и в предыдущий раз. Обозначим операторы:
+	\[\widetilde{\Delta}_n^k=\sum_{j\in M}a_jT_{j\tau},\quad
+	\widetilde{A}_n^k=\sum_{j\in M}b_jT_{j\tau};\]
+	таким образом, разностную схему можно записать как
+	\[\widetilde{\Delta}_n^k\circ\phi=\widetilde{A}_n^k\circ\psi.\]
+
+	Коэффициенты данных операторов равны коэффициентам предыдущих,
+	потому что обе пары операторов используют один и тот же шаблон $M$,
+	а если коэффициенты $a_j$ при операторах $\Delta$ и $\widetilde{\Delta}$
+	задать одинаково, то по теореме
+	\eqref{eq:compact_difference_scheme_theorem} у операторов $A$ и
+	$\widetilde{A}$ коэффициенты $b_j$ тоже совпадут.
+
+	Наконец, подставим те выражения, которые мы обозначили как $\phi$ и
+	$\psi$, чтобы вернуться к исходным обозначениям:
+	\[\widetilde{A}_n^k\circ\Delta_n^k\circ u=\widetilde{\Delta}_n^k\circ
+	A_n^k\circ f.\]
+\end{proof}
 
 \end{document}
