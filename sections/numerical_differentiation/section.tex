@@ -624,7 +624,7 @@
 \begin{theorem}
 	Если разностная схема аппроксимирует дифференциальное уравнение в
 	частных производных \eqref{eq:conservation_law} на шаблоне $M$ с $k$-м
-	порядком аппроксимации, то её можно записать как
+	порядком аппроксимации по $x$ и $t$, то её можно записать как
 	\[\boxed{\widetilde{A}_n^k\circ\Delta_n^k\circ u=\widetilde{\Delta}_n^k
 	\circ A_n^k\circ f},\]
 	где пара операторов $\Delta_n^k$ и $A$ аппроксимируют с $k$-м порядком
@@ -641,8 +641,8 @@
 	На переменную $x$ пока не обращаем внимания. Построим компактную
 	разностную схему:
 	\[\Delta_n^k\circ u-A_n^k\circ g=0,\]
-	\[\Delta_n^k=\sum_{j\in M}a_jT_{jh},\quad A_n^k=\sum_{j\in M}b_j
-	T_{jh}.\]
+	\[\Delta_n^k=\sum_{j\in M}a_jT_{j\tau},\quad A_n^k=\sum_{j\in M}b_j
+	T_{j\tau}.\]
 
 	Подставим то, что мы спрятали за $g$, и воспользуемся линейностью
 	оператора $A_n^k$:
@@ -658,8 +658,8 @@
 	относительно которой мы также можем построить компактную разностную
 	схему, только уже по производной $f$. Совершим те же действия, что
 	и в предыдущий раз. Обозначим операторы:
-	\[\widetilde{\Delta}_n^k=\sum_{j\in M}a_jT_{j\tau},\quad
-	\widetilde{A}_n^k=\sum_{j\in M}b_jT_{j\tau};\]
+	\[\widetilde{\Delta}_n^k=\sum_{j\in M}a_jT_{jh},\quad
+	\widetilde{A}_n^k=\sum_{j\in M}b_jT_{jh};\]
 	таким образом, разностную схему можно записать как
 	\[\widetilde{\Delta}_n^k\circ\phi=\widetilde{A}_n^k\circ\psi.\]
 
@@ -675,5 +675,23 @@
 	\[\widetilde{A}_n^k\circ\Delta_n^k\circ u=\widetilde{\Delta}_n^k\circ
 	A_n^k\circ f.\]
 \end{proof}
+
+Рассмотрим простейший пример.
+
+\begin{example}[параболическое уравнение]
+	Найдём аппроксимацию дифференцильного уравнения
+	\[\frac{\partial u}{\partial t}=\frac{\partial^2f(u)}{\partial x^2},\]
+	называемого также как \textbf{параболическое уравнение}, с четвёртым
+	порядком аппроксимации, на шаблоне $M=\{-1,1\}$. Запишем, чему равны
+	соответствующие операторы (обратите внимание, что шаг времени $\tau$
+	пишут верхним индексом, чтобы его не перепутать с $h$):
+	\[\Delta=\frac{T^\tau-T^{-\tau}}{2\tau},\quad A=\frac{T^\tau+4E+
+	T^{-\tau}}{6},\]
+	\[\widetilde{\Delta}=\frac{T_h-2E+T_{-h}}{h^2},\quad
+	\widetilde{A}=\frac{T_h+10E+T_{-h}}{12},\]
+	и итоговая разностная схема имеет вид:
+	\[\frac{T_h+10E+T_{-h}}{12}\circ\frac{T^\tau-T^{-\tau}}{2\tau}\circ f=
+	\frac{T_h-2E+T_{-h}}{h^2}\circ\frac{T^\tau+4E+T^{-\tau}}{6}\circ u.\]
+\end{example}
 
 \end{document}
