@@ -109,7 +109,10 @@
 		\item $\mathlarger\sum_{j\in M}a_jj^{n+k}\ne 0$,
 	\end{enumerate}
 	то разностный оператор \eqref{eq:general_difference_operator}
-	аппроксимирует производную $y^{(n)}(x)$ с $k$-ым порядком аппроксимации.
+	аппроксимирует производную $y^{(n)}(x)$ с $k$-ым порядком аппроксимации,
+	а его главный член невязки имеет вид
+	\[\boxed{\Delta_h[y(x)]=\frac{h^k}{(n+k)!}\Big(\sum_{j\in M}a_jj^{n+k}\Big)
+	y^{(n+k)}(x)}.\]
 \end{theorem}
 
 \begin{proof}
@@ -120,10 +123,7 @@
 	\[\Lambda_h[y(x)]=\frac{1}{h^n}\sum_{j\in M}a_j\sum_{m=0}^{n+k}\Big(
 	\frac{(jh)^m}{m!}y^{(m)}(x)+O(h^{n+k+1})\Big)=\]
 	\[=\sum_{m=0}^{n+k}\Big(\frac{h^{m-n}}{m!}y^{(m)}(x)\sum_{j\in M}
-	a_jj^m\Big)+O(h^{k+1})=y^{(m)}(x)+\Delta_h[y(x)]+O(h^{k+1}),\]
-	где главный член ошибки имеет вид
-	\[\Delta_h[y(x)]=\frac{h^k}{(n+k)!}\Big(\sum_{j\in M}a_jj^{n+k}\Big)
-	y^{(n+k)}(x).\]
+	a_jj^m\Big)+O(h^{k+1})=y^{(m)}(x)+\Delta_h[y(x)]+O(h^{k+1}).\]
 \end{proof}
 
 \begin{corollary}
