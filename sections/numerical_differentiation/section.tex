@@ -480,6 +480,21 @@
 	\Omega_h\big[g(x)].\]
 \end{define}
 
+\begin{define}
+	Введём следующие обозначения:
+	\begin{enumerate}[nosep]
+		\item $\Delta$ -- оператор, аппроксимирующий какую-то
+			производную $y(x)$;
+		\item $A$ -- оператор, аппроксимирующий функцию $g(x)$;
+		\item $\Delta\circ y=A\circ g$ -- иная запись компактной
+			разностной схемы;
+		\item $\Delta_n^k$ и $A_n^k$ -- операторы, вместе
+			аппроксимирующие $y^{(n)}(x)$ и $g(x)$ соответственно в
+			разностной схеме $\Delta_n^k\circ y=A_n^k\circ g$
+			с $k$-м порядком аппроксимации.
+	\end{enumerate}
+\end{define}
+
 \begin{theorem}[о компактной разностной схеме]
 	Если компактная разностная схема $\Lambda_h[y(x),g(x)]$ аппроксимирует
 	решение дифференциального уравнения $y^{(n)}-g=0$ на шаблоне $M$ с $k$-м
@@ -507,7 +522,7 @@
 
 	Tеорема \eqref{eq:general_difference_operator_theorem} позволяет
 	установить следующие свойства коэффициентов $a_j$ и $b_j$:
-	\begin{enumerate}
+	\begin{enumerate}[nosep]
 		\item $\sum_{j\in M}a_jj^m=0,m\in\{0,...,n-1\}\backslash\{n\}$,
 		\item $\sum_{j\in M}a_jj^n=n!$,
 		\item $\sum_{j\in M}b_j=1$.
@@ -541,7 +556,7 @@
 \begin{remark}
 	Чтобы задача построения компактной разностной схемы была разрешима,
 	достаточно, чтобы
-	\begin{itemize}
+	\begin{itemize}[nosep]
 		\item $|M|\ge n+1$,
 		\item $2|M|\ge n+k+1$.
 	\end{itemize}
@@ -566,14 +581,8 @@
 
 	Воспользовавшись дифференциальным следствием первого порядка, получаем,
 	что $\alpha=\frac{1}{6}$.
-
-	Запишем данный разностный оператор в операторной форме:
-	\[A\circ g(x)=\frac{1}{6}\Big(g(x-h)+4g(x)+g(x+h)\Big)=\frac{T_{-h}+4E+
-	T_h}{6}\circ g(x)\]
-	\[\Delta\circ y(x)=\frac{T_h-T_{-h}}{2h}\circ y(x),\]
-	тогда
-	\[\Delta\circ y=A\circ g.\]
 \end{example}
+\newpage
 
 \begin{example}
 	Решим уравнение $y''(x)-g(x)=0$ на трёхточечном шаблоне $\{-1,0,1\}$
