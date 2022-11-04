@@ -720,6 +720,7 @@
 Рассмотрим простейшую задачу Коши.
 
 \begin{example}
+\label{eq:simpliest_difference_solution_example}
 	Решим задачу Коши
 	\[F[y(x)]=y'-y=0,\quad y(0)=1,\]
 	чьё истинное решение равно $e^x$.
@@ -768,5 +769,27 @@
 	аппроксимации. Главный член невязки
 	\[\delta_h(x)=-\frac{h}{2}xe^x.\]
 \end{example}
+
+\begin{example}
+	Решим задачу Коши из примера
+	\eqref{eq:simpliest_difference_solution_example} при помощи следующей
+	компактной разностной схемы
+	\[\frac{y(x+h)-y(x)}{h}=\frac{y(x+h)+y(x)}{2}.\]
+
+	Сдвинем её на $-h/2$, чтобы схема была симметричной:
+	\[\frac{y(x+\frac{h}{2})-y(x-\frac{h}{2})}{h}=\frac{y(x+\frac{h}{2})+
+	y(x-\frac{h}{2})}{2}.\]
+	Запишем данную схему на сетке такой, что $y_0=1$:
+	\[\frac{y_{j+1}-y_j}{h}=\frac{y_j+y_{j+1}}{2}\Rightarrow
+	y_{j+1}=y_j\;\frac{2+h}{2-h}=\Big(\frac{1+h/2}{1-h/2}\Big)^j.\]
+
+	Сделав замену $j=\frac{x}{h}$, окончательно получаем, что
+	\[y_h(x)=\Big(\frac{1+h/2}{1-h/2}\Big)^{x/h}=e^x+\frac{h^2}{12}xe^x+
+	O(h^4).\]
+
+	Данное разностное решение имеет второй порядок точности. Вывод
+	его главного члена ошибки -- упражнение.
+\end{example}
+
 
 \end{document}
