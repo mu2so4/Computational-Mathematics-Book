@@ -29,7 +29,7 @@
 	\[\Lambda_h[y(x)]-F[y(x)]=O(h^k)=\Delta_h[y(x)]+O(h^{k+1}).\]
 \end{define}
 
-\begin{define} \label{eq:simpliest_difference_operators}
+\begin{define} \label{eq:simplest_difference_operators}
 	Определим простейщие разностные операторы 1-го порядка:
 	\[\Lambda_h^+[y(x)]=\frac{y(x+h)-y(x)}{h},\qquad
 	\Lambda_h^-[y(x)]=\frac{y(x)-y(x-h)}{h}.\]
@@ -55,7 +55,7 @@
 \end{proof}
 
 \begin{define}
-	Разностные операторы из \eqref{eq:simpliest_difference_operators}
+	Разностные операторы из \eqref{eq:simplest_difference_operators}
 	относятся к \textbf{операторам направленной разности} (вперёд и назад
 	соответственно). Из них можно составить оператор \textbf{симметричной}
 	разности:
@@ -362,13 +362,13 @@
 И хотя эта теорема тривиальная, она очень важна, потому что позволяет создать
 методы построения схем повышенной точности.
 
-\begin{example}\label{eq:differential_equation_simpliest_example}
+\begin{example}\label{eq:differential_equation_simplest_example}
 	Необходимо решить обыкновенное дифференциальное уравнение
 	\[y'(x)=g(x);\quad F[y]=y'(x)-g(x).\]
 
 	Построим простейшую разностную схему, аппроксимирующую это уравнение.
 	Воспользуемся для этого направленным вперёд разностным оператором
-	первого порядка \eqref{eq:simpliest_difference_operators}. Рассмотрим
+	первого порядка \eqref{eq:simplest_difference_operators}. Рассмотрим
 	разностный оператор
 	\[\Lambda_h[y(x)]=\frac{y(x+h)-y(x)}{h}+g(x).\]
 
@@ -395,7 +395,7 @@
 
 \begin{example}\label{eq:differential_equation_central_example}
 	Решим то же уравнение, что и в прошлом примере
-	\eqref{eq:differential_equation_simpliest_example}, но теперь при помощи
+	\eqref{eq:differential_equation_simplest_example}, но теперь при помощи
 	симметричной разностной схемы
 	\[\Lambda_h[y]=\frac{f(x+h)-f(x-h)}{2h}-g(x).\]
 
@@ -717,7 +717,7 @@
 Рассмотрим простейшую задачу Коши.
 
 \begin{example}
-\label{eq:simpliest_difference_solution_example}
+\label{eq:simplest_difference_solution_example}
 	Решим задачу Коши
 	\[F[y(x)]=y'-y=0,\quad y(0)=1,\]
 	чьё истинное решение равно $e^x$.
@@ -770,7 +770,7 @@
 \begin{example}
 \label{eq:central_difference_solution_example}
 	Решим задачу Коши из примера
-	\eqref{eq:simpliest_difference_solution_example} при помощи следующей
+	\eqref{eq:simplest_difference_solution_example} при помощи следующей
 	компактной разностной схемы
 	\[\frac{y(x+h)-y(x)}{h}=\frac{y(x+h)+y(x)}{2}.\]
 
