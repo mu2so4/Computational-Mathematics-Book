@@ -18,10 +18,10 @@ or if the change was already implemented but not yet released.
 
 First of all, open an issue and describy what you are going to do. Then:
 1. Fork this repo;
-2. `$ git clone` your new repo;
-3. `$ git checkout` to your feature/bugfix branch;
+2. `git clone` your new repo;
+3. `git checkout` to your feature/bugfix branch from the 'develop branch';
 4. Commit your bugfix or feature;
-5. Merge your branch into your 'master';
-6. Open a pull request to this repo and
+5. Merge your feature/bugfix branch into your 'develop' branch;
+6. Open a pull request to the 'develop' branch and
 [link it to the issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue).
 7. If your code is clean, PR will be merged. Well done!:heavy_check_mark:
