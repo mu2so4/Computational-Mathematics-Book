@@ -1035,4 +1035,21 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 	\[y_j=2^j-1.\]
 \end{example}
 
+\subsubsection{Случай кратных действительных корней}
+\begin{lemma}
+	Если $\mu$ является нулём многочлена $P(x)$, то
+	\[(T_1-\mu E)\circ\big(\mu^xP_k(x)\big)=\mu^{x+1}P_{k-1}(j).\]
+\end{lemma}
+
+\begin{proof}
+	Представим полином как
+	\[P_k(x)=\sum_{m=0}^{k}a_mx^m.\]
+
+	Тогда мы сразу получаем
+	\[(T_1-\mu E)\circ(\mu^xP_k(x))=\mu^{x+1}\cdot\big(P_k(x+1)-P_k(x)
+	\big)=\]
+	\[=\mu^{x+1}\sum_{m=0}^{k}a_m\big((x+1)^m-x^m\big)=\mu^{j+1}\sum_{m=1}^
+	{k}a_mP_{m-1}(x)=\mu^{x+1}P_{k-1}(x).\]
+\end{proof}
+
 \end{document}
