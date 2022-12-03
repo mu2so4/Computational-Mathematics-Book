@@ -1036,7 +1036,7 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 \end{example}
 
 \subsubsection{Случай кратных действительных корней}
-\begin{lemma}
+\begin{lemma}\label{eq:polynomial_power_lowering}
 	Если $\mu$ является нулём многочлена $P(x)$, то
 	\[(T_1-\mu E)\circ\big(\mu^xP_k(x)\big)=\mu^{x+1}P_{k-1}(j).\]
 \end{lemma}
@@ -1050,6 +1050,23 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 	\big)=\]
 	\[=\mu^{x+1}\sum_{m=0}^{k}a_m\big((x+1)^m-x^m\big)=\mu^{j+1}\sum_{m=1}^
 	{k}a_mP_{m-1}(x)=\mu^{x+1}P_{k-1}(x).\]
+\end{proof}
+
+\begin{lemma}
+	Если $\mu$ -- корень кратности $s$ характеристического многочлена
+	линейного разностного уравнения \eqref{eq:linear_difference_scheme},
+	то $\forall k\in\overline{1,s-1}$ верно
+	\[(T-\mu E)^s\circ y_j^k=0,\]
+\end{lemma}
+
+\begin{proof}
+	Рассмотрим случай $k=s-1$ и применим лемму
+	\eqref{eq:polynomial_power_lowering}:
+	\[(T-\mu E)^{k+1}\circ(j^k\mu^j)=(T-\mu E)^k\circ\big(P_{k-1}(j)\mu^
+	{j+1}\big)=...=\]
+	\[=(T-\mu E)\circ(C\cdot\mu^{j+k})=C(\mu^{j+k+1}-\mu^{j+k+1})=0.\]
+
+	При меньшем $k$ зануление произошло бы быстрее.
 \end{proof}
 
 \end{document}
