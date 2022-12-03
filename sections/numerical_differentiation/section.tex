@@ -988,7 +988,7 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 	Если у характеристического многочлена линейного разностного уравнения
 	\eqref{eq:linear_difference_scheme} все корни различны, то его общее
 	решение имеет вид
-	\[y_j=\sum_{m=1}^{n}C_m\lambda_m^j.\]
+	\[\boxed{y_j=\sum_{m=1}^{n}C_m\lambda_m^j}.\]
 \end{theorem}
 
 \begin{proof}
@@ -1072,7 +1072,8 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 	Если характеристический многочлен линейного разностного уравнения
 	\eqref{eq:linear_difference_scheme} имеет $l$ различных корней $\mu_i$
 	с кратностями $s_i$ соответственно, то общее решение имеет вид
-	\[y_j=\sum_{i=1}^{l}\big(\mu_i^j\cdot\sum_{m=0}^{s_i-1}j^m\big).\]
+	\[\boxed{y_j=\sum_{i=1}^{l}\big(\mu_i^j\cdot\sum_{m=0}^{s_i-1}C_{jm}j^m
+	\big)}.\]
 \end{theorem}
 
 \begin{proof}
@@ -1089,7 +1090,7 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 	^s_i.\]
 
 	Обозначим ту часть $y_j$, которая содержит $\mu_i$ как
-	\[y_j^{\mu_i}=\sum_{m=0}^{s_i-1}j^m.\]
+	\[y_j^{\mu_i}=\sum_{m=0}^{s_i-1}C_{jm}j^m.\]
 
 	Тогда по лемме \eqref{eq:characteristic_nullicifation}
 	\[P_n(T)\circ y_j^{\mu_i}=P_{n-s_i}\circ\big((T-\mu_i E)^s\circ y_j^
@@ -1118,8 +1119,8 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 	\eqref{eq:linear_difference_scheme} имеет комплексный корень
 	$\mu=re^{i\varphi}$ кратности $s$, то та часть общего решения $y_j$,
 	которая образована $\mu$, может иметь вид
-	\[y_j^\mu=\rho^j\big(\cos{j\alpha}+\sin{j\alpha}\big)
-	\sum_{k=0}^{s-1}j^k.\]
+	\[\boxed{y_j^\mu=\rho^j\sum_{k=0}^{s-1}j^k\big(C_{k1}\cos{j\alpha}+
+	C_{k2}\sin{j\alpha}\big)}.\]
 \end{theorem}
 
 \begin{proof}
@@ -1142,4 +1143,22 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 	подстановка корректна.
 \end{proof}
 
+\begin{example}
+	Решим разностное уравнение
+	\[y_{j+4}-4y_{j+3}+8y_{j+2}-8y_{j+1}+4y_j=0.\]
+
+	Характеристический полином имеет вид
+	\[P(\lambda)=(\lambda^2-2\lambda+2)^2=0.\]
+
+	Получаем 2 комплексных корня каждый кратности 2:
+	\[\lambda_{1,2}=1\pm i.\]
+
+	Представим $\lambda$ в комплексной форме:
+	\[\rho=\sqrt{2},\quad\alpha=\pm\frac{\pi}{4}\quad\Rightarrow\quad
+	\lambda=\sqrt{2}e^{\pm i\frac{\pi}{2}}.\]
+
+	Окончательно, общее решение имеет вид
+	\[y_j=\big(jC_1+C_2\big)\cos{\frac{\pi}{4}j}+\big(jC_3+C_4\big)
+	\sin{\frac{\pi}{4}j}.\]
+\end{example}
 \end{document}
