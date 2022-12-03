@@ -1034,7 +1034,7 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 	\[y_j=2^j-1.\]
 \end{example}
 
-\subsubsection{Случай кратных действительных корней}
+\subsubsection{Случай кратных корней}
 \begin{lemma}\label{eq:polynomial_power_lowering}
 	Если $\mu$ является нулём многочлена $P(x)$, то
 	\[(T_1-\mu E)\circ\big(\mu^xP_k(x)\big)=\mu^{x+1}P_{k-1}(j).\]
@@ -1068,7 +1068,7 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 	При меньшем $k$ зануление произошло бы быстрее.
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}\label{eq:repeated_characteristics}
 	Если характеристический многочлен линейного разностного уравнения
 	\eqref{eq:linear_difference_scheme} имеет $l$ различных корней $\mu_i$
 	с кратностями $s_i$ соответственно, то общее решение имеет вид
@@ -1108,4 +1108,38 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 	Общее решение:
 	\[y_j=(jC_1+C_2)(-2)^j+(-3)^j.\]
 \end{example}
+
+\subsubsection{Случай комплексных корней}
+Данный случай неприятен тем, что мы хотим такое решение, которое бы содержало
+действительные, а не комплексные коэффициенты.
+
+\begin{theorem}
+	Если характеристический многочлен линейного разностного уравнения
+	\eqref{eq:linear_difference_scheme} имеет комплексный корень
+	$\mu=re^{i\varphi}$ кратности $s$, то та часть общего решения $y_j$,
+	которая образована $\mu$, может иметь вид
+	\[y_j^\mu=\rho^j\big(\cos{j\alpha}+\sin{j\alpha}\big)
+	\sum_{k=0}^{s-1}j^k.\]
+\end{theorem}
+
+\begin{proof}
+	Из теоремы \eqref{eq:repeated_characteristics}, мы можем получить
+	$y_j^\mu$, не обращая на комплексность $\mu$. Так как $\mu$ -- ноль
+	характеристического уравнения с действительными коэффициентами, то и
+	$\overline{\mu}=\rho e^ {-j\alpha}$ тоже является его нулём, причём с
+	той же кратностью $s$.
+
+	Как и прежде, применим невырожденное линейное преобразование. Обозначим
+	\[y_j^k=j^k\rho^je^{ij\alpha},\quad \overline{y}_j^k=j^k\rho^je^
+	{-ij\alpha},\quad k\in\overline{0,s-1}.\]
+
+	Сделаем следующие подстановки:
+	\[\widetilde{y_j^k}=\frac{y_j^k+\overline{y_j^k}}{2}=j^k\rho^j\cos
+	{j\alpha},\quad\widehat{y_j^k}=\frac{y_j^k-\overline{y_j^k}}{2i}=j^k
+	\rho^j\sin{j\alpha}.\]
+
+	Так как $\widetilde{y_j^k}=0$ и $\widehat{y_j^k}=0$, то такая
+	подстановка корректна.
+\end{proof}
+
 \end{document}
