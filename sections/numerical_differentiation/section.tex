@@ -1119,25 +1119,25 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 	\eqref{eq:linear_difference_scheme} имеет комплексный корень
 	$\mu=re^{i\varphi}$ кратности $s$, то та часть общего решения $y_j$,
 	которая образована $\mu$, может иметь вид
-	\[\boxed{y_j^\mu=\rho^j\sum_{k=0}^{s-1}j^k\big(C_{k1}\cos{j\alpha}+
-	C_{k2}\sin{j\alpha}\big)}.\]
+	\[\boxed{y_j^\mu=\rho^j\sum_{k=0}^{s-1}j^k\big(C_{k1}\cos{j\varphi}+
+	C_{k2}\sin{j\varphi}\big)}.\]
 \end{theorem}
 
 \begin{proof}
 	Из теоремы \eqref{eq:repeated_characteristics}, мы можем получить
 	$y_j^\mu$, не обращая на комплексность $\mu$. Так как $\mu$ -- ноль
 	характеристического уравнения с действительными коэффициентами, то и
-	$\overline{\mu}=\rho e^ {-j\alpha}$ тоже является его нулём, причём с
+	$\overline{\mu}=\rho e^ {-j\varphi}$ тоже является его нулём, причём с
 	той же кратностью $s$.
 
 	Как и прежде, применим невырожденное линейное преобразование. Обозначим
-	\[y_j^k=j^k\rho^je^{ij\alpha},\quad \overline{y}_j^k=j^k\rho^je^
-	{-ij\alpha},\quad k\in\overline{0,s-1}.\]
+	\[y_j^k=j^k\rho^je^{ij\varphi},\quad \overline{y}_j^k=j^k\rho^je^
+	{-ij\varphi},\quad k\in\overline{0,s-1}.\]
 
 	Сделаем следующие подстановки:
 	\[\widetilde{y_j^k}=\frac{y_j^k+\overline{y_j^k}}{2}=j^k\rho^j\cos
-	{j\alpha},\quad\widehat{y_j^k}=\frac{y_j^k-\overline{y_j^k}}{2i}=j^k
-	\rho^j\sin{j\alpha}.\]
+	{j\varphi},\quad\widehat{y_j^k}=\frac{y_j^k-\overline{y_j^k}}{2i}=j^k
+	\rho^j\sin{j\varphi}.\]
 
 	Так как $\widetilde{y_j^k}=0$ и $\widehat{y_j^k}=0$, то такая
 	подстановка корректна.
@@ -1213,10 +1213,11 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 
 	Теперь мы рассмотрим каждое частное решение поподробней. То, что в своём
 	составе имеет $\lambda_1$, является ''хорошим'', так как после
-	преобразования в явную формулу мы получим $(1-h)^h$, что и даёт в
+	преобразования в явную формулу мы получим $(1-h)^{x/h}$, что и даёт в
 	пределе $e^{-x}$. Но решение при $\lambda_2$ всё портит: пусть оно и при
 	$O(h^2)$, но корень имеет в своём составе двойку:
-	\[\lambda_1^j=2^j\approx 2^{x/h},\quad C_2\lambda_2^j=O(h^2)2^{x/h},\]
+	\[\lambda_1^j=2^j\approx 2^{x/h},\quad C_2\lambda_2^j=2^{x/h}\cdot
+	O(h^2),\]
 	при стремлении $h$ к нулю мы получим, что предел данного частного
 	решения стремится к бесконечности. Это и делает неустойчивым данное
 	разностное решение.
