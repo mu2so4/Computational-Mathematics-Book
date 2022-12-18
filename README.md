@@ -1,6 +1,6 @@
 <p align="left">
  	<a href="https://coveralls.io/mu2so4/Computational-Mathematics-Book">
-		<img src="https://img.shields.io/badge/version-0.9-yellow"
+		<img src="https://img.shields.io/badge/version-0.10-yellow"
 			alt="version">
 	</a>
 </p>
@@ -9,15 +9,16 @@
 Based on V. Ostapenko lectures for 3rd course FIT NSU.
 
 ## Project structure
-* `main.tex` - main file, used for linking other files;
-* `textbook.sty` - style file;
-* `title.tex` - title page file;
-* `intro.tex` - foreword page file;
-* `sections/` - directory containing main material splitted by sections. Every
-  section has its own directory which contains these files:
-    * `section.tex` - main section file;
-    * `graph-*.tex` - graph files;
-* `references.tex` - page containing reference list.
+* `main.tex` &ndash; main file, used for linking other files;
+* `textbook.sty` &ndash; style file;
+* `title.tex` &ndash; title page file;
+* `intro.tex` &ndash; foreword page file;
+* `sections/` &ndash; directory containing main material splitted by sections.
+  Every section has its own directory which contains these files:
+    * `section.tex` &ndash; main section file;
+    * `graph-*.tex` &ndash; graph files;
+* `references.tex` &ndash; page containing reference list;
+* `changelog.tex` &ndash; -- page containing latest book updates.
 
 ## Building project
 If you are a Windows user, just download the

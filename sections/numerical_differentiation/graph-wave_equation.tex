@@ -1,0 +1,43 @@
+\documentclass[14pt]{extarticle}
+
+\begin{document}
+\begin{tikzpicture}
+	\begin{axis} [
+		width  = 10cm,
+		height = 6cm,
+		xlabel = {$x$},
+		ylabel = {$t$},
+		xmin = -0.5,
+		xmax = 5.5,
+		ymin = -0.5,
+		ymax = 2.5,
+		axis x line = middle,
+		axis y line = middle,
+		ticks = none]
+
+		\newcommand*{\varA}{1}
+		\newcommand*{\varB}{5}
+		\newcommand*{\timeShift}{2}
+		\pgfmathsetmacro{\varC}{(\varA+\varB)/2}
+		
+		\coordinate(A) at 	(\varA,	0);
+		\coordinate(B) at 	(\varB,	0);
+		\coordinate(C) at 	(\varC,	\timeShift);
+		\coordinate(Cx) at	(\varC,	0);
+		\coordinate(Ct)	at	(0,	\timeShift);
+		\node[below] at 	(A){$x_1$};
+		\node[below] at 	(B){$x_2$};
+		\node[below] at		(Cx){$x_0$};
+		\node[left] at		(Ct){$t_0$};
+		
+		\draw[thick,-latex] (A) -- (C);
+		\draw[thick,-latex] (B) -- (C);
+		\draw[dashed]	(Cx) -- (C)	(Ct) -- (C);
+		
+		\addplot[mark=*,only marks, fill=white] (\varA,0)
+			node[above, pos=1]{};
+		\addplot[mark=*,only marks, fill=white] (\varB,0)
+			node[above, pos=1]{};
+	\end{axis}
+\end{tikzpicture}
+\end{document}
