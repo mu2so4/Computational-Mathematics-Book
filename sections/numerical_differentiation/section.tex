@@ -1457,6 +1457,72 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 	\[u=S^{-1}\omega.\]
 \end{proof}
 
-Пример: уравнение колебания струны.
+\begin{example}
+	В качестве примера рассмотрим волновое уравнение
+	\[u_{tt}=a^2u_{xx},\quad a=const\ne 0,\]
+	которое нам известно с курса физики 4 семестра и эквивалентно
+	системе
+	\[\begin{cases}
+		u_t+v_x=0, \\
+		v_t+a^2u_x=0. \\
+	\end{cases}\]
+
+	Здесь
+	\[\boldsymbol{u}=
+		\begin{pmatrix}
+			u \\
+			v \\
+		\end{pmatrix},
+	\qquad
+	A=
+		\begin{pmatrix}
+			0 & 1 \\
+			a^2 & 0 \\
+		\end{pmatrix}.
+	\]
+
+	Собственные значения и собственные вектора матрицы $A$ равны
+	\[\lambda_1=-a,\quad \lambda_2=a,\qquad
+	\boldsymbol{l}_1=(a,-1),\quad \boldsymbol{l}_2=(a,1),\]
+	\[
+		S=
+		\begin{pmatrix}
+			a & -1 \\
+			a & 1  \\
+		\end{pmatrix}.
+	\]
+
+	$|S|\ne 0$ при $a\ne 0$, так что исходная система гиперболическая.
+
+	Вектор инвариантов $\boldsymbol{\omega}=S\boldsymbol{u}$ имеет
+	компоненты
+	\[\omega_1=au-v,\quad \omega_2=au+v,\]
+
+	первая из которых сохраняется вдоль семейства характеристик
+	$\lambda_1=-a\Rightarrow x+at=C$, а вторая -- вдоль семейства
+	характеристик $\lambda_2=a\Rightarrow x-at=C$. \\
+
+	\subfile{graph-wave_equation}
+	
+	В результате получаем, что
+	\[\omega_1(x_0,t_0)=\omega_1(x_1,0)=p_1(x+at),\qquad
+	  \omega_2(x_0,t_0)=\omega_2(x_2,0)=p_2(x-at),\]
+	где $p_1,\;p_2\in \mathbb C^2$ -- функции, задающие начальные значения
+	инвариантов.
+	
+	Общее решение исходной схемы, таким образом, равно
+	\[u(x,t)=\frac{1}{2a}\big(\omega_2(x,t)+\omega_1(x,t)\big)=
+	\frac{1}{2a}\big(f_2(x-at)+f_1(x+at)\big),\]
+	\[v(x,t)=\frac{1}{2}\big(\omega_2(x,t)-\omega_1(x,t)\big)=
+	\frac{1}{2}\big(f_2(x-at)-f_1(x+at)\big).\]
+	
+	Если же для этой системы поставить задачу Коши с начальными данными
+	\[u(x,0)=u_0(x),\quad v(x,0)=v_0(x),\quad u,v\in\mathbb C^2,\]
+	то её решение имеет вид
+	\[u(x,t)=\frac{1}{2}\big(u_0(x-at)+u_0(x+at)\big)+
+	\frac{1}{2a}\big(v_0(x-at)-v_0(x+at)\big),\]
+	\[v(x,t)=\frac{1}{2}\Big(v_0(x-at)+v_0(x+at)+
+	a\big(u_0(x-at)-u_0(x+at)\big)\Big).\]
+\end{example}
 
 \end{document}
