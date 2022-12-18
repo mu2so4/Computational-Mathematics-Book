@@ -1252,6 +1252,7 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 	\[y_j=y(x_j),\quad x_j=jh.\]
 \end{define}
 
+\subsubsection{Методы Рунге-Кутта}
 К сожалению, схемой Эйлера можно аппроксимировать нелинейное ОДУ только с первым
 порядком. Казалось бы: а почему бы не применить компактную разностную схему
 \[\frac{y_{j+1}-y_j}{h}=\frac{f(y_{j+1})+y_j}{2}?\]
@@ -1281,10 +1282,8 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 	\[\Lambda_h[y(x)]=\frac{y(x+h)-y(x)}{h}-f\big(y(x+\frac{h}{2})\big).\]
 
 	Наконец, разложим в ряд Тейлора обе части схемы по $h$ при $h=0$:
-	\[\Lambda_h[y(x)]=\cancel{y'}+\frac{h}{2}y''-\cancel{f(y)}-\frac{hy'}{2}
-	f'_y(y)+O(h^2)=\frac{h}{2}\Big(y''-\underset{y''}
-	{\underbrace{f'_y(y)y'}}\Big)+\]
-	\[+O(h^2)=O(h^2).\]
+	\[\Lambda_h[y(x)]=\cancel{y'}-\cancel{f(y)}+\frac{h}{2}\Big(y''-
+	\underset{y''}{\underbrace{f'_y(y)y'}}\Big)+O(h^2)=O(h^2).\]
 \end{proof}
 
 \end{document}
