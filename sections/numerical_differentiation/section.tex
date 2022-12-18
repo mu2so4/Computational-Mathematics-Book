@@ -1267,4 +1267,24 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 	\[\frac{y_{j+1}-y_j}{h}=f(y_{j+\frac{1}{2}}),\quad\text{где }
 	y_{j+\frac{1}{2}}=y_j+\frac{h}{2}f(y_j).\]
 \end{define}
+
+\begin{theorem}
+	Схема Эйлера с пересчётом имеет второй порядок аппроксимации.
+\end{theorem}
+
+\begin{proof}
+	Введём разностный оператор
+	\[\Lambda_h[y]=\frac{y_{j+1}-y_j}{h}-f(y_{j+1/2})=0.\]
+
+	При исследовании аппроксимаций нам следует перейти от дискретной схемы к
+	схеме от непрерывной переменной:
+	\[\Lambda_h[y(x)]=\frac{y(x+h)-y(x)}{h}-f\big(y(x+\frac{h}{2})\big).\]
+
+	Наконец, разложим в ряд Тейлора обе части схемы по $h$ при $h=0$:
+	\[\Lambda_h[y(x)]=\cancel{y'}+\frac{h}{2}y''-\cancel{f(y)}-\frac{hy'}{2}
+	f'_y(y)+O(h^2)=\frac{h}{2}\Big(y''-\underset{y''}
+	{\underbrace{f'_y(y)y'}}\Big)+\]
+	\[+O(h^2)=O(h^2).\]
+\end{proof}
+
 \end{document}
