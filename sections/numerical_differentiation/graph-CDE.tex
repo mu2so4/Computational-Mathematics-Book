@@ -1,0 +1,27 @@
+\documentclass[14pt]{extarticle}
+
+\begin{document}
+\begin{tikzpicture}
+	\begin{axis} [
+		unit vector ratio*=1 1,
+		width=16cm,
+		xlabel = {$x$},
+		ylabel = {$t$},
+		ymax = 3.25,
+		xmax = 3.75,
+		axis x line = middle,
+		axis y line = middle,
+		ticks = none]
+
+		\newcommand*{\Charr}{0.7}
+		\newcommand*{\timeShift}{2}
+
+		\pgfplotsinvokeforeach{-2,...,2} {
+			\draw[thick,-latex] (#1, 0) -- (#1 + \Charr *
+				\timeShift, \timeShift);
+			\addplot[mark=*,only marks, fill=white] (#1,0)
+				node[above, pos=1]{};
+		}
+	\end{axis}
+\end{tikzpicture}
+\end{document}
