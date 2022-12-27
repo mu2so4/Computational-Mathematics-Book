@@ -1403,10 +1403,16 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 	\[Av=\lambda v.\]
 \end{define}
 
+\begin{define}\label{eq:hyperbolic_system}
+	Линейная система \[u_t+Au_x=0,\]
+	где $u\in \mathbb R^n$, называется \textbf{гиперболической}, если все
+	собственные значения матрицы $A$ действительные, а также существует
+	базис пространства $\mathbb R^n$ из её собственных векторов.
+\end{define}
+
 \begin{define}\label{eq:strict_hyperbolic_system}
-	Линейная система $u_t+Au_x=0$, где $u\in \mathbb R^n$, называется
-	\textbf{строго гиперболической}, если все $n$ собственных значений
-	матрицы $A$ действительные и различные.
+	Гиперболическая система \eqref{eq:hyperbolic_system} является
+	\textbf{строгой}, если все собственные значения матрицы $A$ различные.
 \end{define}
 
 \begin{lemma}\label{eq:hyperbolic_invariant_form}
