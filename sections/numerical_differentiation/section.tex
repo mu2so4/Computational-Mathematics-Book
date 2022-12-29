@@ -1576,35 +1576,26 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 
 	\begin{enumerate}[nosep]
 		\item
-			Количество условий на левой границе совпадало с
+			Количество граничных условий на левой границе совпадает с
 			количеством положительных характеристик, а на правой --
-			с количеством отрицательных характеристик, то есть
+			с количеством отрицательных, то есть
 			\[
 				\begin{cases}
-					(\boldsymbol\varphi^i)^T
-						\boldsymbol u(X,t)=f_i(t), &
+					\big(\boldsymbol\varphi^i,
+						\boldsymbol u(0,t)\big)=f_i(t),&
 						i\in\overline{1,k}, \\
-					(\boldsymbol\varphi^i)^T
-						\boldsymbol u(0,t)=f_i(t), &
+					\big(\boldsymbol\varphi^i,
+						\boldsymbol u(X,t)\big)=f_i(t),&
 						i\in\overline{m+1,n}, \\
 				\end{cases}
 			\]
 			где $f_i(t)$ -- некоторые скалярные функции,
 			$\boldsymbol\varphi^i$ -- некоторые константные векторы,
+			а $(\boldsymbol a,\boldsymbol b)$ -- скалярное
+			произведение векторов,
 		\item
-			На левой границе $x=0$ была однозначно разрешима система
-			\[
-				\begin{cases}
-					(\boldsymbol l^i)^T\boldsymbol u(0,t)=
-						\omega_i, &
-						i\in\overline{1,k}, \\
-					(\boldsymbol\varphi^i)^T
-						\boldsymbol u(0,t)=f_i(t), &
-						i\in \overline{m+1,n}, \\
-				\end{cases}
-			\]
-			то есть
-			\[|\boldsymbol l^1,...,\boldsymbol l^k,
+			На левой границе $x=0$ должно быть верно
+			\[|\boldsymbol l^1,...,\boldsymbol l^m,
 			\boldsymbol\varphi^{m+1},...,
 			\boldsymbol\varphi^n|\ne 0,\]
 			где $|\boldsymbol a_1,...,\boldsymbol a_k|$ --
@@ -1612,27 +1603,54 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 			$k$-мерных векторов $\boldsymbol a_1,...,
 			\boldsymbol a_k$,
 		\item
-			На правой границе $x=X$ была однозначно разрешима
-			система
-			\[
-				\begin{cases}
-					(\boldsymbol\varphi^i)^T
-						\boldsymbol u(X,t)=f_i(t), &
-						i\in\overline{1,k}, \\
-					(\boldsymbol l^i)^T\boldsymbol u(X,t)=
-						\omega_i, &
-						i\in\overline{m+1,n}, \\
-				\end{cases}
-			\]
-			то есть
+			На правой границе $x=X$ должно быть верно
 			\[|\boldsymbol\varphi^1,...,\boldsymbol\varphi^k,
-			\boldsymbol l^{m+1},...,\boldsymbol l^n|\ne 0.\]
+			\boldsymbol l^{k+1},...,\boldsymbol l^n|\ne 0.\]
 	\end{enumerate}
 \end{theorem}
 
+\begin{proof}
+	На левую границу $x=0$ изнутри области приходит первые $k$
+	характеристик. Нулевые характеристики можно провести к любой границе,
+	то есть для них можно не задавать граничные условия. Остальные $n-m$
+	условий мы определим в граничных условиях. Аналогично сделаем и с правой
+	границей, там понадобится уже $n-k$ граничных условий.
+
+	Также корректность краевой задачи означает, что вектор $\boldsymbol u$
+	однозначно определяется на границах. необходимо, чтобы система уравнений
+	была разрешима, что достижимо при ненулевом определителе матрицы.
+
+	На левой границе будет
+	\[
+	\begin{cases}
+		\big(\boldsymbol l^i,\boldsymbol u(0,t)
+			\big)=\omega_i, &
+			i\in\overline{1,m}, \\
+		\big(\boldsymbol\varphi^i,
+			\boldsymbol u(0,t)\big)=f_i(t),&
+			i\in \overline{m+1,n}. \\
+	\end{cases}
+	\]
+
+	На правой же границе будет
+	\[
+	\begin{cases}
+		\big(\boldsymbol\varphi^i,
+			\boldsymbol u(X,t)\big)=f_i(t),&
+			i\in\overline{1,k}, \\
+		\big(\boldsymbol l^i\boldsymbol u(X,t)
+			\big)=\omega_i, &
+			i\in\overline{k+1,n}, \\
+	\end{cases}
+	\]
+
+	Чтобы системы были разрешимы, нужно, чтобы определители матриц были
+	отличны от нуля, благодаря чему и получаем необходимые условия.
+\end{proof}
+
 \begin{example}
 	Рассмотрим начально-краевую задачу на границе $[0,X]$ для линейного
-	уравнения переноса
+	уравнения переноса \eqref{eq:convection-diffusion_equation}
 	\[u_t+au_x=0.\]
 	Характеристика у нас одна, и она положительна. Изобразим её возможные
 	положения: \\
