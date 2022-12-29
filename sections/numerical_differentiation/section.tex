@@ -1484,7 +1484,7 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 углов наклона этих самых прямых. При таких значениях мы получаем $x_1,...,x_n$
 в качестве решения задачи Коши.
 
-\begin{example}
+\begin{example}\label{eq:wave_equation_example}
 	В качестве примера рассмотрим волновое уравнение
 	\[u_{tt}=a^2u_{xx},\quad a=const\ne 0,\]
 	которое нам известно с курса физики 4 семестра и эквивалентно
@@ -1567,5 +1567,68 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 	\[\varphi u(X,t)=f(t).\]
 \end{example}
 
+\begin{example}
+	Рассмотрим начально-краевую задачу на $[0,X]$ для волнового уравнения
+	(уравнения акустики), которое уже было в примере
+	\eqref{eq:wave_equation_example}:
+	\[\begin{cases}
+		u_t+v_x=0, \\
+		v_t+a^2u_x=0. \\
+	\end{cases}\]
+
+	$a^2$ положим равным единице, тогда
+	\[\boldsymbol{u}=
+		\begin{pmatrix}
+			u \\
+			v \\
+		\end{pmatrix},
+	\qquad
+	A=
+		\begin{pmatrix}
+			0 & 1 \\
+			1 & 0 \\
+		\end{pmatrix}.
+	\]
+
+	Собственные значения и собственные векторы матрицы $A$ равны
+	\[\lambda_1=-1,\quad \lambda_2=1.\]
+
+	На каждой границе будет по одному граничному условию. Для корректной
+	поставновки граничных условий нужны векторы инвариантов. Они равны
+	\[\omega^1=u-v,\qquad \omega^2=u+v.\]
+
+	На левой границе $\varphi u=f_1$, тогда
+	\[
+		\begin{cases}
+			\varphi_1 u+\varphi_2 v=f_1, \\
+			u-v=\omega^1. \\
+		\end{cases}
+	\]
+
+	Применим условие корректности:
+	\[
+		\begin{vmatrix}
+			\varphi_1 & \varphi_2 \\
+			1	& -1	\\
+		\end{vmatrix}
+		\ne 0\Leftrightarrow
+		\varphi_1\ne -\varphi_2.
+	\]
+
+	Аналогично на правой границе при $\varphi u=f_2$
+	\[
+		\begin{cases}
+			\varphi_1 u+\varphi_2 v=f_2, \\
+			u+v=\omega^2. \\
+		\end{cases}
+		\Leftrightarrow\quad
+		\begin{vmatrix}
+			\varphi_1 & \varphi_2 \\
+			1	& 1	\\
+		\end{vmatrix}
+		\ne 0\Leftrightarrow
+		\varphi_1\ne \varphi_2.
+	\]
+\end{example}
 
 \end{document}
