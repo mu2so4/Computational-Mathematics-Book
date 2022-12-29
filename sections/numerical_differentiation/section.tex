@@ -1552,6 +1552,75 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 	a\big(u_0(x-at)-u_0(x+at)\big)\Big).\]
 \end{example}
 
+\begin{theorem}
+	Пусть матрица $A$ из уравнения \eqref{eq:hyperbolic_system} имеет $n$
+	различных собственных значений, из которых $k$ отрицательные, а $m$
+	неположительные. Пронумеруем их в порядке возрастания:
+	\[\lambda_1\le...\le\lambda_k<0=\lambda_{k+1}=...=\lambda_m<
+	\lambda_{m+1}\le...\le\lambda_n\].
+
+	Обозначим соответствующие собственные векторы как $\boldsymbol l_1,...,
+	\boldsymbol l_n$,
+	а компоненты вектора инвариантов из $\boldsymbol\omega=S\boldsymbol u$
+	как $\omega_1,...,\omega_n$.
+
+	Чтобы корректно задать краевую задачу, необходимо и достаточно, чтобы
+
+	\begin{enumerate}[nosep]
+		\item
+			Количество условий на левой границе совпадало с
+			количеством положительных характеристик, а на правой --
+			с количеством отрицательных характеристик, то есть
+			\[
+				\begin{cases}
+					(\boldsymbol\varphi^i)^T
+						\boldsymbol u(X,t)=f_i(t), &
+						i\in\overline{1,k}, \\
+					(\boldsymbol\varphi^i)^T
+						\boldsymbol u(0,t)=f_i(t), &
+						i\in\overline{m+1,n}, \\
+				\end{cases}
+			\]
+			где $f_i(t)$ -- некоторые скалярные функции,
+			$\boldsymbol\varphi^i$ -- некоторые константные векторы,
+		\item
+			На левой границе $x=0$ была однозначно разрешима система
+			\[
+				\begin{cases}
+					(\boldsymbol l^i)^T\boldsymbol u(0,t)=
+						\omega_i, &
+						i\in\overline{1,k}, \\
+					(\boldsymbol\varphi^i)^T
+						\boldsymbol u(0,t)=f_i(t), &
+						i\in \overline{m+1,n}, \\
+				\end{cases}
+			\]
+			то есть
+			\[|\boldsymbol l^1,...,\boldsymbol l^k,
+			\boldsymbol\varphi^{m+1},...,
+			\boldsymbol\varphi^n|\ne 0,\]
+			где $|\boldsymbol a_1,...,\boldsymbol a_k|$ --
+			определитель матриц, чьи столбцы составлены из
+			$k$-мерных векторов $\boldsymbol a_1,...,
+			\boldsymbol a_k$,
+		\item
+			На правой границе $x=X$ была однозначно разрешима
+			система
+			\[
+				\begin{cases}
+					(\boldsymbol\varphi^i)^T
+						\boldsymbol u(X,t)=f_i(t), &
+						i\in\overline{1,k}, \\
+					(\boldsymbol l^i)^T\boldsymbol u(X,t)=
+						\omega_i, &
+						i\in\overline{m+1,n}, \\
+				\end{cases}
+			\]
+			то есть
+			\[|\boldsymbol\varphi^1,...,\boldsymbol\varphi^k,
+			\boldsymbol l^{m+1},...,\boldsymbol l^n|\ne 0.\]
+	\end{enumerate}
+\end{theorem}
 
 \begin{example}
 	Рассмотрим начально-краевую задачу на границе $[0,X]$ для линейного
@@ -1618,13 +1687,13 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 	Аналогично на правой границе при $\varphi u=f_2$
 	\[
 		\begin{cases}
-			\varphi_1 u+\varphi_2 v=f_2, \\
-			u+v=\omega^2. \\
+			u+v=\omega^2, \\
+			\varphi_1 u+\varphi_2 v=f_2. \\
 		\end{cases}
 		\Leftrightarrow\quad
 		\begin{vmatrix}
-			\varphi_1 & \varphi_2 \\
 			1	& 1	\\
+			\varphi_1 & \varphi_2 \\
 		\end{vmatrix}
 		\ne 0\Leftrightarrow
 		\varphi_1\ne \varphi_2.
