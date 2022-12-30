@@ -1,0 +1,45 @@
+\documentclass[14pt]{extarticle}
+
+\begin{document}
+\begin{tikzpicture}
+	\begin{axis} [
+		unit vector ratio*=1 1,
+		width=10cm,
+		xlabel = {$x$},
+		ylabel = {$t$},
+		ymin = -0.4,
+		ymax = 2.6,
+		xmin = -2.4,
+		xmax = 2.9,
+		axis x line = middle,
+		axis y line = middle,
+		ticks = none]
+
+		\newcommand*{\aBound}{0}
+		\newcommand*{\bBound}{2.5}
+		\newcommand*{\timeShift}{2}
+		\newcommand*{\xShift}{1}
+
+		\coordinate(A) at	(\aBound, \timeShift);
+		\coordinate(Ax) at	(\aBound, 0);
+		\coordinate(A1) at	(\aBound - \xShift, 0);
+		\coordinate(B) at	(\bBound, \timeShift);
+		\coordinate(Bx) at	(\bBound, 0);
+		\coordinate(B1) at	(\bBound - \xShift, 0);
+
+		\node[below] at (Bx) {$X$};
+
+		\draw[dashed] (Bx) -- (B);
+		\draw[very thick] (Ax) -- (Bx);
+		\draw[thick,-latex, shorten >= 1mm] (B1) -- (B);
+		\draw[thick,-latex, shorten >= 1mm] (A1) -- (A);
+
+		\addplot[mark=*,only marks, fill=black]
+			(\aBound,   \timeShift) node[above, pos=1]{};
+		\addplot[mark=*,only marks, fill=black]
+			(\bBound,   \timeShift) node[above, pos=1]{};
+
+
+	\end{axis}
+\end{tikzpicture}
+\end{document}

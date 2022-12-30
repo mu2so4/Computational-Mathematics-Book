@@ -1,0 +1,51 @@
+\documentclass[14pt]{extarticle}
+
+\begin{document}
+\begin{tikzpicture}
+	\begin{axis} [
+		width  = 14cm,
+		height = 7cm,
+		xmin = -0.5,
+		xmax = 5.5,
+		ymin = -0.5,
+		ymax = 2.5,
+		axis x line = middle,
+		axis y line = middle,
+		ticks = none]
+
+		\newcommand*{\varA}{0.5}
+		\newcommand*{\varB}{1.5}
+		\newcommand*{\varC}{3}
+		\newcommand*{\varD}{5}
+		\newcommand*{\timeShift}{2}
+		\newcommand*{\currentPos}{2}
+		
+		\coordinate(A) at 	(\varA,	0);
+		\coordinate(B) at 	(\varB,	0);
+		\coordinate(C) at 	(\varC,	0);
+		\coordinate(D) at 	(\varD,	0);
+		\coordinate(P) at	(\currentPos,	\timeShift);
+		\coordinate(Px) at	(\currentPos,	0);
+		\coordinate(Pt)	at	(0,	\timeShift);
+		\node[below] at 	(A){$x_4$};
+		\node[below] at 	(B){$x_3$};
+		\node[below] at 	(C){$x_2$};
+		\node[below] at 	(D){$x_1$};
+		\node[below] at		(Px){$x$};
+		\node[left] at		(Pt){$t$};
+		
+		\draw[thick,-latex, shorten >= 1.5mm] (A) -- node[above left]
+			{$\lambda_4$} (P);
+		\draw[thick,-latex, shorten >= 1.5mm] (B) -- node[above]
+			{$\lambda_3\;\;\,$} (P);
+		\draw[thick,-latex, shorten >= 1.5mm] (C) -- node[above]
+			{$\;\;\lambda_2$} (P);
+		\draw[thick,-latex, shorten >= 1.5mm] (D) -- node[above right]
+			{$\lambda_1$} (P);
+		\draw[dashed]	(Px) -- (P)	(Pt) -- (P);
+
+		\addplot[mark=*,only marks, fill=black]
+			(\currentPos,   \timeShift) node[above, pos=1]{};
+	\end{axis}
+\end{tikzpicture}
+\end{document}
