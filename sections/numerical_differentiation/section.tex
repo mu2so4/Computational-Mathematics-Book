@@ -1690,17 +1690,18 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 	\]
 
 	Собственные значения и собственные векторы матрицы $A$ равны
-	\[\lambda_1=-1,\quad \lambda_2=1.\]
+	\[\lambda_1=-1,\quad \lambda_2=1,\qquad
+	\boldsymbol{l}_1=(1,-1),\quad \boldsymbol{l}_2=(1,1).\]
 
 	На каждой границе будет по одному граничному условию. Для корректной
 	поставновки граничных условий нужны векторы инвариантов. Они равны
-	\[\omega^1=u-v,\qquad \omega^2=u+v.\]
+	\[\omega_1=u-v,\qquad \omega_2=u+v.\]
 
-	На левой границе $\varphi u=f_1$, тогда
+	На левой границе $(\boldsymbol\varphi,\boldsymbol u)=f_1$, тогда
 	\[
 		\begin{cases}
 			\varphi_1 u+\varphi_2 v=f_1, \\
-			u-v=\omega^1. \\
+			u-v=\omega_1. \\
 		\end{cases}
 	\]
 
@@ -1714,10 +1715,11 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 		\varphi_1\ne -\varphi_2.
 	\]
 
-	Аналогично на правой границе при $\varphi u=f_2$
+	Аналогично на правой границе при $(\boldsymbol\varphi,\boldsymbol u)=
+	f_2$
 	\[
 		\begin{cases}
-			u+v=\omega^2, \\
+			u+v=\omega_2, \\
 			\varphi_1 u+\varphi_2 v=f_2. \\
 		\end{cases}
 		\Leftrightarrow\quad
