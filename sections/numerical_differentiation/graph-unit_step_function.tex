@@ -1,0 +1,81 @@
+\documentclass[14pt]{extarticle}
+
+\begin{document}
+\begin{figure}[ht]
+	\centering
+	\newcommand*{\xlabel}{$x$}
+	\newcommand*{\ylabel}{$v$}
+	\newcommand*{\varA}{-2}
+	\newcommand*{\varB}{2.5}
+	\newcommand*{\varC}{0}
+	\newcommand*{\Shift}{1}
+	\newcommand*{\timeShift}{1}
+	\newcommand*{\Height}{4.4cm}
+	\newcommand*{\Width}{7cm}
+	\pgfmathsetmacro{\yMin}{-0.4}
+	\pgfmathsetmacro{\yMax}{\Shift + 0.4}
+	\pgfmathsetmacro{\xMin}{\varA - 0.2}
+	\pgfmathsetmacro{\xMax}{\varB + 0.2}
+
+	\begin{tikzpicture}
+		\begin{axis} [
+			height=\Height,
+			width=\Width,
+			xlabel = {\xlabel},
+			ylabel = {\ylabel},
+			axis x line = middle,
+			axis y line = middle,
+			xmin = \xMin,
+			xmax = \xMax,
+			ymin = \yMin,
+			ymax = \yMax,
+			ticks = none ]
+
+			\coordinate(A) at 	(\varA,		0);
+			\coordinate(C1) at 	(\varC,		0);
+			\coordinate(C2) at 	(\varC,		\timeShift);
+			\coordinate(B) at 	(\varB,		\timeShift);
+
+			\draw[line width=.08cm] (A) -- (C1) (C2) -- (B);
+
+			\addplot[mark=*,only marks, fill=black] (\varC, \timeShift)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\varC, 0)
+				node[above, pos=1]{};
+		\end{axis}
+	\end{tikzpicture}
+	\qquad\tikz[baseline=-\baselineskip]\draw[very thick,->] (0,0) -- ++ (2,0);\qquad
+	\begin{tikzpicture}
+		\begin{axis} [
+			height=\Height,
+			width=\Width,
+			xlabel = {\xlabel},
+			ylabel = {\ylabel},
+			axis x line = middle,
+			axis y line = middle,
+			xmin = \xMin,
+			xmax = \xMax,
+			ymin = \yMin,
+			ymax = \yMax,
+			ticks = none ]
+
+			\pgfmathsetmacro{\newC}{\varC + \Shift}
+
+			\coordinate(A) at 	(\varA,		0);
+			\coordinate(C1) at 	(\newC,		0);
+			\coordinate(C2) at 	(\newC,		\timeShift);
+			\coordinate(B) at 	(\varB,		\timeShift);
+
+			\node[below] at 	(C1){$a$};
+
+			\draw[line width=.08cm] (A) -- (C1) (C2) -- (B);
+			\draw[dashed] (C1) -- (C2);
+
+			\addplot[mark=*,only marks, fill=black] (\newC, \timeShift)
+				node[above, pos=1]{};
+			\addplot[mark=*,only marks, fill=white] (\newC, 0)
+				node[above, pos=1]{};
+		\end{axis}
+	\end{tikzpicture}
+\end{figure}
+\end{document}
