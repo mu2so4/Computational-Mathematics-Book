@@ -1,6 +1,6 @@
 <p align="left">
  	<a href="https://coveralls.io/mu2so4/Computational-Mathematics-Book">
-		<img src="https://img.shields.io/badge/version-0.11-yellowgreen"
+		<img src="https://img.shields.io/badge/version-0.12-yellowgreen"
 			alt="version">
 	</a>
 </p>
