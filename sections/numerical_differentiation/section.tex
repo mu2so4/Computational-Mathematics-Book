@@ -1618,32 +1618,28 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 	характеристик. Нулевые характеристики можно провести к любой границе,
 	то есть для них можно не задавать граничные условия. Остальные $n-m$
 	условий мы определим в граничных условиях. Аналогично сделаем и с правой
-	границей, там понадобится уже $n-k$ граничных условий.
+	границей, там понадобится уже $k$ граничных условий.
 
 	Также корректность краевой задачи означает, что вектор $\boldsymbol u$
-	однозначно определяется на границах. необходимо, чтобы система уравнений
+	однозначно определяется на границах. Необходимо, чтобы система уравнений
 	была разрешима, что достижимо при ненулевом определителе матрицы.
 
 	На левой границе будет
 	\[
 	\begin{cases}
-		\big(\boldsymbol l^i,\boldsymbol u(0,t)
-			\big)=\omega_i, &
+		\big(\boldsymbol l^i,\boldsymbol u(0,t)\big)=\omega_i, &
 			i\in\overline{1,m}, \\
-		\big(\boldsymbol\varphi^i,
-			\boldsymbol u(0,t)\big)=f_i(t),&
-			i\in \overline{m+1,n}. \\
+		\big(\boldsymbol\varphi^i,\boldsymbol u(0,t)\big)=f_i(t), &
+			i\in\overline{m+1,n}. \\
 	\end{cases}
 	\]
 
 	На правой же границе будет
 	\[
 	\begin{cases}
-		\big(\boldsymbol\varphi^i,
-			\boldsymbol u(X,t)\big)=f_i(t),&
+		\big(\boldsymbol\varphi^i,\boldsymbol u(X,t)\big)=f_i(t), &
 			i\in\overline{1,k}, \\
-		\big(\boldsymbol l^i\boldsymbol u(X,t)
-			\big)=\omega_i, &
+		\big(\boldsymbol l^i\boldsymbol u(X,t)\big)=\omega_i, &
 			i\in\overline{k+1,n}, \\
 	\end{cases}
 	\]
