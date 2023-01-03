@@ -932,4 +932,17 @@ $\{\alpha_k\}$ -- это некоторая последовательность
 	\end{enumerate}
 \end{example}
 
+\subsubsection{Устойчивость компактной разностной схемы}
+\begin{define}
+	Обозначим
+	\[\Delta_x=\frac{T_h-T_{-h}}{2h},\quad A_x=\frac{T_h+4E+T_{-h}}{6},\]
+	\[\Delta_t=\frac{T^\tau-T^{-\tau}}{2\tau},\quad A_t=\frac{T^\tau+4E+
+	T^{-\tau}}{6},\]
+
+	Тогда компактная и по времени, и по пространству разностная схема,
+	аппроксимирующее линейное уравнение переноса
+	\eqref{eq:convection-diffusion_equation}, имеет вид
+	\[A_x\circ\Delta_t\circ u+aA_t\circ\Delta_x\circ u=0.\]
+\end{define}
+
 \end{document}
