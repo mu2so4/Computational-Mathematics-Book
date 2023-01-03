@@ -797,6 +797,7 @@ $\{\alpha_k\}$ -- это некоторая последовательность
 		\subfile{graph-forward_scheme_stability}
 	\end{wrapfigure}
 
+	\leavevmode\\
 	Легко увидеть, что почти всюду $|\lambda(\alpha)|>1$, поэтому
 	разностная схема неустойчива при $\forall r>0$.\\\\\\
 	\par}
@@ -819,11 +820,39 @@ $\{\alpha_k\}$ -- это некоторая последовательность
 		\subfile{graph-godunov_scheme_stability}
 	\end{wrapfigure}
 
+	\leavevmode\\
 	Таким образом, разностная схема устойчива при $r\le 1$. При $r=1$
 	окружность $\lambda(\alpha)$ совпадёт с единичной, а при $r>1$
 	перестанет в неё помещаться, что даёт неустойчивость при данных числах
-	Куранта.
+	Куранта.\\\\
 	\par}
+\end{example}
+
+\begin{example}
+	Исследуем устойчивость немонотонной  схемы
+	\[\frac{u_j^{n+1}-u_j^n}{\tau}+a\frac{u_{j+1}^n-u_{j-1}^n}{2h}=0.\]
+	
+	В операторном виде
+	\[u_j^{n+1}=u_j^n-\frac{r}{2}(u_{j+1}^n-u_{j-1}^n).\]
+
+	После подстановки $u_j^n=\lambda^ne^{ij\alpha}$ получаем, что
+	\[\lambda(\alpha)=1-ir\sin\alpha.\]
+	\newpage
+
+	{\makeatletter
+	\let\par\@@par
+	\par\parshape0
+	\everypar{}
+
+	\begin{wrapfigure}{l}{0.4\textwidth}
+		\subfile{graph-symm_scheme_stability}
+	\end{wrapfigure}
+
+	\leavevmode\\
+	На этом графике очевидно, что разностная схема неустойчива при
+	$\forall r>0$.\\\\\\
+	\par}
+
 \end{example}
 
 \end{document}
