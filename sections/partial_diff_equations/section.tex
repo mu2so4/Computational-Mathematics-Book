@@ -788,10 +788,18 @@ $\{\alpha_k\}$ -- это некоторая последовательность
 	Геометрическое место точек $\lambda(\alpha)$ выглядит как окружность
 	радиуса $r$ с центром в $(1+r,0)$:
 
-	\subfile{graph-forward_scheme_stability}
+	{\makeatletter
+	\let\par\@@par
+	\par\parshape0
+	\everypar{}
+
+	\begin{wrapfigure}{l}{0.6\textwidth}
+		\subfile{graph-forward_scheme_stability}
+	\end{wrapfigure}
 
 	Легко увидеть, что почти всюду $|\lambda(\alpha)|>1$, поэтому
-	разностная схема неустойчива при $\forall r>0$.
+	разностная схема неустойчива при $\forall r>0$.\\\\\\
+	\par}
 \end{example}
 
 \begin{example}
@@ -802,13 +810,20 @@ $\{\alpha_k\}$ -- это некоторая последовательность
 	\[\lambda(\alpha)=1-r+re^{-i\alpha}.\]
 
 	Картина при $r\le 1$ выглядит вот так:
+	{\makeatletter
+	\let\par\@@par
+	\par\parshape0
+	\everypar{}
 
-	\subfile{graph-godunov_scheme_stability}
+	\begin{wrapfigure}{l}{0.4\textwidth}
+		\subfile{graph-godunov_scheme_stability}
+	\end{wrapfigure}
 
 	Таким образом, разностная схема устойчива при $r\le 1$. При $r=1$
 	окружность $\lambda(\alpha)$ совпадёт с единичной, а при $r>1$
 	перестанет в неё помещаться, что даёт неустойчивость при данных числах
 	Куранта.
+	\par}
 \end{example}
 
 \end{document}
