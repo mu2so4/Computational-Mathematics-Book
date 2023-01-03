@@ -773,6 +773,15 @@ $\{\alpha_k\}$ -- это некоторая последовательность
 устойчивость, то есть малым изменениям входным данным должно соответствовать
 малые изменения решения.
 
+Необходимо прогарантировать, что решение не ''развалится'' по мере прохождения
+временных слоёв.
+
+\begin{theorem}[спектральное условие устойчивости Неймана]
+	Если разностное решение представить как $u_j^n=\lambda^ne^{ij\alpha}$,
+	то разностная схема устойчива, если верно
+	\[\forall\alpha\in\mathbb R\quad|\lambda(\alpha)|\le 1.\]
+\end{theorem}
+
 \begin{example}
 	Исследуем устойчивость схемы по потоку \eqref{eq:CDE_forward_scheme}
 	\[\frac{u_j^{n+1}-u_j^n}{\tau}+a\frac{u_{j+1}^n-u_j^n}{h}=0.\]
@@ -793,13 +802,13 @@ $\{\alpha_k\}$ -- это некоторая последовательность
 	\par\parshape0
 	\everypar{}
 
-	\begin{wrapfigure}{l}{0.6\textwidth}
+	\begin{wrapfigure}{l}{0.4\textwidth}
 		\subfile{graph-forward_scheme_stability}
 	\end{wrapfigure}
 
 	\leavevmode\\
 	Легко увидеть, что почти всюду $|\lambda(\alpha)|>1$, поэтому
-	разностная схема неустойчива при $\forall r>0$.\\\\\\
+	разностная схема неустойчива при $\forall r>0$.
 	\par}
 \end{example}
 
