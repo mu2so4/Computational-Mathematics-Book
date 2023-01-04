@@ -139,4 +139,26 @@ $O(n!)$. В итоге, общая вычислительная мощность
 	\end{enumerate}
 \end{define}
 
+\subsection{Матрицы}
+\begin{define}
+	Матрица $A$ \textbf{положительно определённая} над линейным
+	пространством $\mathbb R^n$, если для всякого ненулевого вектора
+	$v\in \mathbb R^n$ верно $(Av, v)_2>0$.
+\end{define}
+
+\begin{define}
+	\textbf{Норма матрицы} $\mathbb R^{n\times m}$
+	называется отображение $\|\|: \mathbb R^{n\times m}\rightarrow
+	\mathbb R$, удовлетворяющее следующим условиям:
+	\begin{enumerate}[nosep]
+		\item $\forall A\in\mathbb R^{n\times m}: \|A\|\ge 0$, причём
+			$\|A\|=0\Leftrightarrow A=O$;
+		\item $\forall \lambda\in \mathbb R,\;\forall v\in
+			\mathbb R^{n\times m}:
+			\|\lambda A\|=|\lambda|\cdot\|A\|$;
+		\item $\forall A,B\in\mathbb R^{n\times m}: \|A+B\|\le\|A\|+\|B\|$ --
+			неравенство треугольника.
+	\end{enumerate}
+\end{define}
+
 \end{document}
