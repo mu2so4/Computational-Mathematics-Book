@@ -362,4 +362,120 @@ $O(n!)$. В итоге, общая вычислительная мощность
 	произведения нижне- и верхнетреугольных матриц, то есть
 	\[\forall A: det(A)\ne 0\quad\exists L,U: A=LU.\]
 \end{theorem}
+
+\subsubsection{Схема единственного деления}
+
+
+\begin{example}
+	Решим систему уравнений
+	\[
+		\begin{pmatrix}
+			-6	& 1	& 1	\\
+			3	& -1	& -2	\\
+			1	& 3	& 3	\\
+		\end{pmatrix}
+		x=
+		\begin{pmatrix}
+			-9 \\
+			-1 \\
+			11 \\
+		\end{pmatrix}
+	\]
+	методом Гаусса со схемой единственного деления.
+
+	Угловые миноры равны:
+	\[\Delta_1=-6,\qquad\qquad\;\]
+	\[\Delta_2=
+		\begin{vmatrix}
+			-6	& 1	\\
+			3	& -1	\\
+		\end{vmatrix}
+		=3,
+	\]
+	\[\Delta_3=det(A)=-19.\]
+
+	Разделим первое уравнение на $\Delta_1$ и вычтем его из второго и
+	третьего так, чтобы занулить первый столбец ниже диагонали:
+	\[
+		\begin{pmatrix}
+			1	&-\frac{1}{6}	& -\frac{1}{6}	\\
+			3	& -1	& -2	\\
+			1	& 3	& 3	\\
+		\end{pmatrix}
+		x=
+		\begin{pmatrix}
+			\frac{3}{2} \\
+			-1 \\
+			11 \\
+		\end{pmatrix}
+		\quad\Leftrightarrow\quad
+		\begin{pmatrix}
+			1	&-\frac{1}{6}	& -\frac{1}{6}	\\
+			0	& -\frac{1}{2}	& -\frac{3}{2}	\\
+			0	& \frac{19}{6}	& \frac{19}{6}	\\
+		\end{pmatrix}
+		x=
+		\begin{pmatrix}
+			\frac{3}{2} \\
+			-\frac{11}{2} \\
+			\frac{19}{2} \\
+		\end{pmatrix}
+	\]
+
+	В получившейся системе, разделим второе уравнение на
+	$\frac{\Delta_2}{\Delta_1}=-\frac{1}{2}$ и вычтем его так, чтобы
+	занулить второй столбец ниже диагонали:
+	\[
+		\begin{pmatrix}
+			1	&-\frac{1}{6}	& -\frac{1}{6}	\\
+			0	& 1	& 3	\\
+			0	& \frac{19}{6}	& \frac{19}{6}	\\
+		\end{pmatrix}
+		x=
+		\begin{pmatrix}
+			\frac{3}{2} \\
+			11 \\
+			\frac{19}{2} \\
+		\end{pmatrix}
+		\quad\Leftrightarrow\quad
+		\begin{pmatrix}
+			1	&-\frac{1}{6}	& -\frac{1}{6}	\\
+			0	& 1	& 3	\\
+			0	& 0	& -\frac{19}{3}	\\
+		\end{pmatrix}
+		x=
+		\begin{pmatrix}
+			\frac{3}{2} \\
+			11 \\
+			-\frac{76}{3} \\
+		\end{pmatrix}
+	\]
+
+	Наконец, делим третье уравнение на $\frac{\Delta_2}{\Delta_1}=
+	-\frac{19}{3}$:
+	\[
+		\begin{pmatrix}
+			1	&-\frac{1}{6}	& -\frac{1}{6}	\\
+			0	& 1	& 3	\\
+			0	& 0	& 1	\\
+		\end{pmatrix}
+		x=
+		\begin{pmatrix}
+			\frac{3}{2} \\
+			11 \\
+			4 \\
+		\end{pmatrix}
+	\]
+
+	Получили верхнетреугольную матрицу. Вот окончательное решение системы:
+	\[
+		x=
+		\begin{pmatrix}
+			2 \\
+			-1 \\
+			4 \\
+		\end{pmatrix}
+	\]
+\end{example}
+
 \end{document}
