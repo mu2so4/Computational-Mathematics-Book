@@ -34,7 +34,7 @@ $O(n!)$. В итоге, общая вычислительная мощность
 
 \begin{define}
 	Пространство $L$ над полем $K$, в котором определены операции сложения
-	$+: V^2\rightarrow V$ и умножения $\cdot: K\times V\rightarrow V$,
+	$+: V^2\rightarrow V$ и умножения $*: K\times V\rightarrow V$,
 	называется \textbf{линейным пространством}, если в нём верны следующие
 	аксиомы:
 
@@ -61,5 +61,25 @@ $O(n!)$. В итоге, общая вычислительная мощность
 \end{define}
 
 При поиске решения СЛАУ полагаются $K=\mathbb R$ и $V=\mathbb R^n$.
+
+\begin{define}
+	\textbf{Скалярным произведением} векторов из линейного пространства
+	$\mathbb R^n$ называется отображение $\cdot: \mathbb R^n\times
+	\mathbb R^n\rightarrow \mathbb R$, удовлетворяющее следующим условиям:
+	\begin{enumerate}[nosep]
+		\item $\forall v\in R^n: (v,v)\ge 0$, причём $(v,v)=0
+			\Leftrightarrow v=\overline{0}$ -- положительная
+			определённость;
+		\item $\forall u,v\in \mathbb R^n: (u,v)=(v,u)$ --
+			коммутативность;
+		\item $\forall \lambda,\mu \in\mathbb R^n,\;
+			\forall u,v,w\in \mathbb R^n: (\lambda u+\mu v, w)=
+			\lambda(u,w)+\mu(v,w)$ -- линейность.
+	\end{enumerate}
+\end{define}
+
+Тут специально было приведено определения для вещественных векторов, потому что
+над полем комплекных чисел коммутативность заменяется на сопряжённость. При
+работе со СЛАУ векторы вещественные.
 
 \end{document}
