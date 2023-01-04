@@ -82,4 +82,18 @@ $O(n!)$. В итоге, общая вычислительная мощность
 над полем комплекных чисел коммутативность заменяется на сопряжённость. При
 работе со СЛАУ векторы вещественные.
 
+\begin{define}
+	\textbf{Нормой вектора} из линейного пространства $V$ над полем $K$
+	называется отображение $\|\|: V\rightarrow K$, удовлетворяющее
+	следующим условиям:
+	\begin{enumerate}[nosep]
+		\item $\forall v\in V: \|v\|\ge 0$, причём $\|v\|=0
+			\Leftrightarrow v=\overline{0}$;
+		\item $\forall \lambda\in K,\;\forall v\in V:
+			\|\lambda v\|=|\lambda|\cdot\|v\|$;
+		\item $\forall u,v\in V: \|u+v\|\le\|u\|+\|v\|$ -- неравенство
+			треугольника.
+	\end{enumerate}
+\end{define}
+
 \end{document}
