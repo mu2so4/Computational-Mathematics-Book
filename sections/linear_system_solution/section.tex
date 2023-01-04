@@ -168,4 +168,24 @@ $O(n!)$. В итоге, общая вычислительная мощность
 	\[\|A\|=\max_{x\ne \overline{0}}\frac{\|Ax\|}{\|x\|}.\]
 \end{define}
 
+\begin{lemma}
+	Для всякой матричной нормы $\|A\|$, где $A\in\mathbb R^{n\times n}$,
+	которая подчинена векторной норме $\|x\|$, где $x\in\mathbb R^n$, верны
+	следующие неравенства:
+	\begin{enumerate}[nosep]
+		\item $\forall A\in\mathbb R^{n\times n},\;\forall x\in\mathbb
+			R^n: \|Ax\|\le\|A\|\|x\|$;
+		\item $\forall A,B\in\mathbb R^{n\times n}:
+			\|AB\|\le\|A\|\|B\|$.
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+	Первое неравенство сразу доказывается из определения подчинённой нормы.
+
+	Второе доказывается чуть дольше:
+	\[\|AB\|=\max_{x\ne\overline{0}}\frac{\|A(Bx)\|}{\|x\|}\le
+	\max_{x\ne\overline{0}}\frac{\|A\|\|Bx\|}{\|x\|}=\|A\|\|B\|.\]
+\end{proof}
+
 \end{document}
