@@ -69,7 +69,7 @@ $O(n!)$. В итоге, общая вычислительная мощность
 
 При поиске решения СЛАУ полагаются $K=\mathbb R$ и $V=\mathbb R^n$.
 
-\begin{define}
+\begin{define}\label{eq:dot_production}
 	\textbf{Скалярным произведением} векторов из линейного пространства
 	$\mathbb R^n$ называется отображение $\cdot: \mathbb R^n\times
 	\mathbb R^n\rightarrow \mathbb R$, удовлетворяющее следующим условиям:
@@ -90,7 +90,7 @@ $O(n!)$. В итоге, общая вычислительная мощность
 над полем комплекных чисел коммутативность заменяется на сопряжённость. При
 работе со СЛАУ векторы вещественные.
 
-\begin{define}
+\begin{define}\label{eq:vector_norm}
 	\textbf{Нормой вектора} из линейного пространства $V$ над полем $K$
 	называется отображение $\|\|: V\rightarrow K$, удовлетворяющее
 	следующим условиям:
@@ -104,7 +104,7 @@ $O(n!)$. В итоге, общая вычислительная мощность
 	\end{enumerate}
 \end{define}
 
-\begin{define}
+\begin{define}\label{eq:some_vector_norms}
 	Определим следующие нормы над линейным пространством $\mathbb R^n$:
 	\begin{enumerate}[nosep]
 		\item $\mathlarger{\|x\|_2=\sqrt{(x,x)_2}=\sqrt{\sum_{i=1}^{n}
@@ -163,8 +163,8 @@ $O(n!)$. В итоге, общая вычислительная мощность
 
 \begin{define}
 	Норма $\|A\|$ матрицы $A\in \mathbb R^{n\times n}$ называется
-	\textbf{нормой, подчинённой векторной норме} $\|x\|$, где $x\in \mathbb
-	R^n$, если верно
+	\textbf{нормой, подчинённой векторной норме} $\|x\|$
+	\eqref{eq:vector_norm}, где $x\in \mathbb R^n$, если верно
 	\[\|A\|=\max_{x\ne \overline{0}}\frac{\|Ax\|}{\|x\|}.\]
 \end{define}
 
@@ -187,5 +187,17 @@ $O(n!)$. В итоге, общая вычислительная мощность
 	\[\|AB\|=\max_{x\ne\overline{0}}\frac{\|A(Bx)\|}{\|x\|}\le
 	\max_{x\ne\overline{0}}\frac{\|A\|\|Bx\|}{\|x\|}=\|A\|\|B\|.\]
 \end{proof}
+
+\begin{lemma}
+	Явные формы матричных норм, подчинённых октаэдрической и кубическим
+	нормам \eqref{eq:some_vector_norms}, имеют вид
+	\[\|A\|_1=\max_{j\in\overline{1,n}}\sum_{i=1}^{n}|a_{ij}|,\qquad
+	\|A\|_\infty=\max_{i\in\overline{1,n}}\sum_{j=1}^{n}|a_{ij}|.\]
+\end{lemma}
+
+\proofexercise
+
+В этом преимущество этих норм: подчинённые им матричные нормы вычисляются
+непосредственно по элементам матрицы $A$, чего не скажешь о Евклидовой норме.
 
 \end{document}
