@@ -32,4 +32,34 @@ $O(n!)$. В итоге, общая вычислительная мощность
 Поэтому системы решают иначе. В этом разделе будут рассмотрены методы Гаусса и
 итерационные методы.
 
+\begin{define}
+	Пространство $L$ над полем $K$, в котором определены операции сложения
+	$+: V^2\rightarrow V$ и умножения $\cdot: K\times V\rightarrow V$,
+	называется \textbf{линейным пространством}, если в нём верны следующие
+	аксиомы:
+
+	\begin{enumerate}[nosep]
+		\item $\forall u,v\in V: u+v=u+v$ -- коммутативность сложения,
+		\item $\forall u,v,w\in V: (u+v)+w=u+(v+w)$ -- ассоциативность
+			сложения,
+		\item $\exists\overline{0}: \forall v\in V:
+			v+\overline{0}=\overline{0}+v=v$ -- существование
+			нейтрального по сложению элемента,
+		\item $\forall v\in V\;\exists (-v): v+(-v)=(-v)+v=\overline{0}$
+			-- существование противоположного элемента,
+		\item $\forall\lambda\in K,\;\forall u,v\in V: \lambda(u+v)=
+			\lambda u+\lambda v$ -- дистрибутивность умножения
+			относительно сложения векторов,
+		\item $\forall\lambda,\mu\in K,\;\forall v\in V:
+			(\lambda+\mu)v=\lambda v+\mu v$ -- дистрибутивность
+			умножения,
+		\item $\forall\lambda,\mu\in K,\;\forall v\in V: (\lambda\mu)v=
+			\lambda(\mu v)$ -- ассоциативность умножения,
+		\item $\exists 1\in K: \forall v\in V: 1\cdot v=v$ --
+			существование нейтрального по умножению элемента.
+	\end{enumerate}
+\end{define}
+
+При поиске решения СЛАУ полагаются $K=\mathbb R$ и $V=\mathbb R^n$.
+
 \end{document}
