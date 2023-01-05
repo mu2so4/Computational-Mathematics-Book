@@ -134,9 +134,7 @@ $O(n!)$. В итоге, общая вычислительная мощность
 \begin{define}
 	\textbf{Ортонормированный базис} линейного пространства $V$ над полем
 	$K$ -- базис $e_1,...,e_n$ такой, что
-	\begin{enumerate}[nosep]
-		\item $\forall i,j\in\overline{1,k}: (e_i,e_j)=\delta_{ij}$.
-	\end{enumerate}
+	$\forall i,j\in\overline{1,k}: (e_i,e_j)=\delta_{ij}$.
 \end{define}
 
 \subsubsection{Матрицы}
@@ -181,7 +179,10 @@ $O(n!)$. В итоге, общая вычислительная мощность
 \end{lemma}
 
 \begin{proof}
-	Первое неравенство сразу доказывается из определения подчинённой нормы.
+	Первое неравенство сразу доказывается из определения подчинённой нормы:
+	\[\|A\|=\max_{x\ne\overline{0}}\frac{\|Ax\|}{\|x\|}\ge
+	\frac{\|Ax\|}{\|x\|}\;\Leftrightarrow\;
+	\|Ax\|\le\|A\|\|x\|.\]
 
 	Второе доказывается чуть дольше:
 	\[\|AB\|=\max_{x\ne\overline{0}}\frac{\|A(Bx)\|}{\|x\|}\le
