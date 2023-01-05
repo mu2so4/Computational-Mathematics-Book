@@ -762,9 +762,18 @@ $O(n!)$. В итоге, общая вычислительная мощность
 \begin{define}\label{eq:diagonally_dominant_matrix}
 	Говорят, что квадратная матрица $A$ обладает \textbf{диагональным
 	преобладанием}, если
-	\[\forall i\in\overline{1,n}\quad |a_{ii}|\ge\sum_{j\ne i}|a_{ij}|,\]
-	причём хотя бы одно из неравенств является строгим.
+	\[\forall i\in\overline{1,n}\quad |a_{ii}|>\sum_{j\ne i}|a_{ij}|.\]
 \end{define}
+
+\begin{theorem}
+	Если для трёхдиагональной матрицы $A$ выполнено условие диагонального
+	преобладания, причём
+	\[0<\varepsilon<\min_{i\in\overline{1,n}}\Big(|a_{ii}|-
+	\sum_{j\ne i}|a_{ij}|\Big),\]
+	тогда для любого решения СЛАУ $Ax=f$ справедливо
+	\[\boxed{\|x\|_\infty\le\frac{1}{\varepsilon}
+	\|f\|_\infty}.\]
+\end{theorem}
 
 \begin{example}
 	Решим систему линейных алгебраических уравнений
