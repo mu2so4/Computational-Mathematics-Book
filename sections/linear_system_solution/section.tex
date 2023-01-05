@@ -1040,8 +1040,7 @@ $Ax=f$ находится как предел при $m\to\infty$ последо
 \subsubsection{Метод Якоби}
 \begin{define}
 	\textbf{Метод Якоби} -- итерационный метод
-	\eqref{eq:sle_iterative_method}, в котором полагается $\tau=1$,
-	$B=D$, то есть
+	\eqref{eq:sle_iterative_method}, в котором $\tau=1$, $B=D$, то есть
 	\[B=
 		\begin{pmatrix}
 			a_{11}	& 0	& ...	& 0 \\
@@ -1087,4 +1086,19 @@ $Ax=f$ находится как предел при $m\to\infty$ последо
 	теореме \eqref{eq:sle_matrix_norm_cond} достаточно для сходимости метода
 	Якоби.
 \end{proof}
+
+\subsubsection{Метод Зейделя}
+\begin{define}
+	\textbf{Метод Зейделя} -- итерационный метод
+	\eqref{eq:sle_iterative_method}, в котором $\tau=1$, $B=L$, то есть
+	\[B=
+		\begin{pmatrix}
+			a_{11}	& 0	& ...	& 0 \\
+			a_{21}	& a_{22}& ...	& 0 \\
+			\vdots	& \vdots&\ddots &\vdots \\
+			a_{n1}	& a_{n2}& ...	& a_{nn} \\
+		\end{pmatrix}
+	\]
+\end{define}
+
 \end{document}
