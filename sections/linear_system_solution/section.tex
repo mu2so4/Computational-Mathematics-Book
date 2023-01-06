@@ -1028,7 +1028,7 @@ $Ax=f$ находится как предел при $m\to\infty$ последо
 \begin{proof}
 	Так как матрица перехода $S$ симметрична, то по лемме
 	\eqref{eq:symmetric_matrix_props} все её собственные числа
-	действительные и из её собственных векторов можно построить ОНБ
+	действительные и из её собственных векторов можно построить базис
 	$v_1,...,v_n$. Через их линейную комбинацию запишем вектор $z^0$:
 	\[z^0=\sum_{i=1}^{n}\alpha_iv_i.\]
 
@@ -1042,7 +1042,7 @@ $Ax=f$ находится как предел при $m\to\infty$ последо
 	\[z^m=\sum_{i=1}^{n}\alpha_i\lambda_i^mv_i.\]
 
 	Теперь условие сходимости итерационного процесса становится очевидным:
-	\[\lim_{m\to\infty}z^m=0\quad\Leftrightarrow\quad
+	\[\lim_{m\to\infty}z^m=\overline{0}\quad\Leftrightarrow\quad
 	\forall i\in\overline{1,n}\;\;\lim_{m\to\infty}\lambda_i^m=0\quad
 	\Leftrightarrow\quad \forall i\in\overline{1,n}\;\;|\lambda_i|<1.\]
 \end{proof}
