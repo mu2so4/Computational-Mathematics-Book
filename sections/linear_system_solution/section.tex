@@ -50,23 +50,25 @@
 	аксиомы:
 
 	\begin{enumerate}[nosep]
-		\item $\forall u,v\in V: u+v=u+v$ -- коммутативность сложения,
-		\item $\forall u,v,w\in V: (u+v)+w=u+(v+w)$ -- ассоциативность
+		\item $\forall u,v\in V\;\; u+v=u+v$ -- коммутативность
 			сложения,
-		\item $\exists\overline{0}: \forall v\in V:
+		\item $\forall u,v,w\in V\;\; (u+v)+w=u+(v+w)$ --
+			ассоциативность сложения,
+		\item $\exists\overline{0}: \forall v\in V\;\;
 			v+\overline{0}=\overline{0}+v=v$ -- существование
 			нейтрального по сложению элемента,
-		\item $\forall v\in V\;\exists (-v): v+(-v)=(-v)+v=\overline{0}$
-			-- существование противоположного элемента,
-		\item $\forall\lambda\in K,\;\forall u,v\in V: \lambda(u+v)=
+		\item $\forall v\in V\;\;\exists (-v): v+(-v)=(-v)+v=
+			\overline{0}$ -- существование противоположного
+			элемента,
+		\item $\forall\lambda\in K,\;\forall u,v\in V\;\; \lambda(u+v)=
 			\lambda u+\lambda v$ -- дистрибутивность умножения
 			относительно сложения векторов,
-		\item $\forall\lambda,\mu\in K,\;\forall v\in V:
+		\item $\forall\lambda,\mu\in K,\;\forall v\in V\;\;
 			(\lambda+\mu)v=\lambda v+\mu v$ -- дистрибутивность
 			умножения,
-		\item $\forall\lambda,\mu\in K,\;\forall v\in V: (\lambda\mu)v=
-			\lambda(\mu v)$ -- ассоциативность умножения,
-		\item $\exists 1\in K: \forall v\in V: 1\cdot v=v$ --
+		\item $\forall\lambda,\mu\in K,\;\;\forall v\in V\; (\lambda\mu)
+			v=\lambda(\mu v)$ -- ассоциативность умножения,
+		\item $\exists 1\in K: \forall v\in V\;\; 1\cdot v=v$ --
 			существование нейтрального по умножению элемента.
 	\end{enumerate}
 \end{define}
@@ -78,13 +80,13 @@
 	$\mathbb R^n$ называется отображение $\cdot: \mathbb R^n\times
 	\mathbb R^n\rightarrow \mathbb R$, удовлетворяющее следующим условиям:
 	\begin{enumerate}[nosep]
-		\item $\forall v\in R^n: (v,v)\ge 0$, причём $(v,v)=0
+		\item $\forall v\in R^n\;\; (v,v)\ge 0$, причём $(v,v)=0
 			\Leftrightarrow v=\overline{0}$ -- положительная
 			определённость;
-		\item $\forall u,v\in \mathbb R^n: (u,v)=(v,u)$ --
+		\item $\forall u,v\in \mathbb R^n\;\; (u,v)=(v,u)$ --
 			коммутативность;
 		\item $\forall \lambda,\mu \in\mathbb R^n,\;
-			\forall u,v,w\in \mathbb R^n: (\lambda u+\mu v, w)=
+			\forall u,v,w\in \mathbb R^n\;\; (\lambda u+\mu v, w)=
 			\lambda(u,w)+\mu(v,w)$ -- линейность.
 	\end{enumerate}
 \end{define}
@@ -99,12 +101,12 @@
 	называется отображение $\|\|: V\rightarrow K$, удовлетворяющее
 	следующим условиям:
 	\begin{enumerate}[nosep]
-		\item $\forall v\in V: \|v\|\ge 0$, причём $\|v\|=0
+		\item $\forall v\in V\;\; \|v\|\ge 0$, причём $\|v\|=0
 			\Leftrightarrow v=\overline{0}$;
-		\item $\forall \lambda\in K,\;\forall v\in V:
+		\item $\forall \lambda\in K,\;\forall v\in V\;\;
 			\|\lambda v\|=|\lambda|\cdot\|v\|$;
-		\item $\forall u,v\in V: \|u+v\|\le\|u\|+\|v\|$ -- неравенство
-			треугольника.
+		\item $\forall u,v\in V\;\; \|u+v\|\le\|u\|+\|v\|$ --
+			неравенство треугольника.
 	\end{enumerate}
 \end{define}
 
@@ -149,17 +151,17 @@
 \end{define}
 
 \begin{define}
-	\textbf{Норма матрицы} $\mathbb R^{n\times m}$
+	\textbf{Нормой матрицы} $\mathbb R^{n\times m}$
 	называется отображение $\|\|: \mathbb R^{n\times m}\rightarrow
 	\mathbb R$, удовлетворяющее следующим условиям:
 	\begin{enumerate}[nosep]
-		\item $\forall A\in\mathbb R^{n\times m}: \|A\|\ge 0$, причём
+		\item $\forall A\in\mathbb R^{n\times m}\;\; \|A\|\ge 0$, причём
 			$\|A\|=0\Leftrightarrow A=O$;
 		\item $\forall \lambda\in \mathbb R,\;\forall v\in
-			\mathbb R^{n\times m}:
+			\mathbb R^{n\times m}\;\;
 			\|\lambda A\|=|\lambda|\cdot\|A\|$;
-		\item $\forall A,B\in\mathbb R^{n\times m}: \|A+B\|\le\|A\|+\|B\|$ --
-			неравенство треугольника.
+		\item $\forall A,B\in\mathbb R^{n\times m}\;\; \|A+B\|\le
+			\|A\|+\|B\|$ -- неравенство треугольника.
 	\end{enumerate}
 \end{define}
 
@@ -176,8 +178,8 @@
 	следующие неравенства:
 	\begin{enumerate}[nosep]
 		\item $\forall A\in\mathbb R^{n\times n},\;\forall x\in\mathbb
-			R^n: \|Ax\|\le\|A\|\|x\|$;
-		\item $\forall A,B\in\mathbb R^{n\times n}:
+			R^n\;\; \|Ax\|\le\|A\|\|x\|$;
+		\item $\forall A,B\in\mathbb R^{n\times n}\;\;
 			\|AB\|\le\|A\|\|B\|$.
 	\end{enumerate}
 \end{lemma}
