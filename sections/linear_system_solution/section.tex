@@ -841,7 +841,7 @@
 	\|f\|_\infty}.\]
 \end{theorem}
 
-\begin{example}
+\begin{example}\label{eq:tridiagonal_matrix_method_example}
 	Решим систему линейных алгебраических уравнений
 	\[
 		\begin{pmatrix}
@@ -1050,6 +1050,7 @@ $Ax=f$ находится как предел при $m\to\infty$ последо
 Есть ещё одно условие, при котором итерационный процесс сходится.
 
 \begin{theorem}[Самарского]
+\label{eq:samarskiy_criterion}
 	Если матрица $A$ симметричная и положительная определённая и $\tau>0$,
 	то при условии
 	\[B>\frac{1}{2}\tau A\]
@@ -1102,6 +1103,7 @@ $Ax=f$ находится как предел при $m\to\infty$ последо
 \end{define}
 
 \begin{theorem}[о сходимости метода Якоби]
+\label{eq:jacobi_method_convergence_cond}
 	Чтобы метод Якоби сходился, достаточно, чтобы матрица $A$
 	обладала диагональным преобладанием
 	\eqref{eq:diagonally_dominant_matrix}.
