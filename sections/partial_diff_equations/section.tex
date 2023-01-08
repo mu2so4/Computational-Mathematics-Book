@@ -108,8 +108,8 @@
 \begin{proof}
 	После преобразования строгой гиперболической системы, проведённого в
 	лемме \eqref{eq:hyperbolic_invariant_form}, полученная квазилинейная
-	гиперболическая система, которая распадается на $n$ независимых друг от
-	друга линейных уравнений переноса относительно инвариантов вдоль своих
+	гиперболическая система распадается на $n$ независимых друг от друга
+	линейных уравнений переноса относительно инвариантов вдоль своих
 	характеристик. Каждое уравнение имеет вид
 	\[(\omega^i)_t+\lambda_i(\omega^i)_x=0,\]
 	то есть является линейным уравнением переноса. Начальное значение $v(x)$
@@ -354,7 +354,7 @@
 			\varphi_1 & \varphi_2 \\
 			1	& -1	\\
 		\end{vmatrix}
-		\ne 0\Leftrightarrow
+		\ne 0\quad\Leftrightarrow\quad
 		\varphi_1\ne -\varphi_2.
 	\]
 
@@ -365,12 +365,12 @@
 			u+v=\omega_2, \\
 			\varphi_1 u+\varphi_2 v=f_2. \\
 		\end{cases}
-		\Leftrightarrow\quad
+		\Rightarrow\quad
 		\begin{vmatrix}
 			1	& 1	\\
 			\varphi_1 & \varphi_2 \\
 		\end{vmatrix}
-		\ne 0\Leftrightarrow
+		\ne 0\quad\Leftrightarrow\quad
 		\varphi_1\ne \varphi_2.
 	\]
 \end{example}
@@ -393,6 +393,7 @@
 	\[u_j^{n+1}=\sum_{m\in M}C_mu_{j+m}^n.\]
 \end{define}
 
+\newpage
 \begin{define}\label{eq:monotonic_scheme}
 	Разностная схема \eqref{eq:two_layer_scheme} называется
 	\textbf{монотонной}, если она при любом $j$ переводит монотонную функцию
@@ -443,20 +444,29 @@
 	Простейщая разностная схема по потоку, аппроксимирующая линейное
 	уравнение переноса, имеет вид
 	\[\frac{u_j^{n+1}-u_j^n}{\tau}+a\frac{u_{j+1}^n-u_j^n}{h}=0.\]
+
+	Шаблон схемы имеет вид \\
+
+	\subfile{graph-forward_scheme}
 \end{define}
 
 \begin{define}\label{eq:godunov_scheme}
 	Простейщая разностная схема против потока, аппроксимирующая линейное
 	уравнение переноса, называется \textbf{схемой Годунова} и имеет вид
 	\[\frac{u_j^{n+1}-u_j^n}{\tau}+a\frac{u_j^n-u_{j-1}^n}{h}=0.\]
+
+	Шаблон схемы имеет вид \\
+
+	\subfile{graph-godunov_scheme}
 \end{define}
+
 
 \begin{define}\label{eq:courant_number}
 	\textbf{Числом Куранта} в разностной схеме линейного уравнения переноса
 	называется число $\mathlarger{r=\frac{a\tau}{h}}$.
 \end{define}
 
-\begin{lemma}
+\begin{lemma}	\label{eq:CDE_forward_non_monotonic}
 	Разностная схема по потоку \eqref{eq:CDE_forward_scheme} не монотонна.
 \end{lemma}
 
@@ -802,7 +812,7 @@ $\{\alpha_k\}$ -- это некоторая последовательность
 	\par\parshape0
 	\everypar{}
 
-	\begin{wrapfigure}{l}{0.4\textwidth}
+	\begin{wrapfigure}{l}{0.5\textwidth}
 		\subfile{graph-forward_scheme_stability}
 	\end{wrapfigure}
 
@@ -810,7 +820,8 @@ $\{\alpha_k\}$ -- это некоторая последовательность
 	Легко увидеть, что почти всюду $|\lambda(\alpha)|>1$, поэтому
 	разностная схема неустойчива при $\forall r>0$.
 	\par}
-\end{example}
+\end{example}\leavevmode
+\\
 
 \begin{example}
 	Исследуем устойчивость схемы Годунова \eqref{eq:godunov_scheme}
@@ -818,7 +829,8 @@ $\{\alpha_k\}$ -- это некоторая последовательность
 
 	Проделаем те же шаги, что и в предыдущем примере, и получим
 	\[\lambda(\alpha)=1-r+re^{-i\alpha}.\]
-
+	
+	\newpage
 	Картина при $r\le 1$ выглядит вот так:
 	{\makeatletter
 	\let\par\@@par
@@ -877,7 +889,7 @@ $\{\alpha_k\}$ -- это некоторая последовательность
 Все предыдущие схемы были условно устойчивыми, если были хоть как-нибудь
 устойчивыми вообще.
 
-\begin{example}
+\begin{example}\label{eq:absolutely_stable_scheme}
 	Исследуем на устойчивость неявную разностную схему
 	\[\frac{u_j^{n+1}-u_j^n}{\tau}+a\frac{u_{j+1}^{n+1}-u_{j-1}^{n+1}}{2h}=
 	0.\]
@@ -886,8 +898,12 @@ $\{\alpha_k\}$ -- это некоторая последовательность
 	\[\lambda=1-ir\lambda\sin\alpha\quad\Leftrightarrow\quad
 	\lambda=\frac{1}{1-ir\sin\alpha}.\]
 
-	Схема устойчива при любом $r$, так как знаменатель заведомо не
-	меньше единицы. Значит, схема безусловно устойчивая.
+	Схема устойчива при любом $r$, так как модуль знаменателя не меньше
+	единицы. Значит, схема безусловно устойчивая.
+
+	Вот так выглядит шаблон этой разностной схемы: \\
+
+	\subfile{graph-implicit_scheme}
 \end{example}
 
 Возникает резонный вопрос: а зачем использовать явные разностные схемы, если
@@ -906,6 +922,10 @@ $\{\alpha_k\}$ -- это некоторая последовательность
 	\[\frac{u_j^{n+1}-u_j^{n-1}}{\tau}+a\frac{u_{j+1}^n-u_{j-1}^n}{h}=
 	0.\]
 \end{define}
+
+Шаблон схемы даёт объяснение названию: \\
+
+\subfile{graph-cross_scheme}
 
 \begin{example}
 	Исследуем устойчивость схемы-крест. Сразу подставим
