@@ -811,7 +811,7 @@ $\{\alpha_k\}$ -- это некоторая последовательность
 	\par\parshape0
 	\everypar{}
 
-	\begin{wrapfigure}{l}{0.4\textwidth}
+	\begin{wrapfigure}{l}{0.5\textwidth}
 		\subfile{graph-forward_scheme_stability}
 	\end{wrapfigure}
 
@@ -819,7 +819,8 @@ $\{\alpha_k\}$ -- это некоторая последовательность
 	Легко увидеть, что почти всюду $|\lambda(\alpha)|>1$, поэтому
 	разностная схема неустойчива при $\forall r>0$.
 	\par}
-\end{example}
+\end{example}\leavevmode
+\\
 
 \begin{example}
 	Исследуем устойчивость схемы Годунова \eqref{eq:godunov_scheme}
@@ -827,7 +828,8 @@ $\{\alpha_k\}$ -- это некоторая последовательность
 
 	Проделаем те же шаги, что и в предыдущем примере, и получим
 	\[\lambda(\alpha)=1-r+re^{-i\alpha}.\]
-
+	
+	\newpage
 	Картина при $r\le 1$ выглядит вот так:
 	{\makeatletter
 	\let\par\@@par
