@@ -1,0 +1,42 @@
+\documentclass{article}
+
+\begin{document}
+\begin{tikzpicture} [
+	evaluate = {
+		function solve(\n) {
+			if \n == 0 then {return 1;}
+			else {
+				\p = solve(\n-1);
+				return \p - 0.1 * \p^2;
+			};
+		};
+	}]
+
+	\begin{axis} [
+		height=7cm,
+		width=18cm,
+		xlabel = {$x$},
+		ylabel = {$y$},
+		ymax = 1.1,
+		xmax = 21,
+		axis x line = middle,
+		axis y line = middle,
+		domain = 0:20,
+		ticks = none,
+		legend pos = north east	
+	]
+
+		\addplot[color=blue, thick, samples at={0,1,..., 20}, line width = 0.8mm] (\x, {solve(\x)});
+
+		\addplot[color=red, line width = 0.4mm] {1/(0.1 * x+1)};
+
+		\addlegendentry{численное решение}
+		\addlegendentry{точное решение};
+	\end{axis}
+
+\end{tikzpicture}
+
+
+
+
+\end{document}
