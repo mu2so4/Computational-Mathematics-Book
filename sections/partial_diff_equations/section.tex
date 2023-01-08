@@ -466,7 +466,7 @@
 	называется число $\mathlarger{r=\frac{a\tau}{h}}$.
 \end{define}
 
-\begin{lemma}
+\begin{lemma}	\label{eq:CDE_forward_non_monotonic}
 	Разностная схема по потоку \eqref{eq:CDE_forward_scheme} не монотонна.
 \end{lemma}
 
@@ -889,7 +889,7 @@ $\{\alpha_k\}$ -- это некоторая последовательность
 Все предыдущие схемы были условно устойчивыми, если были хоть как-нибудь
 устойчивыми вообще.
 
-\begin{example}
+\begin{example}\label{eq:absolutely_stable_scheme}
 	Исследуем на устойчивость неявную разностную схему
 	\[\frac{u_j^{n+1}-u_j^n}{\tau}+a\frac{u_{j+1}^{n+1}-u_{j-1}^{n+1}}{2h}=
 	0.\]
