@@ -1,0 +1,36 @@
+\documentclass[14pt]{extarticle}
+
+\begin{document}
+\begin{tikzpicture}
+	\begin{axis} [
+		height=5.5cm,
+		width=\textwidth,
+		xlabel = {$x$},
+		ylabel = {$y$},
+		axis lines = middle,
+		domain = -1.7:1.7,
+		ticks = none,
+		legend pos = south east ]
+
+		\newcommand*{\varA}{0}
+		\newcommand*{\varB}{1}
+		\newcommand*{\X}{0.739}
+
+		\addplot[color=blue, line width=0.8mm]{x};
+		\addplot[color=red, line width=0.4mm]{cos(x * 180/pi)};
+
+		\coordinate(X) at	(\X, \X);
+		\node[below](Xp) at	(\X, 0) {$\widetilde{x}$};
+		\node[below]  at	(1,0) {$1$};
+
+		\addplot[mark=*,only marks, fill=black] (\X, \X)
+			node[above, pos=1]{};
+
+		\draw[dashed] (Xp) -- (X);
+
+		\addlegendentry{$y=x$};
+		\addlegendentry{$y=\cos x$};
+		
+	\end{axis}
+\end{tikzpicture}
+\end{document}
