@@ -4,24 +4,48 @@
 \unnumberedsection{Список изменений}
 
 \begin{itemize}[nosep]
-\item Версия 0.17 \textbf{beta} от 08.01.2023 (текущая версия):
+\item Версия 0.18 \textbf{pre-release} от 10.01.2023 (текущая версия):
+	\begin{enumerate}[nosep]
+		\item Изменена титульная страница
+		\item Изменено предисловие
+		\item Подраздел ''Методы Рунге'' перемещён из раздела
+			''Численное решение ДУ'' в раздел ''Численное
+			дифференцирование''
+		\item Перемещён раздел ''Вычислительные методы линейной
+			алгебры''
+		\item В разделе ''Численное решение алгебраических уравнений''
+			переписано встуление и добавлены методики разделения
+			корней
+		\item Исправлены ошибки и опечатки в пунктах
+			\eqref{eq:newton_method_error},
+			\eqref{eq:linear_space},
+			\eqref{eq:lagrange_polynomial}, 
+			\eqref{eq:god_lax_scheme},
+			\eqref{eq:strongly_monotonic_cond},
+			\eqref{eq:godunov_restriction};
+		\item Исправлены ошибки в примерах
+			\eqref{eq:lax_scheme_stability},
+			\eqref{eq:absolutely_stable_scheme},
+			\eqref{eq:cross_scheme_stability}.
+	\end{enumerate}
+\item Версия 0.17 \textbf{beta} от 08.01.2023:
 	\begin{enumerate}[nosep]
 		\item Добавлен вывод формул метода прогонки;
 		\item Добавлены графики шаблонов разностных схем;
 		\item Добавлены примеры применения разностного оператора,
 			использования методов Рунге-Кутта и Рунге;
 		\item Исправлены опечатки и недочёты в пунктах
+			\eqref{eq:diagonal_matrix},
 			\eqref{eq:repeated_characteristics},
 			\eqref{eq:complex_roots_de},
 			\eqref{eq:runge_method_with_exact},
 			\eqref{eq:runge_method_without_exact},
-			\eqref{eq:CDE_forward_non_monotonic},
-			\eqref{eq:diagonal_matrix};
+			\eqref{eq:CDE_forward_non_monotonic};
 		\item Исправлены опечатки в примерах
+			\eqref{eq:sle_fixed_point_example},
 			\eqref{eq:complexes_difference_eq},
 			\eqref{eq:non_stable_scheme},
-			\eqref{eq:absolutely_stable_scheme},
-			\eqref{eq:sle_fixed_point_example}.
+			\eqref{eq:absolutely_stable_scheme}.
 	\end{enumerate}
 \item Версия 0.16 \textbf{beta} от 06.01.2023:
 	\begin{enumerate}[nosep]
@@ -29,12 +53,12 @@
 		\item Добавлены решения СЛАУ с диагональными и треугольными
 			матрицами;
 		\item Исправлены опечатки и недочёты в пунктах
-			\eqref{eq:dif_operator_with_uniform_template},
-			\eqref{eq:compact_difference_scheme_theorem},
 			\eqref{eq:subordinate_norm_properties},
 			\eqref{eq:sle_convergence_criterion},
 			\eqref{eq:samarskiy_criterion},
-			\eqref{eq:jacobi_method_convergence_cond};
+			\eqref{eq:jacobi_method_convergence_cond},
+			\eqref{eq:dif_operator_with_uniform_template},
+			\eqref{eq:compact_difference_scheme_theorem};
 		\item Исправлены опечатки в примерах
 			\eqref{eq:differential_equation_simplest_example} и
 			\eqref{eq:simplest_difference_solution_example};
@@ -112,18 +136,6 @@
 			в частных производных;
 		\item Добавлен раздел ''Список изменений'', то есть добавлен
 			данный раздел.
-	\end{enumerate}
-
-\item Версия 0.9 от 04.12.2022:
-	\begin{enumerate}[nosep]
-		\item Исправлены опечатки в пунктах
-			\eqref{eq:composite_simpsons_3_8_rule} и
-			\eqref{eq:compact_difference_scheme_theorem};
-		\item Обновлено обоснование разрешимости системы уравнений из
-			примера \eqref{eq:central_do_example};
-		\item Добавлена 9 лекция с теорией по решению линейных
-			разностных уравнений с постоянными коэффициентами и
-			примером неустойчивой разностной схемы.
 	\end{enumerate}
 \end{itemize}
 \end{document}
