@@ -308,9 +308,10 @@ $(n+1)$-точечном шаблоне}
 			{\underbrace{T\circ T\circ...\circ T}}=T^j$;
 		\item Общая запись разностного оператора на равномерном шаблоне:
 			\[\Lambda_h[y(x)]=\frac{1}{h^n}\sum_{j=0}^{n}a_jy(x+jh)=
-			\frac{1}{h^n}\Big(\sum_{j=0}^{n}T_{jh}\Big)\circ y(x)=
+			\frac{1}{h^n}\Big(\sum_{j=0}^{n}T_{jh}a_j\Big)\circ
+			y(x)=
 			\frac{1}{h^n}\underset{P_n(T)}{\underbrace{\Big(
-			\sum_{j=0}^{n}T_j\Big)}}\circ y(x).\]
+			\sum_{j=0}^{n}T_ja_j\Big)}}\circ y(x).\]
 	\end{itemize}
 \end{define}
 
@@ -430,7 +431,7 @@ $(n+1)$-точечном шаблоне}
 
 	Как и тогда, разложим в ряд Тейлора:
 	\[y(x\pm h)=y(x)\pm hy'(x)+\frac{h^2}{2}y''(x)\pm\frac{h^3}{6}y'''(x)+
-	\frac{h^3}{6}y^{(4)}(x)+O(h^5).\]
+	\frac{h^4}{24}y^{(4)}(x)+O(h^5).\]
 
 	Подставив это, получим
 	\[\Lambda_h=y'-g+\frac{h^2}{6}y'''+O(h^4)\quad\Rightarrow\quad
