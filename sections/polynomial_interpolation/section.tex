@@ -89,7 +89,10 @@ $n+1$ условие. Единственность решения математ
 	\[P_{n,k}(x)=q_k\prod_{\substack{l=0\\ l\neq k}}^{n}(x-x_l),\]
 	где $q_k$ берётся из условия $P_{n,k}(x_k)=1$:
 	\[q_k=\frac{1}{\prod_{\substack{l=0\\ l\neq k}}^{n}(x-x_l)}.\]
-	Обозначив $\omega(x)=\prod_{l=0}^{n}(x-x_l)$, перепишем многочлен:
+	Обозначим $\omega(x)=\prod_{l=0}^{n}(x-x_l)$:
+	\[\omega'(x)=\sum_{i=0}^n\Big(\prod_{j\ne i}(x-x_j)\Big),\qquad
+	\omega'(x_k)=\prod_{i\ne k}(x_k-x_i).\]
+	Теперь компактно запишем многочлен:
 	\[P_{n,k}(x)=\frac{\omega(x)}{(x-x_k)\omega'(x_k)}.\]
 	Очевидно, что линейная комбинация
 	\[P_n(x)=\sum_{k=0}^{n}P_{n,k}(x)f(x_k)\]
