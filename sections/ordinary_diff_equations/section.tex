@@ -348,25 +348,24 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 \subsubsection{Случай кратных корней}
 \begin{lemma}\label{eq:polynomial_power_lowering}
 	Если $\mu$ является нулём многочлена $P(x)$, то
-	\[(T_1-\mu E)\circ\big(\mu^xP_k(x)\big)=\mu^{x+1}P_{k-1}(j).\]
+	\[(T_1-\mu E)\circ\big(P_k(j)\big)=\mu P_{k-1}(j).\]
 \end{lemma}
 
 \begin{proof}
 	Представим полином как
-	\[P_k(x)=\sum_{m=0}^{k}a_mx^m.\]
+	\[P_k(j)=\sum_{m=0}^{k}a_mj^m.\]
 
 	Тогда мы сразу получаем
-	\[(T_1-\mu E)\circ(\mu^xP_k(x))=\mu^{x+1}\cdot\big(P_k(x+1)-P_k(x)
-	\big)=\]
-	\[=\mu^{x+1}\sum_{m=0}^{k}a_m\big((x+1)^m-x^m\big)=\mu^{j+1}\sum_{m=1}^
-	{k}a_mP_{m-1}(x)=\mu^{x+1}P_{k-1}(x).\]
+	\[(T_1-\mu E)\circ(P_k(j))=\mu\cdot\big(P_k(j+1)-P_k(j)\big)=\]
+	\[=\mu\sum_{m=0}^{k}a_m\big((j+1)^m-j^m\big)=\mu\sum_{m=1}^{k}a_m
+	P_{m-1}(j)=\mu P_{k-1}(j).\]
 \end{proof}
 
 \begin{lemma}\label{eq:characteristic_nullicifation}
 	Если $\mu$ -- корень кратности $s$ характеристического многочлена
 	линейного разностного уравнения \eqref{eq:linear_difference_scheme},
 	то $\forall k\in\overline{1,s-1}$ верно
-	\[(T-\mu E)^s\circ y_j^k=0,\]
+	\[(T-\mu E)^s\circ y_j^k=0.\]
 \end{lemma}
 
 \begin{proof}
@@ -501,7 +500,7 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 
 	Покажем, что разностная схема неустойчивая.
 	Соответствующее разностное уравнение имеет вид
-	\[y_{j+2}-(h+3)y_{j+1}+2=0.\]
+	\[y_{j+2}-(h+3)y_{j+1}+2y_j=0.\]
 
 	Корни характеристического уравнения:
 	\[\lambda_1=\frac{3+h-\sqrt{h^2+6h+1}}{2}=1-h+O(h^2),\]
