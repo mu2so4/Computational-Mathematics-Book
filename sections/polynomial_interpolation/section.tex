@@ -88,7 +88,7 @@ $n+1$ условие. Единственность решения математ
 	мономов:
 	\[P_{n,k}(x)=q_k\prod_{\substack{l=0\\ l\neq k}}^{n}(x-x_l),\]
 	где $q_k$ берётся из условия $P_{n,k}(x_k)=1$:
-	\[q_k=\frac{1}{\prod_{\substack{l=0\\ l\neq k}}^{n}(x-x_l)}.\]
+	\[q_k=\frac{1}{\prod_{\substack{l=0\\ l\neq k}}^{n}(x_k-x_l)}.\]
 	Обозначим $\omega(x)=\prod_{l=0}^{n}(x-x_l)$:
 	\[\omega'(x)=\sum_{i=0}^n\Big(\prod_{j\ne i}(x-x_j)\Big),\qquad
 	\omega'(x_k)=\prod_{i\ne k}(x_k-x_i).\]
@@ -250,7 +250,7 @@ $P_n(x)$ для функции $f(x)$. Затем нам стало извест
 	$\omega'(x_i)=\mathlarger\prod_{j=0,\;j\ne i}^{k-1}(x_i-x_j)$
 	окончательно получаем:
 	\[A_k=\frac{f(x_k)}{\prod_{j=0}^{k-1}(x_k-x_j)} +
-	\sum_{i=0}^{k-1}\frac{f(x_i)}{\prod_{\substack{j=0\\j\ne i}}^{k-1}
+	\sum_{i=0}^{k-1}\frac{f(x_i)}{\prod_{\substack{j=0\\j\ne i}}^{k}
 	(x_i-x_j)}=\sum_{i=0}^{k}\frac{f(x_i)}{\prod_{\substack{j=0\\j\ne i}}^
 	{k}(x_i-x_j)},\]
 	что по лемме \eqref{eq:div_diff_formula} и является разделённой
