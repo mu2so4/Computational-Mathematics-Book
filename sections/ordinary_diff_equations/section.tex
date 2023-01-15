@@ -298,20 +298,23 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 	Если у характеристического многочлена линейного разностного уравнения
 	\eqref{eq:linear_difference_scheme} все корни различны, то его общее
 	решение имеет вид
-	\[\boxed{y_j=\sum_{m=1}^{n}C_m\lambda_m^j}.\]
+	\[\boxed{y_j=\sum_{m=1}^{n}C_m\lambda_m^j},\qquad\text{ где }
+	\lambda_k:\; P(\lambda_k)=\sum_{m=0}^{n}a_m\lambda_k^m=0.\]
 \end{theorem}
 
 \begin{proof}
 	По аналогии с дифференциальными уравнениями, обозначим за $\lambda_i$
-	корни (нули) соответствующего характеристического уравнения, причём
+	корни (нули) характеристического уравнения $P(\lambda)=0$, причём
 	$\lambda_i\ne 0\quad\forall i\in\overline{1,n}$.
 
 	Поскольку $\lambda_i$ разные и действительные, положим, что решение
 	имеет вид
 	\[y_j=\sum_{m=1}^{n}C_m\lambda_m^j.\]
-	Проверим его правильность, для этого мы подставим в схему $y_j$:
-	\[\Lambda_h[y_j]=\sum_{m=0}^{n}a_m\lambda^ {j+m}=\lambda^j\sum_{m=0}^
-	{n}a_m\lambda^m=0.\]
+	Проверим его правильность, для этого мы подставим в схему
+	$C_k\lambda_k^j$, где \\
+	$k\in\{1,...,n\}$:
+	\[\Lambda_h[C_k\lambda_k^j]=\sum_{m=0}^{n}a_mC_k\lambda_k^{j+m}=
+	C_m\lambda_k^j\sum_{m=0}^{n}a_m\lambda_k^m=0.\]
 
 	Значит, разностное решение, найденное данным способом, найдено верно.
 \end{proof}
@@ -365,7 +368,7 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 	Если $\mu$ -- корень кратности $s$ характеристического многочлена
 	линейного разностного уравнения \eqref{eq:linear_difference_scheme},
 	то $\forall k\in\overline{1,s-1}$ верно
-	\[(T-\mu E)^s\circ y_j^k=0.\]
+	\[(T-\mu E)^s\circ (j^k\mu^j)=0.\]
 \end{lemma}
 
 \begin{proof}
@@ -397,14 +400,14 @@ $s_i$ -- кратность его $i$ корня, причём $\sum_{m=1}^{l}s
 	Рассмотрим ноль характеристического уравнения $\mu_i$. Ввиду того, что
 	$\mu_i$ является корнем данного многочлена кратности $s_i$, представим
 	$P_n(T)$ как
-	\[P_n(T)=(T-\mu_i E)^s\circ P_{n-s_i}(T)=P_{n-s_i}(T)\circ(T-\mu_i E)
-	^s_i.\]
+	\[P_n(T)=(T-\mu_i E)^{s_i}\circ P_{n-s_i}(T)=P_{n-s_i}(T)\circ
+	(T-\mu_i E)^{s_i}.\]
 
 	Обозначим ту часть $y_j$, которая содержит $\mu_i$ как
-	\[y_j^{\mu_i}=\sum_{m=0}^{s_i-1}C_{jm}j^m.\]
+	\[y_j^{\mu_i}=\sum_{m=0}^{s_i-1}C_{im}j^m.\]
 
 	Тогда по лемме \eqref{eq:characteristic_nullicifation}
-	\[P_n(T)\circ y_j^{\mu_i}=P_{n-s_i}\circ\big((T-\mu_i E)^s\circ y_j^
+	\[P_n(T)\circ y_j^{\mu_i}=P_{n-s_i}\circ\big((T-\mu_i E)^{s_i}\circ y_j^
 	{\mu_i}\big)=0.\]
 
 	С другими $\mu_i$ проделываем аналогичную операцию и получаем, что
