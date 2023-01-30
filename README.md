@@ -1,6 +1,6 @@
 <p align="left">
  	<a href="https://coveralls.io/mu2so4/Computational-Mathematics-Book">
-		<img src="https://img.shields.io/badge/version-1.1.1-green"
+		<img src="https://img.shields.io/badge/version-1.1.2-green"
 			alt="version">
 	</a>
 </p>
@@ -17,8 +17,7 @@ Based on V. Ostapenko lectures for 3rd course FIT NSU.
   Every section has its own directory which contains these files:
     * `section.tex` &ndash; main section file;
     * `graph-*.tex` &ndash; graph files;
-* `references.tex` &ndash; page containing reference list;
-* `changelog.tex` &ndash; page containing latest book updates.
+* `references.tex` &ndash; page containing reference list.
 
 ## Building project
 If you are a Windows user, just download the
